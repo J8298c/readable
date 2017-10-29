@@ -9,12 +9,11 @@ class Home extends Component {
     this.props.fetchingTitles();
   }
   render(props) {
-    console.log(this.props.title)
     return (
       <div>
        {this.props.title ? this.props.title.categories.map((category) => (
          <div key={category.name}>
-          <h1>{category.name}</h1>
+            <Link to={`/posts/${category.name}`}><h1>{category.name}</h1></Link>
          </div>
        )):
        '....Loading'
@@ -24,9 +23,7 @@ class Home extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state)
   const { title } = state;
-  console.log(title);
   return { title }
 }
 
