@@ -1,23 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import {fetchingTitles} from '../actions/index';
+import { Link } from 'react-router-dom';
 
 class Home extends Component {
-  state = { categories: [] }
   componentDidMount() {
-    const headers =  { headers: { 'Authorization': 'whatever-you-want' }}
-    fetch('http://localhost:3001/categories', headers)
-    .then(response => response.json())
-    .then(names => {
-      this.setState({categories: names})
-    })
-    .catch(error => { throw new Error(error)})
+    this.props.fetchingTitles();
   }
   render(props) {
-    console.log(this.state);
+    console.log(this.props.title)
     return (
       <div>
-      Home
+       {this.props.title ? this.props.title.categories.map((category) => (
+         <div key={category.name}>
+          <h1>{category.name}</h1>
+         </div>
+       )):
+       '....Loading'
+     }
       </div>
     )
   }
 }
-export default Home;
+function mapStateToProps(state) {
+  console.log(state)
+  const { title } = state;
+  console.log(title);
+  return { title }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({fetchingTitles}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
