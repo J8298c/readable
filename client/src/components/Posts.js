@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchingCatPosts } from '../actions/index';
 
 class Posts extends Component {
   constructor(props){
@@ -7,41 +10,31 @@ class Posts extends Component {
     this.upVote = this.upVote.bind(this);
   }
   componentDidMount(props) {
-    const headers =  { headers: { 'Authorization': 'whatever-you-want' }}
-    console.log(this.props, 'props in posts');
     const { name } = this.props.match.params;
-    fetch(`http://localhost:3001/${name}/posts`, headers)
-    .then(response => response.json())
-    .then(posts => {
-      console.log(posts)
-      this.setState({posts});
-    })
-    .catch(error => { console.log(error)})
+    this.props.fetchingCatPosts(name);
   }
   upVote() {
     console.log('upvote meth')
-    let score = this.state.posts[0].voteScore;
+    let score = this.state.posts.voteScore;
     score++
-    this.state.posts[0].setState({voteScore: score});
+    const newState = Object.assign({}, this.state.posts, {voteScore: score});
+    this.setState({posts: newState});
   }
   render() {
-    console.log(this.state);
-    const { posts } = this.state;
-    console.log(posts);
     return (
       <div>
-        {posts ?
-          posts.map(poststuff => (
-            <div  key={poststuff.id}>
-            <h1>{poststuff.author}</h1>
-            <p>{poststuff.voteScore}</p>
-            <button onClick={this.upVote}>Like</button>
-            </div>
-          ))
-          : 'loading'
-        }
+      <div>hello</div>
+      <button onClick={this.upVote}>Like</button>
       </div>
     )
   }
 }
-export default Posts;
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {state}
+}
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({fetchingCatPosts}, dispatch);
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Posts);
