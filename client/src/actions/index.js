@@ -40,9 +40,10 @@ export function fetchingTitles(dispatch) {
   }
 }
 
-export function fetchingCatPosts(dispatch, catName) {
+export function fetchingCatPosts(category, dispatch) {
+  console.log(category);
   return dispatch => {
-    fetch(`http://localhost:3001/${catName}/posts`, headers)
+    fetch(`http://localhost:3001/${category}/posts`, headers)
     .then(response => response.json())
     .then(posts => {
       console.log(posts)

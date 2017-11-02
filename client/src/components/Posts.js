@@ -24,7 +24,6 @@ class Posts extends Component {
     return (
       <div>
       <div>hello</div>
-      <button onClick={this.upVote}>Like</button>
       </div>
     )
   }
