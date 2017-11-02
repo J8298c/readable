@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Home from './components/Home';
-import Posts from './components/Posts';
+import Category from './components/Category';
 
 class App extends Component {
   render() {
@@ -9,7 +9,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact path='/' component={Home} />
-          <Route path='/posts/:name' component={Posts} />
+          <Route path='/posts/:name' component={Category} />
         </div>
       </BrowserRouter>
     );

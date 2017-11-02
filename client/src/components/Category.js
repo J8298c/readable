@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchingCatPosts } from '../actions/index';
+import Post from './Post';
 
-class Posts extends Component {
+class Category extends Component {
   constructor(props){
     super(props);
     this.state={};
@@ -21,9 +22,19 @@ class Posts extends Component {
     this.setState({posts: newState});
   }
   render() {
+    const { posts } = this.props;
+    console.log(posts);
+    console.log(this.props.posts);
     return (
       <div>
-      <div>hello</div>
+        { posts ? 
+          posts.map((post) => ( 
+            <Post author={post.author} title={post.title}
+            body={post.body} category={post.category} commentCount={post.commentCount}
+            voteScore={post.voteScore} key={post.id}/>
+          ))
+          : '..Loading'
+        }
       </div>
     )
   }
@@ -31,9 +42,11 @@ class Posts extends Component {
 
 function mapStateToProps(state) {
   console.log(state);
-  return {state}
+  const { posts } = state;
+  console.log(posts);
+  return { posts }
 }
 function mapDispatchToProps(dispatch) {
   return bindActionCreators({fetchingCatPosts}, dispatch);
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Posts);
+export default connect(mapStateToProps, mapDispatchToProps)(Category);
