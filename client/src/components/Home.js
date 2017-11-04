@@ -20,9 +20,11 @@ class Home extends Component {
         {
           categories ?
           categories.map(category => (
-            <h1 key={category.name}>
-              {category.name}
-            </h1>
+            <Link to={`/posts/${category.name}`} key={category.name}>
+              <h1>
+                {category.name}
+              </h1>
+            </Link>
           ))
           :
           '...Loading'

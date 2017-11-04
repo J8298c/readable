@@ -1,4 +1,4 @@
-import { FETCH_CATEGORY_TITLES, FETCH_ERROR } from '../actions/index';
+import { FETCH_CATEGORY_TITLES, FETCH_ERROR, FETCH_CATEGORY_POSTS } from '../actions/index';
 import { initialAppState } from '../index';
 
 const appReducer = (state = initialAppState, action) => {
@@ -9,6 +9,10 @@ const appReducer = (state = initialAppState, action) => {
   } else if(action.type === FETCH_ERROR) {
     const { error } = action;
     const newState = Object.assign({}, state, { error });
+    return newState;
+  } else if(action.type === FETCH_CATEGORY_POSTS) {
+    const { posts } = action;
+    const newState = Object.assign({}, state, { posts });
     return newState;
   }
   return state;
