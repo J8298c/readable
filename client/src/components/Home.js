@@ -1,18 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchingCategories } from '../actions/index';
 
 class Home extends Component {
   state = {}
 
   componentDidMount() {
-  const header = { headers: { 'Authorization': 'whatever-you-want' }}
-    fetch('http://localhost:3001/categories', header)
-    .then(response => response.json())
-    .then(categories => {
-      console.log(categories);
-    })
+    this.props.fetchingCategories();
   }
 
   render() {
+    console.log(this.props.state);
     return (
       <div>
         Home
@@ -21,4 +20,15 @@ class Home extends Component {
   }
 }
 
-export default Home;
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    state
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({fetchingCategories}, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
