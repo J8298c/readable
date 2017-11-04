@@ -1,17 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { appReducer } from './reducers/index';
-
+import appReducer from './reducers/index';
+import './index.css';
+import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const store = createStore(appReducer, {}, applyMiddleware(thunk))
+export const initialAppState ={
+  categories: [],
+}
 
-
+const store = createStore(appReducer, initialAppState, applyMiddleware(thunk))
 ReactDOM.render(
   <Provider store={store}>
     <App />

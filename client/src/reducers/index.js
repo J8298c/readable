@@ -1,13 +1,16 @@
-import { FETCH_POST_CATEGORIES, FETCH_ERROR } from '../actions/index';
+import { FETCH_CATEGORY_TITLES, FETCH_ERROR } from '../actions/index';
+import { initialAppState } from '../index';
 
-export function appReducer(state = {}, action) {
-  if(action.type === FETCH_POST_CATEGORIES) {
-    const { categories } = action.payload;
+const appReducer = (state = initialAppState, action) => {
+  if(action.type === FETCH_CATEGORY_TITLES) {
+    const {categories} = action;
     const newState = Object.assign({}, state, { categories });
     return newState;
-  } else if (action.type === FETCH_ERROR) {
-    const { error } = action.payload;
+  } else if(action.type === FETCH_ERROR) {
+    const { error } = action;
     const newState = Object.assign({}, state, { error });
     return newState;
   }
+  return state;
 }
+export default appReducer;
