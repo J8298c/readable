@@ -1,5 +1,12 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react'
+import Input from './shared/input';
+import Button from './shared/button';
+import Select from './shared/select';
+import TextArea from './shared/textarea';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { fetchingCatTitles } from '../actions/index';
 
 class CreatePost extends Component {
     constructor(props) {
@@ -18,29 +25,38 @@ class CreatePost extends Component {
         console.log(this.state)
     }
     render() {
+        const { categories } = this.props.state.categories;
         return (
             <div>
-              <Form>
+              <Form className='new-post'>
                 <Form.Group widths="equal">
-                    <Form.Input label='Title' placeholder='Add a post title' 
-                    onChange={(event) => { this.setState({title: event.target.value})}} />
-                    <Form.Input label='Author' placeholder='Enter your name' 
-                    onChange={(event) => { this.setState({author: event.target.value})}} />
-                    <Form.TextArea label='post' placeholder='Start posting' 
-                    onChange={(event) => {this.setState({body: event.target.value})}} />
-                    <div className="category-control">
-                       <Form.Field label='Select a category' control='select' 
-                       onChange={(event) => { this.setState({category: event.target.value})}}>
-                           <option value='react'>React</option>
-                           <option value='redux'>Redux</option>
-                           <option value='udacity'>Udacity</option>
-                       </Form.Field>
-                    </div>
+                    <Input 
+                    placeholder='Enter a Title' onChange={(event) => {this.setState({title: event.target.value})}}
+                    label='Post Title' />
+                    <Input 
+                    placeholder='Authors Name' onChange={(event) => {this.setState({author: event.target.value})}}
+                    label='Post Author' />
+                    <TextArea placeholder='Start Posting' label='Enter Post' 
+                    onChange={(event) => {this.setState({body: event.target.value})}}
+                    />
+                    <Select label='Select a category' options={categories}
+                    onChange={(event) => {this.setState({category: event.target.value})}} />
                 </Form.Group>
             </Form>
-            <button onClick={this.onSubmit}>submit</button>  
+            <Button onClick={this.onSubmit} innerText='submit'/>
         </div>
         )
     }
 }
-export default CreatePost;
+function mapStateToProps(state) {
+    console.log(state);
+    return {
+        state
+    }
+}
+
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({fetchingCatTitles}, dispatch)
+}
+export default connect (mapStateToProps, mapDispatchToProps)(CreatePost);
+
