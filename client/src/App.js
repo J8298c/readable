@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import HomePage from './components/HomePage';
+import PostHome from './components/PostHome';
 import './App.css';
 
 class App extends Component {
@@ -9,6 +10,7 @@ class App extends Component {
       <BrowserRouter>
         <div>
           <Route exact path='/' component={HomePage} />
+          <Route path='/posts/:name' component={PostHome} />
         </div>
       </BrowserRouter>
     );
