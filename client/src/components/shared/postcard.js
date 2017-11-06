@@ -1,6 +1,6 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
-import appButton from './button';
+import AppButton from './button';
 
 const PostCard = (props) => (
     <Card>
@@ -17,13 +17,14 @@ const PostCard = (props) => (
         </Card.Content>
         <Card.Content extra>
             <div className={props.extrabuttons}>
-                <Button color={props.buttonColor} 
+                <AppButton color={props.buttonColor} 
                     content={props.buttonContent} onClick={props.buttonClick}
                 />
-                <Button color={props.buttonColorUnLike} 
+                <AppButton color={props.buttonColorUnLike} 
                     content={props.buttonContentUnLike} onClick={props.buttonClickUnLike}
                 />
             </div>
         </Card.Content>
     </Card>
 )
+export default PostCard;
