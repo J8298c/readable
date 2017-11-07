@@ -2,6 +2,7 @@ import axios from 'axios';
 export const FETCH_CATEGORY_TITLES = 'FETCH_CATEGORY_TITLES';
 export const HANDLE_ERRORS = 'HANDLE_ERRORS';
 export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
+export const POST_UPVOTE = 'POST_UPVOTE';
 
 
 export function fetchCategoryTitles(categories) {
@@ -24,6 +25,14 @@ export function fetchCatPosts(posts) {
     const action = {
         type: FETCH_CATEGORY_POSTS,
         posts
+    }
+    return action;
+}
+
+export function postUpVote(score) {
+    const action = {
+        type: POST_UPVOTE,
+        score
     }
     return action;
 }
@@ -52,3 +61,18 @@ export function fetchingCatPosts(category, dispatch) {
     }
 }
 
+export function postingVote(id, dispatch) {
+    return dispatch => {
+        axios
+            .get(`http://localhost:3001/posts/${id}`, {
+                headers : {
+                    Authorization: 'whatever-you-want' 
+                },
+                body: JSON.stringify({options: 'upVote'})
+            })
+            .then(response => {
+                console.log(response);
+            })
+            .catch(error => { console.log(error)})
+    }
+}

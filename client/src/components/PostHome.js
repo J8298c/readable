@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchingCatPosts } from '../actions/index';
+import { fetchingCatPosts, postingVote } from '../actions/index';
 import PostCard from './shared/postcard';
 
 class PostHome extends Component {
@@ -17,8 +17,11 @@ class PostHome extends Component {
        this.props.fetchingCatPosts(name);
     }
 
-    upVote() {
+    upVote(id,score) {
+
         console.log('liked it');
+        console.log(id);
+        this.props.postingVote(id);
     }
 
     downVote() {
@@ -32,11 +35,12 @@ class PostHome extends Component {
                 {
                     this.props.posts ? 
                     this.props.posts.map(post => (
-                        <PostCard postTitle={post.title} postAuthor={post.author} 
-                        postBody={post.body} extraClassName='post-extra' postScore={post.voteScore}
-                        extrabutton='post-btn-div' buttonColor='green' buttonContent='Like' buttonClick={this.upVote}
-                        buttonColorUnlike='red' buttonContentUnLike='Unlike' buttonClickUnlike={this.downVote}
-                        />
+                        <div>
+                            <h1>{post.title}</h1>
+                            <p>{post.title}</p>
+                            <p>{post.voteScore}</p>
+                            <button onClick={()=>{this.upVote(post.id, post.voteScore)}}>submit</button>
+                        </div>
                     )) :
 
                     '..Loading'
@@ -55,7 +59,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingCatPosts}, dispatch);
+    return bindActionCreators({fetchingCatPosts, postingVote}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(PostHome);
