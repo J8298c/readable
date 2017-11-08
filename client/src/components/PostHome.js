@@ -25,7 +25,7 @@ class PostHome extends Component {
         {
           this.props.posts ?
           this.props.posts.map(post => (
-            <div>
+            <div key={post.id}>
             <h1>{post.title}</h1>
             <h6>{post.author}</h6>
             <p>{post.body}</p>

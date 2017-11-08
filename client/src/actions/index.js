@@ -60,19 +60,19 @@ export function fetchingCatPosts(category, dispatch) {
             .catch(error => { dispatch(handleError(error))})
     }
 }
-
+const option = JSON.stringify({option: 'upVote'})
 export function postingVote(id, dispatch) {
     return dispatch => {
-        axios
-            .get(`http://localhost:3001/posts/${id}`, {
-                headers : {
-                    Authorization: 'whatever-you-want'
-                },
-                option: 'upVote'
-            })
-            .then(response => {
-                console.log(response);
-            })
-            .catch(error => { console.log(error)})
+      fetch(`http://localhost:3001/posts/${id}`, {
+        headers: {
+          'Authorization': 'whatever-you-want',
+          'Accept': 'application/json',
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({option: "upVote"}),
+        method: 'POST',
+      })
+      .then(response => response.json())
+      .then(json => console.log(json))
     }
 }
