@@ -66,9 +66,9 @@ export function postingVote(id, dispatch) {
         axios
             .get(`http://localhost:3001/posts/${id}`, {
                 headers : {
-                    Authorization: 'whatever-you-want' 
+                    Authorization: 'whatever-you-want'
                 },
-                body: JSON.stringify({options: 'upVote'})
+                option: 'upVote'
             })
             .then(response => {
                 console.log(response);

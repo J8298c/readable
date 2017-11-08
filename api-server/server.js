@@ -7,12 +7,13 @@ const config = require('./config')
 const categories = require('./categories')
 const posts = require('./posts')
 const comments = require('./comments')
+const logger = require('morgan');
 
 const app = express()
 
 app.use(express.static('public'))
 app.use(cors())
-
+app.use(logger('dev'))
 
 app.get('/', (req, res) => {
   const help = `
@@ -208,6 +209,7 @@ app.delete('/posts/:id', (req, res) => {
 app.post('/posts/:id', bodyParser.json(), (req, res) => {
     console.log(req, 'the req')
     const { option } = req.body
+    console.log(option)
     const id = req.params.id
     posts.vote(req.token, id, option)
       .then(
