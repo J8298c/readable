@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import {bindActionCreators} from 'redux';
-import { fetchingCatPosts, postingVote } from '../actions/index';
-
+import { bindActionCreators } from 'redux';
+import { fetchingCatPosts, postingVote} from '../actions/index';
+import Post from './shared/Post';
 
 class PostHome extends Component {
   constructor(props) {
     super(props);
-    this.likePost = this.likePost.bind(this);
-  }
-  componentDidMount() {
-    const { name } = this.props.match.params
-    this.props.fetchingCatPosts(name);
+    this.upVote = this.upVote.bind(this);
   }
 
-  likePost(id) {
-    console.log(id);
-    this.props.postingVote(id)
+  componentDidMount() {
+    const { name } = this.props.match.params;
+    this.props.fetchingCatPosts(name)
+  }
+
+  upVote(id) {
+    console.log(id)
+    this.props.postingVote(id);
   }
 
   render() {
@@ -25,31 +26,22 @@ class PostHome extends Component {
         {
           this.props.posts ?
           this.props.posts.map(post => (
-            <div key={post.id}>
-            <h1>{post.title}</h1>
-            <h6>{post.author}</h6>
-            <p>{post.body}</p>
-            <div>
-              <p>{post.voteScore}</p>
-              <button onClick={() => { this.likePost(post.id)}}>Like</button>
-            </div>
-            </div>
-          )) :
-          '...Loading'
+            <Post key={post.id} title={post.title} id={post.id} body={post.body} upVote={this.upVote} voteScore={post.voteScore} />
+          ))
+          : '.....Loading'
         }
       </div>
     )
   }
 }
 function mapStateToProps(state) {
+  console.log(state)
   const { posts } = state;
-  console.log(posts)
   return {
     posts
   }
 }
-
-function mapDispatchToProps(dispatch) {
-  return bindActionCreators({fetchingCatPosts, postingVote}, dispatch)
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({fetchingCatPosts, postingVote}, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PostHome);

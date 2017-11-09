@@ -29,16 +29,15 @@ export function fetchCatPosts(posts) {
     return action;
 }
 
-export function postUpVote(score) {
+export function postUpVote(post) {
     const action = {
         type: POST_UPVOTE,
-        score
+        post
     }
     return action;
 }
 
-const headers  = { headers: { 'Authorization': 'whatever-you-want' }}
-
+const headers = { headers: { 'Authorization': 'whatever-you-want' }};
 export function fetchingCategoryTitles(dispatch) {
     return dispatch => {
         axios
@@ -73,6 +72,7 @@ export function postingVote(id, dispatch) {
         method: 'POST',
       })
       .then(response => response.json())
-      .then(json => console.log(json))
+      .then(json => { dispatch(postUpVote(json))})
+      .catch(error => { dispatch(handleError(error))})
     }
 }

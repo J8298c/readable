@@ -15,6 +15,8 @@ const appReducers = (state = {}, action) => {
         return newState;
     } else if (action.type === POST_UPVOTE) {
         console.log(action);
+        const { post } = action;
+        const newState = Object.assign({}, state, { post })
     }
     return state;
 }
