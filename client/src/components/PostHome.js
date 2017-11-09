@@ -19,6 +19,7 @@ class PostHome extends Component {
     console.log(id)
     this.props.postingVote(id);
   }
+  //need to add down vote
 
   render() {
     return (
