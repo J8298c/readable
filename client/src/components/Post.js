@@ -9,9 +9,9 @@ class Post extends Component {
         this.upVote = this.upVote.bind(this);
     }
 
-    componentWillMount() {
-        const {id} = this.props.match.params;
-        this.props.fetchAPost(id)
+    componentDidMount() {
+      const {id} = this.props.match.params;
+      this.props.fetchAPost(id)
     }
 
     upVote(id) {
@@ -20,28 +20,20 @@ class Post extends Component {
       }
 
       render() {
-          console.log(this.props)
           return (
-              <div>
-                  {
-                      this.props.post ?
-                      <Post 
-                      onClick={()=> { this.upVote(this.props.post.id)}}
-                      body={this.props.post.body} title={this.props.post.title}
-                      author={this.props.author} score={this.props.post.voteScore}
-                      />
-                      :
-                      'Loading'
-                  }
+            <div>
+            {
+              this.props.state.post ? <Post post={this.props.state.post} onClick={this.upVote} /> : 'Loading'
+            }
               </div>
           )
       }
 }
 
 function mapStateToProps(state) {
-    const { post } = state;
+  console.log(state)
     return {
-        post
+        state
     }
 }
 
