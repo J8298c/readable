@@ -1,4 +1,4 @@
-import { FETCH_CATEGORY_TITLES, HANDLE_ERRORS, FETCH_CATEGORY_POSTS, POST_UPVOTE } from '../actions/index';
+import { FETCH_CATEGORY_TITLES, HANDLE_ERRORS, FETCH_CATEGORY_POSTS, POST_UPVOTE, GET_POST } from '../actions/index';
 
 const appReducers = (state = {}, action) => {
     if(action.type === FETCH_CATEGORY_TITLES) {
@@ -17,6 +17,12 @@ const appReducers = (state = {}, action) => {
         console.log(action);
         const { post } = action;
         const newState = Object.assign({}, state, { post })
+        return newState;
+    } else if (action.type === GET_POST) {
+        console.log(action)
+        const { post } = action;
+        const newState = Object.assign({}, state, { post })
+        return newState;
     }
     return state;
 }

@@ -3,7 +3,7 @@ export const FETCH_CATEGORY_TITLES = 'FETCH_CATEGORY_TITLES';
 export const HANDLE_ERRORS = 'HANDLE_ERRORS';
 export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
 export const POST_UPVOTE = 'POST_UPVOTE';
-
+export const GET_POST = 'GET_POST';
 
 export function fetchCategoryTitles(categories) {
     const action = {
@@ -32,6 +32,14 @@ export function fetchCatPosts(posts) {
 export function postUpVote(post) {
     const action = {
         type: POST_UPVOTE,
+        post
+    }
+    return action;
+}
+
+export function getPost(post){
+    const action = {
+        type: GET_POST,
         post
     }
     return action;
@@ -74,5 +82,16 @@ export function postingVote(id, dispatch) {
       .then(response => response.json())
       .then(json => { dispatch(postUpVote(json))})
       .catch(error => { dispatch(handleError(error))})
+    }
+}
+
+export function fetchAPost(id, dispatch) {
+    return dispatch =>{
+       axios
+        .get(`http://localhost:3001/posts/${id}`, headers)
+        .then(response => {
+            dispatch(getPost(response.data))
+        })
+        .catch(error => { dispatch(handleError(error))})
     }
 }
