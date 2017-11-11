@@ -7,6 +7,7 @@ import './index.css';
 import App from './App';
 import appReducers from './reducers/index';
 import registerServiceWorker from './registerServiceWorker';
+import 'semantic-ui-css/semantic.min.css';
 
 const logger = store => next => action => {
     console.group(action.type)

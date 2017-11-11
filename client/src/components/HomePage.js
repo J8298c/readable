@@ -1,31 +1,16 @@
-import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import { fetchingCategories } from '../actions/index';
+import React, { Component } from 'react';
 
 class HomePage extends Component {
-    componentDidMount() {
-        //fetch categories
-        this.props.fetchingCategories();
-
+    constructor(props){
+        super(props);
     }
-    render() {
+
+    render(){
         return (
-          <div>
-              hello
-          </div>
+            <div>
+                <h1>HomePage</h1>
+            </div>
         )
     }
 }
-
-function mapStateToProps(state) {
-    console.log(state)
-    const { categories } = state
-    console.log(categories);
-    return { categories }
-}
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingCategories}, dispatch)
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;
