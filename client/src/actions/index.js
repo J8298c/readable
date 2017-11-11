@@ -1,13 +1,10 @@
 import axios from 'axios';
-export const FETCH_CATEGORY_TITLES = 'FETCH_CATEGORY_TITLES';
-export const HANDLE_ERRORS = 'HANDLE_ERRORS';
-export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
-export const POST_UPVOTE = 'POST_UPVOTE';
-export const GET_POST = 'GET_POST';
+export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const HANDLE_ERROR = 'HANDLE_ERROR';
 
-export function fetchCategoryTitles(categories) {
+export function fetchCategories(categories) {
     const action = {
-        type: FETCH_CATEGORY_TITLES,
+        type: FETCH_CATEGORIES,
         categories
     }
     return action;
@@ -15,83 +12,21 @@ export function fetchCategoryTitles(categories) {
 
 export function handleError(error) {
     const action = {
-        type: HANDLE_ERRORS,
+        type: HANDLE_ERROR,
         error
     }
     return action;
 }
 
-export function fetchCatPosts(posts) {
-    const action = {
-        type: FETCH_CATEGORY_POSTS,
-        posts
-    }
-    return action;
-}
-
-export function postUpVote(post) {
-    const action = {
-        type: POST_UPVOTE,
-        post
-    }
-    return action;
-}
-
-export function getPost(post){
-    const action = {
-        type: GET_POST,
-        post
-    }
-    return action;
-}
-
-const headers = { headers: { 'Authorization': 'whatever-you-want' }};
-export function fetchingCategoryTitles(dispatch) {
+const headers = { headers: { 'Authorization': 'whatever-you-want' }}
+export function fetchingCategories(dispatch){
     return dispatch => {
         axios
             .get('http://localhost:3001/categories', headers)
             .then(response => {
-                dispatch(fetchCategoryTitles(response.data))
+                dispatch(fetchCategories(response.data))
             })
-            .catch(error => { handleError(error)})
+            .catch(error => dispatch(handleError(error)))
     }
 }
 
-export function fetchingCatPosts(category, dispatch) {
-    return dispatch => {
-        axios
-            .get(`http://localhost:3001/${category}/posts`, headers)
-            .then(response => {
-                dispatch(fetchCatPosts(response.data))
-            })
-            .catch(error => { dispatch(handleError(error))})
-    }
-}
-const option = JSON.stringify({option: 'upVote'})
-export function postingVote(id, dispatch) {
-    return dispatch => {
-      fetch(`http://localhost:3001/posts/${id}`, {
-        headers: {
-          'Authorization': 'whatever-you-want',
-          'Accept': 'application/json',
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({option: "upVote"}),
-        method: 'POST',
-      })
-      .then(response => response.json())
-      .then(json => { dispatch(postUpVote(json))})
-      .catch(error => { dispatch(handleError(error))})
-    }
-}
-
-export function fetchAPost(id, dispatch) {
-    return dispatch =>{
-       axios
-        .get(`http://localhost:3001/posts/${id}`, headers)
-        .then(response => {
-            dispatch(getPost(response.data))
-        })
-        .catch(error => { dispatch(handleError(error))})
-    }
-}
