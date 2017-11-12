@@ -1,9 +1,9 @@
 import React from 'react';
-import { Select } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
 const AppSelect = (props) => (
-    <Select 
-        placeholder={props.selectPlaceholder} options ={props.selectOptions}
+    <Form.Select 
+        placeholder={props.selectPlaceholder} options ={props.options}
         onSelect={props.onOptionSelect}
         />
 )
