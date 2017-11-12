@@ -2,6 +2,7 @@ import axios from 'axios';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
 export const HANDLE_ERROR = 'HANDLE_ERROR';
 export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
+export const ADD_A_POST = 'ADD_A_POST';
 
 export function fetchCategories(categories) {
     const action = {
@@ -27,6 +28,14 @@ export function fetchAllPosts(posts) {
     return action;
 }
 
+export function addAPost(post) {
+    const action = {
+        type: ADD_A_POST,
+        post
+    }
+    return action;
+}
+
 const headers = { headers: { 'Authorization': 'whatever-you-want' }}
 export function fetchingCategories(dispatch){
     return dispatch => {
@@ -46,5 +55,23 @@ export function fetchingAllPosts(dispatch) {
             dispatch(fetchAllPosts(response.data))
         })
         .catch(error => { dispatch(handleError(error))})
+    }
+}
+
+export function addingAPost(postData,dispatch) {
+    return dispatch => {
+        axios
+        .post('http://localhost:3001/posts', {
+            headers: {
+                'Authorization': 'whatever-you-want',
+                'Accept': 'application/json',
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(postData),
+        })
+        .then(response => {
+            dispatch(addAPost(response.data))
+        })
+        .catch(error => {handleError(error)})
     }
 }

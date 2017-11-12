@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import AppSelect from './shared/Select';
+import AppButton from './shared/AppButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { fetchingCategories } from '../actions/index';
@@ -19,9 +20,10 @@ class CreatePost extends Component {
         this.props.fetchingCategories();
     }
 
-    onSubmit() {
+    onSubmit(event) {
         //do somehting with a post request here
         //then push user backl to home page
+        console.log(this.state)
     }
     render() {
         const options = [{text: 'react', value: 'react'}, {text: 'redux', value: 'redux'}, {text: 'udacity', value: 'udacity'}]
@@ -31,8 +33,12 @@ class CreatePost extends Component {
                     <Form.Input 
                         label='Post Title' placeholder='enter post title' 
                         onChange={(event) => { this.setState({title: event.target.value})}} />
-                        <AppSelect selectPlaceholder='Pick a category' options={options}
-                        onOptionSelect={(event) => {this.setState({category: event.target.value})}} className='create-post-select'/>
+                        <Form.Field label='Select a category' control='select' 
+                        onChange={(event) => { this.setState({category: event.target.value})}}>
+                           <option value='react'>React</option>
+                           <option value='redux'>Redux</option>
+                            <option value='udacity'>Udacity</option>
+                        </Form.Field>
                 </Form.Group>
                 <Form.Group>
                     <Form.Input 
@@ -43,6 +49,7 @@ class CreatePost extends Component {
                     <Form.TextArea label='About' placeholder='Blog it baby......' 
                         onChange={(event)=> { this.setState({body: event.target.value})}} />
                 </Form.Group>
+                <AppButton buttonOnClick={this.onSubmit} color='blue' content='Submit' />
             </Form>
         )
     }
