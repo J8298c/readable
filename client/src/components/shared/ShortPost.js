@@ -1,13 +1,13 @@
 import React from 'react';
-
+import { Card } from 'semantic-ui-react';
 const ShortPost = (props) => (
-    <div>
-        <h1>{props.postTitle}</h1>
-        <p>{props.postAuthor}</p>
-        <div>
-            <p>{props.postVoteScore}</p>
-            <p>{props.postCategory}</p>
-        </div>
-    </div>
+ <Card>
+     <Card.Content>
+         <Card.Header>{props.postTitle}</Card.Header>
+         <Card.Meta>{props.postAuthor}</Card.Meta>
+         <Card.Meta>{props.postVoteScore}</Card.Meta>
+         <Card.Meta>{props.postTimeStamp}</Card.Meta>
+     </Card.Content>
+ </Card>
 )
 export default ShortPost;
