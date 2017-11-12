@@ -7,4 +7,4 @@ const AppSelect = (props) => (
         onSelect={props.onOptionSelect}
         />
 )
-export default Select;
+export default AppSelect;
