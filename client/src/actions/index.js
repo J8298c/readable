@@ -31,7 +31,7 @@ export function fetchAllPosts(posts) {
 export function addAPost(post) {
     const action = {
         type: ADD_A_POST,
-        post
+        posts
     }
     return action;
 }

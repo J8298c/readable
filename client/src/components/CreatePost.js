@@ -4,7 +4,8 @@ import AppSelect from './shared/Select';
 import AppButton from './shared/AppButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { fetchingCategories } from '../actions/index';
+import { fetchingCategories, addAPost } from '../actions/index';
+import uuid from 'uuid';
 class CreatePost extends Component {
     constructor(props){
         super(props);
@@ -24,6 +25,13 @@ class CreatePost extends Component {
         //do somehting with a post request here
         //then push user backl to home page
         console.log(this.state)
+        const newPost = Object.assign({}, this.state, {
+            timeStamp: Date.now(),
+            voteScore: 0,
+            id: uuid()
+        });
+        console.log(newPost);
+        this.props.addAPost(newPost);   
     }
     render() {
         const options = [{text: 'react', value: 'react'}, {text: 'redux', value: 'redux'}, {text: 'udacity', value: 'udacity'}]
@@ -34,7 +42,7 @@ class CreatePost extends Component {
                         label='Post Title' placeholder='enter post title' 
                         onChange={(event) => { this.setState({title: event.target.value})}} />
                         <Form.Field label='Select a category' control='select' 
-                        onChange={(event) => { this.setState({category: event.target.value})}}>
+                            onChange={(event) => { this.setState({category: event.target.value})}}>
                            <option value='react'>React</option>
                            <option value='redux'>Redux</option>
                             <option value='udacity'>Udacity</option>
@@ -63,6 +71,6 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingCategories}, dispatch)
+    return bindActionCreators({fetchingCategories, addAPost}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);
