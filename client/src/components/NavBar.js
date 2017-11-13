@@ -12,27 +12,30 @@ class NavBar extends Component {
             <Menu>
                 <Menu.Item
                     name='Home'
-                    content='Home'
                     active={activeItem === 'Home'}
                     onClick={this.handleItemClick}
-                />
+                    link={true}
+                ><Link to='/'>Home</Link></Menu.Item>
                 <Menu.Item
                     name='React'
                     active={activeItem === 'React'}
                     content='React'
                     onClick={this.handleItemClick}
+                    link={true}
                 />
                 <Menu.Item
                     name='Udacity'
                     content='Udacity'
                     active={activeItem === 'Udacity'}
                     onClick={this.handleItemClick}
+                    link='/udacity'
                 />
                 <Menu.Item
                     name='Redux'
                     content='Redux'
                     active={activeItem === 'Redux'}
                     onClick={this.handleItemClick}
+                    link={true}
                 />
             </Menu>
         )

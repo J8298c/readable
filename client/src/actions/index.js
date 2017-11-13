@@ -28,7 +28,7 @@ export function fetchAllPosts(posts) {
     return action;
 }
 
-export function addAPost(post) {
+export function addAPost(posts) {
     const action = {
         type: ADD_A_POST,
         posts
