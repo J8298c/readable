@@ -28,7 +28,7 @@ class NavBar extends Component {
                     categories !== null ? categories.map(category => (
                         <Menu.Item name={category.name} active={activeItem === category.name}
                             content={category.name} onClick={this.handleItemClick} link={true} key={category.name}
-                            to={`/${category.name}/posts`}
+                            to={`/${category.name}/posts`} as={Link}
                             />
                     )) : null
                 }
