@@ -14,7 +14,7 @@ class App extends Component {
                 <NavBar />
                 <Route  exact path='/' component={HomePage} />
                 <Route path='/newpost' component={CreatePost} />
-                <Route path='/:category' component={CategoryHome} />
+                <Route path='/:category/posts' component={CategoryHome} />
             </div>
         </BrowserRouter>
     )
