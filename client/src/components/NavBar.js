@@ -32,27 +32,6 @@ class NavBar extends Component {
                             />
                     )) : null
                 }
-                {/* <Menu.Item
-                    name='React'
-                    active={activeItem === 'React'}
-                    content='React'
-                    onClick={this.handleItemClick}
-                    link={true}
-                ><Link to='/react/posts'>React</Link></Menu.Item>
-                <Menu.Item
-                    name='Udacity'
-                    content='Udacity'
-                    active={activeItem === 'Udacity'}
-                    onClick={this.handleItemClick}
-                    link='/udacity'
-                    ><Link to='/udacity/posts'>Udacity</Link></Menu.Item>
-                <Menu.Item
-                    name='Redux'
-                    content='Redux'
-                    active={activeItem === 'Redux'}
-                    onClick={this.handleItemClick}
-                    link={true}
-                    ><Link to='/redux/posts'>Redux</Link></Menu.Item> */}
             </Menu>
         )
     }
