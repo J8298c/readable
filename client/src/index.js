@@ -21,7 +21,7 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(
     appReducers,
     composeEnhancers(
-      applyMiddleware(logger, thunk)  
+      applyMiddleware(thunk)  
     )
 )
 

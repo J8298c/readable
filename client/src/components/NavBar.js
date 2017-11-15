@@ -22,7 +22,7 @@ class NavBar extends Component {
                     name='Home'
                     active={activeItem === 'Home'}
                     onClick={this.handleItemClick}
-                    link={true} content='home' to={'/'}
+                    link={true} content='home' to='/'
                 />
                 {
                     categories !== null ? categories.map(category => (

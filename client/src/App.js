@@ -13,8 +13,8 @@ class App extends Component {
             <div>
                 <NavBar />
                 <Route  exact path='/' component={HomePage} />
-                <Route path='/newpost' component={CreatePost} />
-                <Route path='/:category/posts' component={CategoryHome} />
+                <Route exact path='/newpost' component={CreatePost} />
+                <Route exact path='/:category/posts' component={CategoryHome} />
             </div>
         </BrowserRouter>
     )
