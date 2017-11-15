@@ -18,7 +18,7 @@ class CategoryHome extends Component {
                 <h1>Welcome to the  {this.props.match.params.category} page!</h1>
                 <div className='post-container'>
                     {this.props.state.posts ? this.props.state.posts.map(post => (
-                       <Link to={`/post/${post.id}`} key={post.id}>
+                       <Link to={`/posts/${post.id}`} key={post.id}>
                            <ShortPost postTitle={post.title} postAuhtor={post.author}
                                 postVoteScore={post.voteScore} postTimeStamp={post.timeStamp}
                        /></Link>

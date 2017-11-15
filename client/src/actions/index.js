@@ -5,6 +5,7 @@ export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const ADD_A_POST = 'ADD_A_POST';
 export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
 export const FETCH_A_POST = 'FETCH_A_POST';
+export const LIKE_POST = 'LIKE_POST';
 
 export function fetchCategories(categories) {
     const action = {
@@ -52,6 +53,13 @@ export function fetchAPost(post) {
         post
     }
     return action;
+}
+
+export function likePost(post) {
+    const action = {
+        type: LIKE_POST,
+        post
+    }
 }
 
 
@@ -117,3 +125,21 @@ export function fetchingAPost(id, dispatch) {
             .catch(error => { dispatch(handleError(error))})
     }
 }
+
+export function likingPost(id, dispatch) {
+    return dispatch => {
+        fetch(`http://localhost:3001/posts/${id}`,  {
+                headers: {
+                    'Authorization': 'whatever-you-want',
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({option: "upVote"}),
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(json => { console.log(json)})
+            .catch(error => { dispatch(handleError(error))})
+    }
+}
+

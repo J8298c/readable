@@ -15,8 +15,19 @@ const LongPost = (props) => (
                 {props.postBody}
             </Card.Description>
             <Card.Content extra>
+                <div className='details-container'>
+                    <Card.Meta>
+                        {props.postVoteScore}
+                    </Card.Meta>
+                    <Card.Meta>
+                        {props.postTimeStamp}
+                    </Card.Meta>
+                </div>
+            </Card.Content>
+            <Card.Content extra>
                 <div className='votingContainer'>
-                    <AppButton color='green' />
+                    <AppButton color='green' content='Like'
+                     buttonOnClick={props.onClick}/>
                 </div>
             </Card.Content>
         </Card.Content>

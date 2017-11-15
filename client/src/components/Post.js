@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import {fetchingAPost} from "../actions/index";
-import { Card } from 'semantic-ui-react';
+import {fetchingAPost, likingPost } from "../actions/index";
+import LongPost from './shared/LongPost';
 
 class Post extends Component {
     constructor(props) {
@@ -17,8 +17,9 @@ class Post extends Component {
         this.props.fetchingAPost(id);
     }
 
-    upVote() {
-        console.log('voting up')
+    upVote(id) {
+        console.log(id, 'the id params');
+        this.props.likingPost(id);
     }
 
     downVote() {
@@ -32,7 +33,10 @@ class Post extends Component {
         return (
             <div>
                 {
-                    post ? <Card header={post.title} meta={post.author} description={post.body} />
+                    post ? <LongPost postVoteScore={post.voteScore}
+                            postTitle={post.title} postAuthor={post.author} postBody={post.body}
+                            onClick={() => { this.upVote(post.id)} }
+                        />
                         : '...Loading'
                 }
 
@@ -49,7 +53,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingAPost}, dispatch)
+    return bindActionCreators({fetchingAPost, likingPost}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);
