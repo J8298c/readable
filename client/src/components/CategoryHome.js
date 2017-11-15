@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import ShortPost from './shared/ShortPost';
+import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import { fetchingCategoryPosts } from '../actions/index';
 class CategoryHome extends Component {
@@ -13,7 +15,16 @@ class CategoryHome extends Component {
     render() {
         return (
             <div>
-                CategoryHome 
+                <h1>Welcome to the  {this.props.match.params.category} page!</h1>
+                <div className='post-container'>
+                    {this.props.state.posts ? this.props.state.posts.map(post => (
+                       <Link to={`/post/${post.id}`} key={post.id}>
+                           <ShortPost postTitle={post.title} postAuhtor={post.author}
+                                postVoteScore={post.voteScore} postTimeStamp={post.timeStamp}
+                       /></Link>
+                    )) : '...Fetching Posts'
+                    }
+                </div>
             </div>
         )
     }

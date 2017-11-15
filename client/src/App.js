@@ -4,6 +4,7 @@ import HomePage from './components/HomePage';
 import CategoryHome from './components/CategoryHome';
 import CreatePost from './components/CreatePost';
 import NavBar from './components/NavBar';
+import Post from './components/Post';
 import './App.css';
 
 class App extends Component {
@@ -12,9 +13,10 @@ class App extends Component {
         <BrowserRouter>
             <div>
                 <NavBar />
-                <Route  exact path='/' component={HomePage} />
-                <Route exact path='/newpost' component={CreatePost} />
-                <Route exact path='/:category/posts' component={CategoryHome} />
+                <Route exact path='/' component={HomePage} />
+                <Route path='/newpost' component={CreatePost} />
+                <Route path='/:category/posts' component={CategoryHome} />
+                <Route path='/posts/:id' component={Post} />
             </div>
         </BrowserRouter>
     )
