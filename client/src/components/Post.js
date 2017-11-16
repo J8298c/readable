@@ -7,8 +7,7 @@ import LongPost from './shared/LongPost';
 class Post extends Component {
     constructor(props) {
         super(props);
-        this.upVote = this.upVote.bind(this);
-        this.downVote = this.downVote.bind(this);
+        this.vote = this.vote.bind(this);
     }
 
     componentDidMount(){
@@ -17,14 +16,12 @@ class Post extends Component {
         this.props.fetchingAPost(id);
     }
 
-    upVote(id) {
+    vote(id, option) {
         console.log(id, 'the id params');
-        this.props.likingPost(id);
+        console.log(option);
+        this.props.likingPost(id, option);
     }
 
-    downVote() {
-        console.log('voting down');
-    }
 
     render() {
         console.log(this.props.state.post);
@@ -35,7 +32,8 @@ class Post extends Component {
                 {
                     post ? <LongPost postVoteScore={post.voteScore}
                             postTitle={post.title} postAuthor={post.author} postBody={post.body}
-                            onClick={() => { this.upVote(post.id)} }
+                            onLike={() => { this.vote(post.id, 'upVote')} }
+                                     unLike={()=> { this.vote(post.id, 'downVote')}}
                         />
                         : '...Loading'
                 }

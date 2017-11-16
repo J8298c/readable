@@ -126,7 +126,8 @@ export function fetchingAPost(id, dispatch) {
     }
 }
 
-export function likingPost(id, dispatch) {
+export function likingPost(id, option, dispatch) {
+    let vote = `${option}`
     return dispatch => {
         fetch(`http://localhost:3001/posts/${id}`,  {
                 headers: {
@@ -134,11 +135,11 @@ export function likingPost(id, dispatch) {
                     'Accept': 'application/json',
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({option: "upVote"}),
+                body: JSON.stringify({option: vote}),
                 method: 'POST',
             })
             .then(response => response.json())
-            .then(json => { console.log(json)})
+            .then(json => { dispatch(fetchAPost(json))})
             .catch(error => { dispatch(handleError(error))})
     }
 }

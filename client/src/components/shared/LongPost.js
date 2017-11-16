@@ -27,7 +27,9 @@ const LongPost = (props) => (
             <Card.Content extra>
                 <div className='votingContainer'>
                     <AppButton color='green' content='Like'
-                     buttonOnClick={props.onClick}/>
+                     buttonOnClick={props.onLike}/>
+                    <AppButton color='red' content='Unlike'
+                               buttonOnClick={props.unLike}/>
                 </div>
             </Card.Content>
         </Card.Content>

@@ -8,19 +8,19 @@ import Post from './components/Post';
 import './App.css';
 
 class App extends Component {
-  render() {
-    return (
-        <BrowserRouter>
-            <div>
-                <NavBar />
-                <Route exact path='/' component={HomePage} />
-                <Route path='/newpost' component={CreatePost} />
-                <Route path='/:category/posts' component={CategoryHome} />
-                <Route path='/posts/:id' component={Post} />
-            </div>
-        </BrowserRouter>
-    )
-  }
+    render() {
+        return (
+            <BrowserRouter>
+                <div>
+                    <NavBar />
+                    <Route exact path='/' component={HomePage} />
+                    <Route path='/newpost' component={CreatePost} />
+                    <Route path='/:category/posts' component={CategoryHome} />
+                    <Route path='/posts/:id' component={Post} />
+                </div>
+            </BrowserRouter>
+        )
+    }
 }
 
 export default App;
