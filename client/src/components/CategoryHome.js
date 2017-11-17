@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ShortPost from './shared/ShortPost';
+import AppButton from './shared/AppButton';
 import {Link} from 'react-router-dom';
 import {bindActionCreators} from 'redux';
 import { fetchingCategoryPosts } from '../actions/index';
@@ -25,6 +26,7 @@ class CategoryHome extends Component {
                     )) : '...Fetching Posts'
                     }
                 </div>
+                <AppButton />
             </div>
         )
     }
