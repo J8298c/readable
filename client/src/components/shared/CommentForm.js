@@ -6,7 +6,7 @@ const CommentForm = (props) => (
   <Form reply>
     <Form.TextArea onChange={props.onCommentChange} placeholder='...Reply'/>
     <Form.Input onChange={props.onAuthorChange} placeholder='Enter Author name'/>
-    <AppButton color='blue' content='Reply' onButtonClick={props.onCommentSave} />
+    <AppButton color='blue' content='Reply' buttonOnClick={props.onCommentSave} />
   </Form>  
 )
 

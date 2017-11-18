@@ -7,11 +7,13 @@ import LongPost from './shared/LongPost';
 import { Comment } from 'semantic-ui-react'
 import CommentForm from './shared/CommentForm'
 import Comments from './shared/CommentView';
+import uuid from 'uuid';
 class Post extends Component {
     constructor(props) {
         super(props);
         this.vote = this.vote.bind(this);
         this.getDate = this.getDate.bind(this);
+        this.postComment = this.postComment.bind(this);
         this.state = {
             userName: '',
             comment: ''
@@ -36,11 +38,14 @@ class Post extends Component {
 
     postComment() {
         //post comment to server
-        console.log(this.state);
+        const { userName, comment } = this.state;
+        const theComment ={
+            id: uuid()
+        }
+        console.log(theComment)
     }
 
     render() {
-        let showComment = false;
         const { post } = this.props.state;
         const { comments } = this.props.state;
         return (
@@ -64,8 +69,11 @@ class Post extends Component {
                         )
                     }) : 'Be the first to reply'
                 }
-                    <CommentForm onCommentSave={this.postComment} onAuthorChange={(event) => {this.setState({author: event.target.value})}}
-                        onCommentChange={(event) => { this.setState({comment: event.target.value})}}/>
+                <CommentForm 
+                    onCommentChange={(event) => { this.setState({ comment: event.target.value})}}
+                    onCommentSave={this.postComment} 
+                    onAuthorChange={(event) => { this.setState({userName: event.target.value})}}
+                />
             </div>
         )
     }
