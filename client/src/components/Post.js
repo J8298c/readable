@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AppButton from './shared/AppButton';
 import { bindActionCreators } from 'redux';
-import {fetchingAPost, likingPost, fetchingComments } from "../actions/index";
+import {fetchingAPost,fetchingComments } from "../actions/index";
 import LongPost from './shared/LongPost';
 import { Comment } from 'semantic-ui-react'
 import CommentForm from './shared/CommentForm'
@@ -20,14 +20,11 @@ class Post extends Component {
 
     componentDidMount(){
         const {id} = this.props.match.params;
-        console.log(id);
         this.props.fetchingAPost(id);
         this.props.fetchingComments(id);
     }
 
     vote(id, option) {
-        console.log(id, 'the id params');
-        console.log(option);
         this.props.likingPost(id, option);
     }
 
@@ -38,18 +35,14 @@ class Post extends Component {
     }
 
     postComment() {
-        console.log(this.state)
-        this.setState({username: ''})
-        this.setState({comment: ''})
+        //post comment to server
+        console.log(this.state);
     }
 
     render() {
         let showComment = false;
-        console.log(this.props.state.post);
         const { post } = this.props.state;
         const { comments } = this.props.state;
-        console.log(comments, 'the comments');
-        console.log(post, 'the post');
         return (
             <div>
                 {
@@ -71,13 +64,8 @@ class Post extends Component {
                         )
                     }) : 'Be the first to reply'
                 }
-                    <CommentForm />
-                {/* <div className='comment-form-container'>
-                    <CommentForm userNameChange={(event) => { this.setState({username: event.target.value})}}
-                        textAreaChange={(event) => { this.setState({comment: event.target.value})}} />
-                        <AppButton content='Submit'
-                            color='green' onButtonClick={() => {this.postComment()}} />
-                </div>     */}
+                    <CommentForm onCommentSave={this.postComment} onAuthorChange={(event) => {this.setState({author: event.target.value})}}
+                        onCommentChange={(event) => { this.setState({comment: event.target.value})}}/>
             </div>
         )
     }
@@ -91,7 +79,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingAPost, likingPost, fetchingComments}, dispatch)
+    return bindActionCreators({fetchingAPost, fetchingComments}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

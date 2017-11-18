@@ -15,7 +15,6 @@ class NavBar extends Component {
         const { activeItem } = this.state;
         let categories;
         this.props.state.categories ? categories = this.props.state.categories : null
-        console.log(categories, 'the categories');
         return (
             <Menu>
                 <Menu.Item
@@ -38,7 +37,6 @@ class NavBar extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         state
     }

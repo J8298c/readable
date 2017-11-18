@@ -7,6 +7,7 @@ export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
 export const FETCH_A_POST = 'FETCH_A_POST';
 export const LIKE_POST = 'LIKE_POST';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS' 
+export const ADD_A_COMMENT = 'ADD_A_COMMENT';
 
 export function fetchCategories(categories) {
     const action = {
@@ -72,6 +73,15 @@ export function fetchComments(comments) {
     return action;
 }
 
+export function addACommentt(status) {
+    const action = {
+        type: ADD_A_COMMENT,
+        status
+    }
+    return action;
+}
+
+//-------------Thunks----------------//
 const headers = { headers: { 'Authorization': 'whatever-you-want' }}
 export function fetchingCategories(dispatch){
     return dispatch => {
@@ -158,9 +168,20 @@ export function fetchingComments(id, dispatch) {
             .get(`http://localhost:3001/posts/${id}/comments`, headers)
             .then(response => {
                 dispatch(fetchComments(response.data))
-                console.log(response.data);
             })
             .catch(error => { dispatch(handleError(error))})
     }
+}
+
+export function addingAComment(post, dispatch) {
+    fetch(`http://localhost:3001/comments`,  {
+        headers: {
+            'Authorization': 'whatever-you-want',
+            'Accept': 'application/json',
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(post),
+        method: 'POST',
+    })
 }
 

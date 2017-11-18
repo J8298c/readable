@@ -7,9 +7,7 @@ import {bindActionCreators} from 'redux';
 import { fetchingCategoryPosts } from '../actions/index';
 class CategoryHome extends Component {
     componentDidMount() {
-        console.log(this.props.match.params)
         const { category } = this.props.match.params;
-        console.log(category, 'the category');
         this.props.fetchingCategoryPosts(category);
     }
 
@@ -33,7 +31,6 @@ class CategoryHome extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         state
     }

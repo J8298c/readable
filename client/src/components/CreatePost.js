@@ -22,15 +22,11 @@ class CreatePost extends Component {
     }
 
     onSubmit(event) {
-        //do somehting with a post request here
-        //then push user backl to home page
-        console.log(this.state)
         const newPost = Object.assign({}, this.state, {
             timeStamp: Date.now(),
             voteScore: 0,
             id: uuid()
         });
-        console.log(newPost);
         this.props.addAPost(newPost);   
     }
     render() {
@@ -64,7 +60,6 @@ class CreatePost extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         state
     }
