@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import AppButton from './shared/AppButton';
 import { bindActionCreators } from 'redux';
-import {fetchingAPost, likingPost } from "../actions/index";
+import {fetchingAPost, likingPost, fetchingComments } from "../actions/index";
 import LongPost from './shared/LongPost';
 import CommentForm from './shared/CommentForm'
+import CommentView from './shared/CommentView';
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -20,6 +21,7 @@ class Post extends Component {
         const {id} = this.props.match.params;
         console.log(id);
         this.props.fetchingAPost(id);
+        this.props.fetchingComments(id);
     }
 
     vote(id, option) {
@@ -44,7 +46,9 @@ class Post extends Component {
         let showComment = false;
         console.log(this.props.state.post);
         const { post } = this.props.state;
-        console.log(post);
+        const { comments } = this.props.state;
+        console.log(comments, 'the comments');
+        console.log(post, 'the post');
         return (
             <div>
                 {
@@ -54,6 +58,13 @@ class Post extends Component {
                                      unLike={()=> { this.vote(post.id, 'downVote')}}
                         />
                         : '...Loading'
+                }
+                {
+                    comments ? comments.map(comment => {
+                        return (
+                            <CommentView commentBody={comment.body} commentAuthor={comment.author} />
+                        )
+                    }) : 'Be the first to reply'
                 }
                 <div className='comment-form-container'>
                     <CommentForm userNameChange={(event) => { this.setState({username: event.target.value})}}
@@ -74,7 +85,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingAPost, likingPost}, dispatch)
+    return bindActionCreators({fetchingAPost, likingPost, fetchingComments}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Post);

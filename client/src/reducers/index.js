@@ -1,6 +1,7 @@
 import {
     HANDLE_ERROR, FETCH_CATEGORIES, FETCH_ALL_POSTS, ADD_A_POST, FETCH_CATEGORY_POSTS,
-    FETCH_A_POST
+    FETCH_A_POST,
+    FETCH_COMMENTS
 } from '../actions/index'
 
 const appState = {
@@ -37,6 +38,11 @@ export default function appReducers(state = appState, action) {
     else if(action.type === FETCH_A_POST) {
         const {post} = action;
         const newState = Object.assign({}, state, { post });
+        return newState;
+    }
+    else if(action.type === FETCH_COMMENTS) {
+        const {comments} = action;
+        const newState = Object.assign({}, state, { comments })
         return newState;
     }
     else {

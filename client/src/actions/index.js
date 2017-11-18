@@ -6,6 +6,7 @@ export const ADD_A_POST = 'ADD_A_POST';
 export const FETCH_CATEGORY_POSTS = 'FETCH_CATEGORY_POSTS';
 export const FETCH_A_POST = 'FETCH_A_POST';
 export const LIKE_POST = 'LIKE_POST';
+export const FETCH_COMMENTS = 'FETCH_COMMENTS' 
 
 export function fetchCategories(categories) {
     const action = {
@@ -60,9 +61,16 @@ export function likePost(post) {
         type: LIKE_POST,
         post
     }
+    return action;
 }
 
-
+export function fetchComments(comments) {
+    const action = {
+        type: FETCH_COMMENTS,
+        comments
+    }
+    return action;
+}
 
 const headers = { headers: { 'Authorization': 'whatever-you-want' }}
 export function fetchingCategories(dispatch){
@@ -140,6 +148,18 @@ export function likingPost(id, option, dispatch) {
             })
             .then(response => response.json())
             .then(json => { dispatch(fetchAPost(json))})
+            .catch(error => { dispatch(handleError(error))})
+    }
+}
+
+export function fetchingComments(id, dispatch) {
+    return dispatch => {
+        axios
+            .get(`http://localhost:3001/posts/${id}/comments`, headers)
+            .then(response => {
+                dispatch(fetchComments(response.data))
+                console.log(response.data);
+            })
             .catch(error => { dispatch(handleError(error))})
     }
 }
