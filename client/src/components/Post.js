@@ -38,9 +38,14 @@ class Post extends Component {
 
     postComment() {
         //post comment to server
+        const {id} = this.props.match.params;
         const { userName, comment } = this.state;
         const theComment ={
-            id: uuid()
+            id: uuid(),
+            body: comment,
+            author: userName,
+            timestamp: Date.now(),
+            parentId: id
         }
         console.log(theComment)
     }
