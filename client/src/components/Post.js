@@ -4,8 +4,9 @@ import AppButton from './shared/AppButton';
 import { bindActionCreators } from 'redux';
 import {fetchingAPost, likingPost, fetchingComments } from "../actions/index";
 import LongPost from './shared/LongPost';
+import { Comment } from 'semantic-ui-react'
 import CommentForm from './shared/CommentForm'
-import CommentView from './shared/CommentView';
+import Comments from './shared/CommentView';
 class Post extends Component {
     constructor(props) {
         super(props);
@@ -62,16 +63,21 @@ class Post extends Component {
                 {
                     comments ? comments.map(comment => {
                         return (
-                            <CommentView commentBody={comment.body} commentAuthor={comment.author} />
+                            <Comment.Group>
+                                 <Comments commentBody={comment.body} commentAuthor={comment.author} />
+                                 
+                            </Comment.Group>
+                           
                         )
                     }) : 'Be the first to reply'
                 }
-                <div className='comment-form-container'>
+                    <CommentForm />
+                {/* <div className='comment-form-container'>
                     <CommentForm userNameChange={(event) => { this.setState({username: event.target.value})}}
                         textAreaChange={(event) => { this.setState({comment: event.target.value})}} />
                         <AppButton content='Submit'
                             color='green' onButtonClick={() => {this.postComment()}} />
-                </div>    
+                </div>     */}
             </div>
         )
     }

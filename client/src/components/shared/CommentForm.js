@@ -1,17 +1,12 @@
 import React from 'react';
 import { Form } from 'semantic-ui-react';
+import AppButton from './AppButton';
 
 const CommentForm = (props) => (
-  <Form>
-    <Form.Group>
-      <Form.Input label='Username' placeholder='Username'
-        onChange={props.userNameChange}/>
-    </Form.Group>
-    <Form.TextArea
-      label='Comment' placeholder='Enter your comment'
-      onChange={props.textAreaChange}
-    />
-  </Form>
+  <Form reply>
+    <Form.TextArea />
+  <AppButton color='blue' content='Reply' />
+  </Form>  
 )
 
 export default CommentForm;
