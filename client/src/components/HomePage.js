@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import AppSelect from './shared/Select';
-import { Grid, Card } from 'semantic-ui-react';
+import { Grid } from 'semantic-ui-react';
 import AppButton from './shared/AppButton';
 import ShortPost from './shared/ShortPost';
 import { connect } from 'react-redux';
@@ -20,7 +19,6 @@ class HomePage extends Component {
         //sort all posts
     }
     render(){
-        const options= [{name: 'By latest'}, { name: 'By Score'}]
         return (
             <Grid celled>
                 <Grid.Row>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
-import AppSelect from './shared/Select';
 import AppButton from './shared/AppButton';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -30,7 +29,6 @@ class CreatePost extends Component {
         this.props.addAPost(newPost);   
     }
     render() {
-        const options = [{text: 'react', value: 'react'}, {text: 'redux', value: 'redux'}, {text: 'udacity', value: 'udacity'}]
         return (
             <Form>
                 <Form.Group width='equals'>

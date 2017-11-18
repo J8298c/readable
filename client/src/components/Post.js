@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import AppButton from './shared/AppButton';
 import { bindActionCreators } from 'redux';
 import {fetchingAPost,fetchingComments } from "../actions/index";
 import LongPost from './shared/LongPost';
@@ -31,9 +30,7 @@ class Post extends Component {
     }
 
     getDate(unixtime){
-        let newtimestamp ='';
-        let conversion = new Date(unixtime)
-        return conversion
+       //convert timestamp to reg date and time
     }
 
     postComment() {

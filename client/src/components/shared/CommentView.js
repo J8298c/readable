@@ -1,5 +1,5 @@
 import React from 'react';
-import { Comment, Form } from 'semantic-ui-react';
+import { Comment } from 'semantic-ui-react';
 
 const Comments = (props) => (
     <Comment>
