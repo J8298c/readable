@@ -3,13 +3,14 @@ import { connect } from 'react-redux';
 import ShortPost from './shared/ShortPost';
 import { bindActionCreators } from 'redux';
 import { fetchingAllPosts } from '../actions/index';
+import _ from 'lodash';
+
 class HomePage extends Component {
     componentDidMount() {
         //fetch all posts
         this.props.fetchingAllPosts();
     }
     render() {
-        console.log(this.props.posts);
         return (
             <div>
                 <div className='heading'>
