@@ -21,7 +21,20 @@
 .App-intro {
   font-size: large;
 }
+.home-page-post {
+  margin: 0 auto;
+  display: block;
 
+}
+.home-page-post>.ui.cards>.card {
+  font-size: 1em;
+  width: 400px;
+}
+
+.heading h5 {
+  width: 39%;
+  display: inline-block;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
