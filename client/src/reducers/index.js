@@ -2,7 +2,7 @@ import {
     HANDLE_ERROR, FETCH_CATEGORIES, FETCH_ALL_POSTS, ADD_A_POST, FETCH_CATEGORY_POSTS,
     FETCH_A_POST,
     FETCH_COMMENTS
-} from '../actions/index'
+} from '../actions/consts';
 
 const appState = {
     categories: [],
