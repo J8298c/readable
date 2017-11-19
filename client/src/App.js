@@ -5,6 +5,7 @@ import CategoryHome from './components/CategoryHome';
 import CreatePost from './components/CreatePost';
 import NavBar from './components/NavBar';
 import Post from './components/Post';
+import EditPost from './components/EditPost';
 import './App.css';
 
 class App extends Component {
@@ -17,6 +18,7 @@ class App extends Component {
                     <Route path='/newpost' component={CreatePost} />
                     <Route path='/:category/posts' component={CategoryHome} />
                     <Route path='/posts/:id' component={Post} />
+                    <Route path='/posts/edit/:id' component={EditPost} />
                 </div>
             </BrowserRouter>
         )

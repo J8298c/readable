@@ -20,25 +20,27 @@ class HomePage extends Component {
     }
     render(){
         return (
-            <Grid celled>
+            <Grid>
                 <Grid.Row>
                     <Grid.Column width={13}>
-                        <h1>Title of the App</h1>
+                        <h1 className='app-title'>Readable overflow</h1>
                     </Grid.Column>
                     <Grid.Column width={3}>
                        <Link to='/newpost'><AppButton color='blue' content='Create New Post'/></Link> 
                     </Grid.Column>
                     </Grid.Row>
-                    <Grid.Row>
+                    <Grid.Row className='homepage-container'>
                     <Grid.Column width={16}>
                             {/* <AppSelect selectPlaceholder='filter posts' options={options}/> */}
                     </Grid.Column>
                             {
                                 this.props.state ?
                                 this.props.state.posts.map(post => (
-                                    <Grid.Column width={16} key={post.id}>
-                                    <ShortPost  postTitle={post.title} 
-                                    postAuthor={post.author} postVoteScore={post.voteScore} postTimeStamp={post.timeStamp} id={post.id} />
+                                    <Grid.Column width={16} key={post.id} className='post-container'>
+                                    <Link to={`/posts/${post.id}`}>
+                                        <ShortPost  postTitle={post.title} className='home-page-post'
+                                        postAuthor={post.author} postVoteScore={post.voteScore} postTimeStamp={post.timeStamp} id={post.id} />
+                                     </Link>
                                     </Grid.Column>
                                 )) : 'Fetching All Posts'
                             }

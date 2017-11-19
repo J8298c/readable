@@ -24,7 +24,6 @@ class CategoryHome extends Component {
                     )) : '...Fetching Posts'
                     }
                 </div>
-                <AppButton />
             </div>
         )
     }
