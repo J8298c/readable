@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import {Grid} from 'semantic-ui-react';
 import { fetchingAllPosts } from '../actions/index';
 import _ from 'lodash';
+import { Link } from 'react-router-dom';
 import ShortPost from './shared/ShortPost';
 import AppSelect from './shared/AppSelect';
 import AppButton from './shared/AppButton';
@@ -37,10 +38,12 @@ class HomePage extends Component {
                        <h5>App Title</h5> 
                     </Grid.Column>
                     <Grid.Column>
-                       <AppSelect placeholder='Sort' options={options} />
+                            <AppSelect placeholder='Sort' options={options} />
                     </Grid.Column>
                     <Grid.Column>
-                        <AppButton color='pink' content='Create Post' />
+                        <Link to='/create'>
+                            <AppButton color='pink' content='Create Post' />
+                        </Link>
                     </Grid.Column>
                 </Grid.Row>
                 </Grid>
