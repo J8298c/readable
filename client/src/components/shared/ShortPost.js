@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card } from 'semantic-ui-react';
+import { Card, Grid } from 'semantic-ui-react';
 
 const ShortPost = (props) => (
     <div className={props.className}>
@@ -12,12 +12,26 @@ const ShortPost = (props) => (
                 <Card.Meta>
                     {props.postAuthor}
                 </Card.Meta>
-                <Card.Meta>
-                    {props.postVoteScore}
-                </Card.Meta>
-                <Card.Meta>
-                    {props.postCommentCount}
-                </Card.Meta>
+                <Grid columns={3} divided>
+                    <Grid.Row>
+                        <Grid.Column>
+                           <Card.Meta>
+                            {props.postVoteScore}
+                            </Card.Meta> 
+                        </Grid.Column>
+                        <Grid.Column>
+                           <Card.Meta>
+                            {props.postCommentCount}
+                        </Card.Meta> 
+                        </Grid.Column>
+                        <Grid.Column>
+                          <Card.Meta>
+                            {props.postTimeStamp}
+                        </Card.Meta>    
+                        </Grid.Column>
+                    </Grid.Row>
+                </Grid>
+               
             </Card.Content>
         </Card> 
     </Card.Group>
