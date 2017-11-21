@@ -9,6 +9,9 @@ const ShortPost = (props) => (
                 <Card.Header>
                     {props.postTitle}
                 </Card.Header>
+                <Card.Description>
+                    {props.postBody}
+                </Card.Description>
                 <Card.Meta>
                     {props.postAuthor}
                 </Card.Meta>

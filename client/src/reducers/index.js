@@ -42,6 +42,7 @@ export default function appReducers(state = appState, action) {
         return newState;
     }
     else if(action.type === FETCH_COMMENTS) {
+        console.log(action)
         const {comments} = action;
         const newState = Object.assign({}, state, { comments })
         return newState;
