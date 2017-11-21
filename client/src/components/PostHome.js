@@ -22,37 +22,31 @@ class PostHome extends Component {
         return formatted;
     }
     onVote(id, option){
+        console.log(this.props)
         this.props.likingPost(id, option);
     }
 
     render() {
+        console.log(this.props.state.post);
+        const { post } = this.props.state;
         return (
             <div>
                 {
-                        this.props.state.posts.map(post => (
-                            <div>
-                                 <LongPost postTitle={post.title} postBody={post.body}
+                    post ? 
+                        <div key={post.id}>
+                            <LongPost postTitle={post.title} postBody={post.body} 
                         postVoteScore={post.voteScore} postTimeStamp={this.convertDate(post.timestamp)}
-                        postAuthor={post.author} />
-                        <Grid>
-                        <Grid.Row columns={2}>
-                            <Grid.Column>
-                            <AppButton color='blue' content='Like' onClick={() => {this.onVote(post.id, 'upVote')}}/>
-                            </Grid.Column>
-                            <Grid.Column>
-                            <AppButton color='red' content='UnLike' onClick={() => {this.onVote(post.id, 'downVote')}}/>
-                            </Grid.Column>
-                        </Grid.Row>
-                    </Grid> 
-                            </div> 
-                    ))
+                        postAuthor={post.author} handleUpVote={() => { this.onVote(post.id, 'upVote')}}
+                        handleDownVote={()=>{this.onVote(post.id, 'downVote')} }
+                            />
+                        </div>  : 'Fetching Post'
                 } 
-                
             </div>
         )
     }
 }
 function mapStateToProps(state) {
+    console.log(state);
     return {
         state
     }

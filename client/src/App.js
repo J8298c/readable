@@ -5,6 +5,7 @@ import HomePage from './components/HomePage';
 import CreatePost from './components/CreatePost';
 import CategoryHome from './components/CategoryHome';
 import PostHome from './components/PostHome';
+import './App.css';
 class App extends Component {
   render() {
     return (

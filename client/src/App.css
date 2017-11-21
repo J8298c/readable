@@ -37,6 +37,11 @@ body {
   width: 39%;
   display: inline-block;
 }
+.post-container {
+  width: 75%;
+  display: block;
+  margin: 25px auto;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }

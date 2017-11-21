@@ -36,6 +36,7 @@ export default function appReducers(state = appState, action) {
         return newState;
     }
     else if(action.type === FETCH_A_POST) {
+        console.log(action);
         const {post} = action;
         const newState = Object.assign({}, state, { post });
         return newState;
