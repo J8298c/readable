@@ -52,7 +52,7 @@ class PostHome extends Component {
                     {
                         comments ? comments.map(comment => (
                             <ShortPost key={comment.id} postBody={comment.body} postTitle={comment.title} postAuthor={comment.author}
-                            postVoteScore={comment.voteScore} postTimeStamp={this.convertDate(comment.timestamp)}
+                            postVoteScore={comment.voteScore} postTimeStamp={this.convertDate(comment.timestamp)} 
                             />
                         )) : 'No Comments yet'
                     }
