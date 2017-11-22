@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import LongPost from './shared/LongPost';
 import ShortPost from './shared/ShortPost';
 import AppButton from './shared/AppButton';
-import ModifyPost from './shared/ModifyPost';
+import CreateComment from './shared/ModifyPost';
 
 
 class PostHome extends Component {
@@ -54,7 +54,7 @@ class PostHome extends Component {
                                 <LongPost postTitle={post.title} postBody={post.body}
                             postVoteScore={post.voteScore} postTimeStamp={this.convertDate(post.timestamp)}
                             postAuthor={post.author} handleUpVote={() => { this.onVote(post.id, 'upVote')}}
-                            handleDownVote={()=>{this.onVote(post.id, 'downVote')} } options={null}
+                            handleDownVote={()=>{this.onVote(post.id, 'downVote')} }
                                 />
                             </div>  : 'Fetching Post'
                     }
@@ -77,7 +77,7 @@ class PostHome extends Component {
                 {
                   this.state.showForm ?
                   <div>
-                    <ModifyPost
+                    <CreateComment
                         authorLabel='username' onAuthorChange={(event) => { this.setState({commentAuthor: event.target.value})}}
                         onPostChange={(event) => { this.setState({commentBody: event.target.value})}}
                     />
