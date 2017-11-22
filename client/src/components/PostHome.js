@@ -7,11 +7,20 @@ import { Link } from 'react-router-dom';
 import LongPost from './shared/LongPost';
 import ShortPost from './shared/ShortPost';
 import AppButton from './shared/AppButton';
+import ModifyPost from './shared/ModifyPost';
+
+
 class PostHome extends Component {
     constructor(props){
         super(props);
+        this.state = {
+          showForm: false,
+          commentAuthor: '',
+          commentBody: ''
+        }
         this.convertDate = this.convertDate.bind(this);
         this.onVote = this.onVote.bind(this);
+        this.commentSubmit = this.commentSubmit.bind(this);
     }
 
     componentDidMount() {
@@ -28,6 +37,9 @@ class PostHome extends Component {
         console.log(this.props)
         this.props.likingPost(id, option);
     }
+    commentSubmit(){
+      console.log('helloooooooo')
+    }
 
     render() {
         console.log(this.props.state.post);
@@ -42,7 +54,7 @@ class PostHome extends Component {
                                 <LongPost postTitle={post.title} postBody={post.body}
                             postVoteScore={post.voteScore} postTimeStamp={this.convertDate(post.timestamp)}
                             postAuthor={post.author} handleUpVote={() => { this.onVote(post.id, 'upVote')}}
-                            handleDownVote={()=>{this.onVote(post.id, 'downVote')} }
+                            handleDownVote={()=>{this.onVote(post.id, 'downVote')} } options={null}
                                 />
                             </div>  : 'Fetching Post'
                     }
@@ -60,6 +72,19 @@ class PostHome extends Component {
                         )) : 'No Comments yet'
                     }
                 </div>
+                <AppButton  content='comment'
+                  onButtonClick={() => { !this.state.showForm ? this.setState({showForm: true}) : this.setState({showForm: false})}}/>
+                {
+                  this.state.showForm ?
+                  <div>
+                    <ModifyPost
+                        authorLabel='username' onAuthorChange={(event) => { this.setState({commentAuthor: event.target.value})}}
+                        onPostChange={(event) => { this.setState({commentBody: event.target.value})}}
+                    />
+                    <AppButton content="submit" onButtonClick={this.commentSubmit} />
+                  </div>
+                  : null
+                }
             </div>
         )
     }
