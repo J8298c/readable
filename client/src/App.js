@@ -5,6 +5,8 @@ import HomePage from './components/HomePage';
 import CreatePost from './components/CreatePost';
 import CategoryHome from './components/CategoryHome';
 import PostHome from './components/PostHome';
+import Comments from './components/Comments';
+
 import './App.css';
 class App extends Component {
   render() {
@@ -16,6 +18,7 @@ class App extends Component {
           <Route path='/create' component={CreatePost} />
           <Route path='/:category/posts' component={CategoryHome} />
           <Route path='/posts/:id' component={PostHome} />
+          <Route path='/comments/:id' component={Comments} />
         </div>
       </BrowserRouter>
     )

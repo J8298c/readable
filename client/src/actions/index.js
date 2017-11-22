@@ -1,5 +1,8 @@
 import axios from 'axios';
-import {FETCH_CATEGORIES, HANDLE_ERROR, FETCH_ALL_POSTS, ADD_A_POST, FETCH_CATEGORY_POSTS, FETCH_A_POST, LIKE_POST, FETCH_COMMENTS, ADD_A_COMMENT } from './consts';
+import {FETCH_CATEGORIES, HANDLE_ERROR,
+  FETCH_ALL_POSTS, ADD_A_POST, FETCH_CATEGORY_POSTS,
+  FETCH_A_POST, LIKE_POST, FETCH_COMMENTS, ADD_A_COMMENT,
+  FETCH_A_COMMENT } from './consts';
 
 
 export function fetchCategories(categories) {
@@ -74,6 +77,14 @@ export function addACommentt(status) {
     return action;
 }
 
+export function fetchAComment(comment) {
+  const action = {
+    type: FETCH_A_COMMENT,
+    comment
+  }
+  return action;
+}
+
 //-------------Thunks----------------//
 const headers = { headers: { 'Authorization': 'whatever-you-want' }}
 export function fetchingCategories(dispatch){
@@ -86,11 +97,12 @@ export function fetchingCategories(dispatch){
             .catch(error => dispatch(handleError(error)))
     }
 }
+
 export function fetchingAllPosts(dispatch) {
     return dispatch => {
         axios
         .get('http://localhost:3001/posts', headers)
-        .then(response => { 
+        .then(response => {
             dispatch(fetchAllPosts(response.data))
         })
         .catch(error => { dispatch(handleError(error))})
@@ -176,4 +188,34 @@ export function addingAComment(post, dispatch) {
         body: JSON.stringify(post),
         method: 'POST',
     })
+}
+
+
+export function likingComment(id, option, dispatch) {
+    let vote = `${option}`
+    return dispatch => {
+        fetch(`http://localhost:3001/comments/${id}`,  {
+                headers: {
+                    'Authorization': 'whatever-you-want',
+                    'Accept': 'application/json',
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({option: vote}),
+                method: 'POST',
+            })
+            .then(response => response.json())
+            .then(json => { dispatch(fetchAComment(json))})
+            .catch(error => { dispatch(handleError(error))})
+    }
+}
+
+export function fetchingAComment(id, dispatch) {
+  return dispatch => {
+    axios
+      .get(`http://localhost:3001/comments/${id}`, headers)
+      .then(response => {
+        dispatch(fetchAComment(response.data))
+      })
+      .catch(error => { dispatch(handleError(error))})
+  }
 }

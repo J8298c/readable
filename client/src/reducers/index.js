@@ -1,7 +1,6 @@
 import {
-    HANDLE_ERROR, FETCH_CATEGORIES, FETCH_ALL_POSTS, ADD_A_POST, FETCH_CATEGORY_POSTS,
-    FETCH_A_POST,
-    FETCH_COMMENTS
+    HANDLE_ERROR, FETCH_CATEGORIES, FETCH_ALL_POSTS, ADD_A_POST,
+    FETCH_CATEGORY_POSTS, FETCH_A_POST, FETCH_COMMENTS, FETCH_A_COMMENT
 } from '../actions/consts';
 
 const appState = {
@@ -46,6 +45,12 @@ export default function appReducers(state = appState, action) {
         const {comments} = action;
         const newState = Object.assign({}, state, { comments })
         return newState;
+    }
+    else if(action.type === FETCH_A_COMMENT) {
+      console.log(action);
+      const { comment } = action;
+      const newState = Object.assign({}, state, { comment });
+      return newState;
     }
     else {
         return state;
