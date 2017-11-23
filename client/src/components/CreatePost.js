@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import ModifyPost from './shared/ModifyPost';
 import AppButton from './shared/AppButton';
 import uuid from 'uuid';
-
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addingAPost } from '../actions/index';
 
 class CreatePost extends Component {
     constructor(props) {
@@ -34,7 +36,7 @@ class CreatePost extends Component {
           timestamp: timestamp
         }
         console.log(newPost);
-        // this.props.addingAPost(newPost)
+        this.props.addingAPost(newPost)
     }
     render() {
         const options = [{key: 'react', value: 'react', text: 'React'}, {key: 'redux', value: 'redux', text: 'Redux'}, {key: 'udacity', value: 'udacity', text: 'udacity'}];
@@ -53,4 +55,14 @@ class CreatePost extends Component {
     }
 
 }
-export default CreatePost;
+function mapStateToProps(state) {
+  return {
+    state
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return bindActionCreators({addingAPost}, dispatch)
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CreatePost);

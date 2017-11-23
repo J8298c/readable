@@ -111,16 +111,17 @@ export function fetchingAllPosts(dispatch) {
 
 export function addingAPost(postData,dispatch) {
     return dispatch => {
-        axios
-        .post('http://localhost:3001/posts', {
-            headers: {
-                'Authorization': 'whatever-you-want',
-                'Accept': 'application/json',
-                "Content-Type": "application/json"
-            },
+        fetch('http://localhost:3001/posts', {
+          headers: {
+              'Authorization': 'whatever-you-want',
+              'Accept': 'application/json',
+              "Content-Type": "application/json",
+          },
             body: JSON.stringify(postData),
+            method: 'POST',
         })
         .then(response => {
+          console.log('app post success')
             dispatch(addAPost(response.data))
         })
         .catch(error => {handleError(error)})
