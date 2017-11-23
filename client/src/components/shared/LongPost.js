@@ -4,7 +4,7 @@ import AppButton from './AppButton';
 
 const LongPost = (props) => (
     <div className='post-container'> 
-        <Header as='h1' textAlign='center'>{props.postTitle}</Header>
+        <Header className='header-post' as='h1' textAlign='center'>{props.postTitle}</Header>
         <div className='post-body'>
         <Message>
             <p>{props.postBody}</p>

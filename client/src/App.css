@@ -3,7 +3,12 @@
 }
 body {
   background-color: #3E4555;
+  color: #85F589;
 }
+.header {
+  color: #85F589;
+}
+
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
   height: 80px;
@@ -23,11 +28,7 @@ body {
 .App-intro {
   font-size: large;
 }
-.home-page-post {
-  margin: 0 auto;
-  display: block;
 
-}
 .home-page-post>.ui.cards>.card {
   font-size: 1em;
   width: 400px;
@@ -41,6 +42,76 @@ body {
   width: 75%;
   display: block;
   margin: 25px auto;
+}
+.edit-post {
+  display: block;
+  width: 100px;
+  margin: 0 auto;
+}
+
+button.ui.pink.button {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+  color: #85F589;
+}
+.content {
+  background-color: #85F589;
+}
+button.ui.button.edit-post {
+  width: 100px;
+  display: block;
+  margin: 0 auto;
+  color: #85F589;
+  background-color: #ee82c3;
+}
+.comment-container {
+  margin: 0 auto;
+  display: block;
+  width: 65%;
+}
+.card-containers {
+  font-size: 1em;
+  display: block;
+  margin: 34px auto;
+  padding-left: 29%;
+}
+.card-containers.ui.cards>.card{
+  color: #85F589;
+  background-color: #ee82c3;
+}
+.post-container h1{
+  color: #85F589;
+}
+.header-post{
+  color: #85F589;
+}
+.ui.blue.button, .ui.blue.buttons .button {
+  background-color: #2185d0;
+  color: #fff;
+  text-shadow: none;
+  background-image: none;
+  margin-left: 75%;
+}
+.ui.center.aligned.header, .ui.centered.header {
+  text-align: center;
+  color: #85F589;
+}
+.home-page-post {
+  margin: 0 auto;
+  display: block;
+  width: 50%;
+}
+.home-page-post>.ui.cards>.card {
+  font-size: 1em;
+  width: 400px;
+  margin: 25px auto;
+  color: #85F589;
+  background-color: #ee82c3;
+}
+form.ui.form.creat-post-container {
+  width: 54%;
+  margin: 51px auto;
 }
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

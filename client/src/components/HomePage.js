@@ -35,7 +35,7 @@ class HomePage extends Component {
                 <Grid columns={3} divided>
                 <Grid.Row>
                     <Grid.Column>
-                       <h5>App Title</h5> 
+                       <h2>Readable</h2> 
                     </Grid.Column>
                     <Grid.Column>
                             <AppSelect placeholder='Sort' options={options} />

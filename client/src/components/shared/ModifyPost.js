@@ -1,7 +1,7 @@
 import React from 'react';
 import { Form }   from 'semantic-ui-react';
 const ModifyPost = (props) => (
-    <Form>
+    <Form className={props.className}>
         <Form.Group>
             <Form.Input label={props.titleLabel} placeholder='Enter a Title' onChange={props.onTitleChange} />
             <Form.Input label={props.authorLabel} placeholder='Enter a Author' onChange={props.onAuthorChange} />

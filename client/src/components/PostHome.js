@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import { fetchingAPost, likingPost, fetchingComments } from '../actions/index';
-import { Grid } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import LongPost from './shared/LongPost';
 import ShortPost from './shared/ShortPost';
 import AppButton from './shared/AppButton';
-import CreateComment from './shared/ModifyPost';
+
 
 
 class PostHome extends Component {
@@ -46,8 +46,7 @@ class PostHome extends Component {
         const { post, comments } = this.props.state;
         return (
             <div>
-                <div>
-                    <AppButton content='edit' color='pink'/>
+                <div className='post-container'>
                     {
                         post ?
                             <div key={post.id}>
@@ -58,30 +57,33 @@ class PostHome extends Component {
                                 />
                             </div>  : 'Fetching Post'
                     }
+                    <AppButton content='edit' color='pink' className='edit-post'/>
                 </div>
                 <h1>Comments</h1>
                 <hr />
-                <div>
+                <div className='comment-container'>
                     {
                         comments ? comments.map(comment => (
-                          <Link to={`/comments/${comment.id}`}>
-                            <ShortPost key={comment.id} postBody={comment.body} postTitle={comment.title} postAuthor={comment.author}
-                              postVoteScore={comment.voteScore} postTimeStamp={this.convertDate(comment.timestamp)}
+                          <Link to={`/comments/${comment.id}`} key={comment.id}>
+                            <ShortPost postBody={comment.body} postTitle={comment.title} postAuthor={comment.author}
+                              postVoteScore={comment.voteScore} postTimeStamp={this.convertDate(comment.timestamp)} className='card-containers'
                               />
                           </Link>
                         )) : 'No Comments yet'
                     }
                 </div>
-                <AppButton  content='comment'
+                <AppButton  content='comment' className='edit-post'
                   onButtonClick={() => { !this.state.showForm ? this.setState({showForm: true}) : this.setState({showForm: false})}}/>
                 {
                   this.state.showForm ?
-                  <div>
-                    <CreateComment
-                        authorLabel='username' onAuthorChange={(event) => { this.setState({commentAuthor: event.target.value})}}
-                        onPostChange={(event) => { this.setState({commentBody: event.target.value})}}
-                    />
-                    <AppButton content="submit" onButtonClick={this.commentSubmit} />
+                  <div className="create-comment">
+                   <Form>
+                    <Form.Group>
+                        <Form.Input label='author' placeholder='Enter a Author' onChange={(event) => { this.setState({commentAuthor: event.target.value})}} />
+                    </Form.Group>
+                    <Form.TextArea label='comment' placeholder='Enter your comment....' onChange={(event) => { this.setState({commentBody: event.target.value})}}/>
+                    </Form>
+                    <AppButton content="submit" onButtonClick={this.commentSubmit} color='pink' className='app-btn submit-btn'/>
                   </div>
                   : null
                 }
