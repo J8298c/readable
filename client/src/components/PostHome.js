@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom';
 import LongPost from './shared/LongPost';
 import ShortPost from './shared/ShortPost';
 import AppButton from './shared/AppButton';
-
+import uuid from 'uuid';
 
 
 class PostHome extends Component {
@@ -38,6 +38,17 @@ class PostHome extends Component {
         this.props.likingPost(id, option);
     }
     commentSubmit(){
+      const date = Date.now();
+      let timestamp = this.convertDate(date);
+
+      const newPost = {
+        author: this.state.commentAuthor,
+        body: this.state.commentBody,
+        id: uuid(),
+        parentId: this.props.match.params.id,
+        timestamp: timestamp
+      }
+      
       console.log('helloooooooo')
     }
 

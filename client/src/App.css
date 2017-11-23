@@ -129,6 +129,13 @@ form.ui.form.creat-post-container {
   -o-transition: color .1s ease,border-color .1s ease;
   transition: color .1s ease,border-color .1s ease;
 }
+.create-comment {
+    width: 65%;
+    margin: 0 auto;
+}
+button.ui.pink.button.app-btn.submit-btn {
+    margin-top: 25px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
