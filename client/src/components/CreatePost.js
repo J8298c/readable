@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import ModifyPost from './shared/ModifyPost';
 import AppButton from './shared/AppButton';
+import uuid from 'uuid';
+
+
 class CreatePost extends Component {
     constructor(props) {
         super(props);
@@ -12,16 +15,33 @@ class CreatePost extends Component {
         }
         this.onSubmit = this.onSubmit.bind(this);
     }
+
+    convertDate(timestamp) {
+        const formatted = new Date(timestamp).toDateString()
+        console.log(formatted)
+        return formatted;
+    }
+
     onSubmit() {
-        //submit post
-        console.log(this.state);
+        let date = Date.now();
+        let timestamp = this.convertDate(date);
+        const newPost = {
+          id: uuid(),
+          title: this.state.title,
+          body: this.state.body,
+          category: this.state.category,
+          author: this.state.author,
+          timestamp: timestamp
+        }
+        console.log(newPost);
+        // this.props.addingAPost(newPost)
     }
     render() {
         const options = [{key: 'react', value: 'react', text: 'React'}, {key: 'redux', value: 'redux', text: 'Redux'}, {key: 'udacity', value: 'udacity', text: 'udacity'}];
         return (
             <div>
                 <ModifyPost titleLabel='Post Title' className='creat-post-container'
-                onTitleChange={(event) => { this.setState({title: event.target.value})}} 
+                onTitleChange={(event) => { this.setState({title: event.target.value})}}
                 authorLabel='Post Author'
                 onAuthorChange={(event) => { this.setState({author: event.target.value})}}
                 options={options}  onCatSelect={(event) => {this.setState({category: event.target.value})}}
