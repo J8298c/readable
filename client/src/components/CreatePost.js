@@ -24,7 +24,7 @@ class CreatePost extends Component {
                 onTitleChange={(event) => { this.setState({title: event.target.value})}} 
                 authorLabel='Post Author'
                 onAuthorChange={(event) => { this.setState({author: event.target.value})}}
-                options={options}  onCatSelect={(event) => {this.setState({category: event.target.getAttribute('value')})}}
+                options={options}  onCatSelect={(event) => {this.setState({category: event.target.value})}}
                 onPostChange={(event) => {this.setState({body: event.target.value})}}
                 />
                 <AppButton  color='pink' content='Save' onButtonClick={this.onSubmit} />

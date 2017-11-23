@@ -113,6 +113,22 @@ form.ui.form.creat-post-container {
   width: 54%;
   margin: 51px auto;
 }
+.ui.form select {
+  display: block;
+  margin-top: 23px;
+  height: 37px;
+  width: 100%;
+  background: #fff;
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: .28571429rem;
+  -webkit-box-shadow: 0 0 0 0 transparent inset;
+  box-shadow: 0 0 0 0 transparent inset;
+  padding: .62em 1em;
+  color: rgba(0,0,0,.87);
+  -webkit-transition: color .1s ease,border-color .1s ease;
+  -o-transition: color .1s ease,border-color .1s ease;
+  transition: color .1s ease,border-color .1s ease;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
