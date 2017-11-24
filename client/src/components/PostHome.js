@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import { fetchingAPost, likingPost, fetchingComments } from '../actions/index';
+import { fetchingAPost, likingPost, fetchingComments, addingAComment } from '../actions/index';
 import { Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import LongPost from './shared/LongPost';
@@ -48,8 +48,7 @@ class PostHome extends Component {
         parentId: this.props.match.params.id,
         timestamp: timestamp
       }
-      
-      console.log('helloooooooo')
+      this.props.addingAComment(newPost)
     }
 
     render() {
@@ -109,6 +108,6 @@ function mapStateToProps(state) {
     }
 }
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingAPost, likingPost, fetchingComments}, dispatch)
+    return bindActionCreators({fetchingAPost, likingPost, fetchingComments, addingAComment}, dispatch)
 }
 export default connect(mapStateToProps, mapDispatchToProps)(PostHome);

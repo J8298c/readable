@@ -180,6 +180,7 @@ export function fetchingComments(id, dispatch) {
 }
 
 export function addingAComment(post, dispatch) {
+  console.log(post)
     fetch(`http://localhost:3001/comments`,  {
         headers: {
             'Authorization': 'whatever-you-want',
