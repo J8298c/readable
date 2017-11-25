@@ -16,7 +16,7 @@ class App extends Component {
           <NavBar />
           <Route exact path='/' component={HomePage} />
           <Route path='/create' component={CreatePost} />
-          <Route path='/:category/posts' component={CategoryHome} />
+          <Route path='/:category' component={CategoryHome} />
           <Route path='/posts/:id' component={PostHome} />
           <Route path='/comments/:id' component={Comments} />
         </div>

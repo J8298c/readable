@@ -27,7 +27,7 @@ class NavBar extends Component {
                     categories !== null ? categories.map(category => (
                         <Menu.Item name={category.name} active={activeItem === category.name}
                             content={category.name} onClick={this.handleItemClick} link={true} key={category.name}
-                            to={`/${category.name}/posts`} as={Link}
+                            to={`/${category.name}`} as={Link}
                             />
                     )) : null
                 }
@@ -42,8 +42,4 @@ function mapStateToProps(state) {
     }
 }
 
-function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingCategories}, dispatch);
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar);
+export default connect(mapStateToProps, {fetchingCategories})(NavBar);
