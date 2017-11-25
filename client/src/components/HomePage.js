@@ -15,30 +15,44 @@ class HomePage extends Component {
         super(props);
         this.sort = this.sort.bind(this);
         this.convertDate = this.convertDate.bind(this);
+        this.onAlert = this.onAlert.bind(this);
     }
     componentDidMount() {
         //fetch all posts
         this.props.fetchingAllPosts();
     }
+    onAlert(value) {
+        console.log(value, 'the value');
+    }
     sort(value) {
-        //use lodash to sort through posts using ifstatement
+      let sortedList;
+      if(value === 'date') {
+          sortedList = _.sortBy(this.props.posts, [{'timestamp': Date}], ['desc'])
+          console.log(sortedList);
+          return sortedList;
+      } else if (value === 'score') {
+          sortedList = _.sortBy(this.props.posts, [{'voteScore': Number}], ['desc'])
+          console.log(sortedList);
+          return sortedList;
+      }
     }
     convertDate(timestamp) {
         const formatted = new Date(timestamp).toDateString()
-        console.log(formatted)
         return formatted;
     }
     render() {
+        let thePosts = this.sort('score');
+        console.log(thePosts, 'sorted posts');
         const options = [{key: 'score', value: 'score', text: 'Score'}, {key: 'date', value: 'date', text: 'Date'}];
         return (
             <div>
                 <Grid columns={3} divided>
                 <Grid.Row>
                     <Grid.Column>
-                       <h2>Readable</h2> 
+                       <h2>Readable</h2>
                     </Grid.Column>
                     <Grid.Column>
-                            <AppSelect placeholder='Sort' options={options} />
+                            <AppSelect placeholder='Sort' options={options} onSelect={(event) => {this.onAlert(event.target.value)}}/>
                     </Grid.Column>
                     <Grid.Column>
                         <Link to='/create'>
@@ -48,13 +62,13 @@ class HomePage extends Component {
                 </Grid.Row>
                 </Grid>
                     {
-                    this.props.posts.map(post => (
+                    thePosts.map(post => (
                         <ShortPost postTitle={post.title} key={post.id} className='home-page-post'
                             postAuthor={post.author} postVoteScore={post.voteScore}
                             postCommentCount={post.commentCount} postTimeStamp={this.convertDate(post.timestamp)}
                         />
                     ))
-                    }  
+                    }
             </div>
         )
     }

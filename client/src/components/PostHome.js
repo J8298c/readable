@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import LongPost from './shared/LongPost';
 import ShortPost from './shared/ShortPost';
 import AppButton from './shared/AppButton';
+import _ from 'lodash';
 import uuid from 'uuid';
 
 

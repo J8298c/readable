@@ -2,7 +2,7 @@ import axios from 'axios';
 import {FETCH_CATEGORIES, HANDLE_ERROR,
   FETCH_ALL_POSTS, ADD_A_POST, FETCH_CATEGORY_POSTS,
   FETCH_A_POST, LIKE_POST, FETCH_COMMENTS, ADD_A_COMMENT,
-  FETCH_A_COMMENT } from './consts';
+  FETCH_A_COMMENT, SORT_LIST } from './consts';
 
 
 export function fetchCategories(categories) {
@@ -81,6 +81,14 @@ export function fetchAComment(comment) {
   const action = {
     type: FETCH_A_COMMENT,
     comment
+  }
+  return action;
+}
+
+export function sortList(list) {
+  const action = {
+    type: SORT_LIST,
+    list
   }
   return action;
 }

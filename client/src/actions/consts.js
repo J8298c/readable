@@ -8,3 +8,4 @@ export const LIKE_POST = 'LIKE_POST';
 export const FETCH_COMMENTS = 'FETCH_COMMENTS'
 export const ADD_A_COMMENT = 'ADD_A_COMMENT';
 export const FETCH_A_COMMENT = 'FETCH_A_COMMENT';
+export const SORT_LIST = 'SORT_LIST';
