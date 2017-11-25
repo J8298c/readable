@@ -15,14 +15,10 @@ class HomePage extends Component {
         super(props);
         this.sort = this.sort.bind(this);
         this.convertDate = this.convertDate.bind(this);
-        this.onAlert = this.onAlert.bind(this);
     }
     componentDidMount() {
         //fetch all posts
         this.props.fetchingAllPosts();
-    }
-    onAlert(value) {
-        console.log(value, 'the value');
     }
     sort(value) {
       let sortedList;
