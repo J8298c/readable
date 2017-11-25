@@ -26,15 +26,14 @@ class HomePage extends Component {
     }
     sort(value) {
       let sortedList;
-      if(value === 'date') {
+      if(value === 'Date') {
           sortedList = _.sortBy(this.props.posts, [{'timestamp': Date}], ['desc'])
           console.log(sortedList);
           return sortedList;
-      } else if (value === 'score') {
-          sortedList = _.sortBy(this.props.posts, [{'voteScore': Number}], ['desc'])
-          console.log(sortedList);
-          return sortedList;
-      }
+      } 
+        sortedList = _.sortBy(this.props.posts, [{'voteScore': Number}], ['desc'])
+        console.log(sortedList);
+        return sortedList;
     }
     convertDate(timestamp) {
         const formatted = new Date(timestamp).toDateString()
@@ -52,7 +51,7 @@ class HomePage extends Component {
                        <h2>Readable</h2>
                     </Grid.Column>
                     <Grid.Column>
-                            <AppSelect placeholder='Sort' options={options} onSelect={(event) => {this.onAlert(event.target.value)}}/>
+                            <AppSelect placeholder='Sort' options={options} onSelect={(event) => {this.sort(event.target.innerText)}}/>
                     </Grid.Column>
                     <Grid.Column>
                         <Link to='/create'>
