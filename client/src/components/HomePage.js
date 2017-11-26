@@ -5,7 +5,7 @@ import {Grid} from 'semantic-ui-react';
 import { fetchingAllPosts } from '../actions/index';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
-import ShortPost from './shared/ShortPost';
+import Posts from './shared/Posts';
 import AppSelect from './shared/AppSelect';
 import AppButton from './shared/AppButton';
 
@@ -57,12 +57,7 @@ class HomePage extends Component {
                 </Grid.Row>
                 </Grid>
                     {
-                    thePosts.map(post => (
-                        <ShortPost postTitle={post.title} key={post.id} className='home-page-post'
-                            postAuthor={post.author} postVoteScore={post.voteScore}
-                            postCommentCount={post.commentCount} postTimeStamp={this.convertDate(post.timestamp)}
-                        />
-                    ))
+                        <Posts posts={thePosts}/>
                     }
             </div>
         )
