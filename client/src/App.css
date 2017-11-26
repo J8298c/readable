@@ -136,6 +136,13 @@ form.ui.form.creat-post-container {
 button.ui.pink.button.app-btn.submit-btn {
     margin-top: 25px;
 }
+.post-actions {
+  margin-top: 10px;
+}
+.homepage-container {
+  width: 85%;
+  margin: 25px auto;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
