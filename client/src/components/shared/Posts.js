@@ -13,9 +13,9 @@ class Posts extends Component  {
             <div className='homepage-container'>
             <Card.Group className='homepage-posts'>
                 {
-                    this.props.posts.map(post => (
-                        <Link to={`/posts/${post.id}`} key={post.id}>
-                        <Card>
+                    this.props.posts.map(post => (  
+                        <Card key={post.id}>
+                            <Link to={`/posts/${post.id}`}>
                             <Card.Content>
                                 <Card.Header>
                                     {post.title}
@@ -42,6 +42,7 @@ class Posts extends Component  {
                                     </Grid>
                                 </Card.Meta>
                             </Card.Content>
+                            </Link>
                             <Card.Content extra>
                                 <div>
                                     {
@@ -54,7 +55,6 @@ class Posts extends Component  {
                                 </div>
                             </Card.Content>
                         </Card>
-                        </Link>
                     ))
                 }
             </Card.Group>

@@ -143,6 +143,11 @@ button.ui.pink.button.app-btn.submit-btn {
   width: 85%;
   margin: 25px auto;
 }
+.ui.cards.homepage-posts {
+  display: block;
+  /* margin: 0 auto; */
+  margin-left: 21%;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
