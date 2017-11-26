@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import {Grid} from 'semantic-ui-react';
-import { fetchingAllPosts } from '../actions/index';
+import { fetchingAllPosts, likingPost } from '../actions/index';
 import _ from 'lodash';
 import { Link } from 'react-router-dom';
 import Posts from './shared/Posts';
@@ -13,31 +13,19 @@ import AppButton from './shared/AppButton';
 class HomePage extends Component {
     constructor(props) {
         super(props);
-        this.sort = this.sort.bind(this);
         this.convertDate = this.convertDate.bind(this);
     }
     componentDidMount() {
         //fetch all posts
         this.props.fetchingAllPosts();
     }
-    sort(value) {
-      let sortedList;
-      if(value === 'Date') {
-          sortedList = _.sortBy(this.props.posts, [{'timestamp': Date}], ['desc'])
-          console.log(sortedList);
-          return sortedList;
-      } 
-        sortedList = _.sortBy(this.props.posts, [{'voteScore': Number}], ['desc'])
-        console.log(sortedList);
-        return sortedList;
-    }
     convertDate(timestamp) {
         const formatted = new Date(timestamp).toDateString()
         return formatted;
     }
     render() {
-        let thePosts = this.sort('score');
-        console.log(thePosts, 'sorted posts');
+        console.log(this.props)
+        console.log('mounting')
         const options = [{key: 'score', value: 'score', text: 'Score'}, {key: 'date', value: 'date', text: 'Date'}];
         return (
             <div>
@@ -57,7 +45,7 @@ class HomePage extends Component {
                 </Grid.Row>
                 </Grid>
                     {
-                        <Posts posts={thePosts}/>
+                        <Posts posts={this.props.posts} />
                     }
             </div>
         )
@@ -70,6 +58,6 @@ function mapStateToProps(state) {
     )
 }
 function mapDispatchToProps(dispatch) {
-    return bindActionCreators({fetchingAllPosts}, dispatch);
+    return bindActionCreators({fetchingAllPosts, likingPost}, dispatch);
 }
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

@@ -1,55 +1,63 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Card, Grid, Button } from 'semantic-ui-react';
 import AppButton from './AppButton';
-const Posts = (props) => {
-    return (
-        <div className='homepage-container'>
-        <Card.Group className='homepage-posts'>
-            {
-                props.posts.map(post => (
-                    <Card key={post.id}>
-                        <Card.Content>
-                            <Card.Header>
-                                {post.title}
-                            </Card.Header>
-                            <Card.Meta>
-                                {post.author}
-                            </Card.Meta>
-                            <Card.Description>
-                                {post.body}
-                            </Card.Description>
-                            <Card.Meta>
-                                <Grid columns={2}>
-                                    <Grid.Row>
-                                        <Grid.Column>
-                                            Score: {post.voteScore}
-                                        </Grid.Column>
-                                        <Grid.Column>
-                                            Comment: {post.commentCount}
-                                        </Grid.Column>
-                                    </Grid.Row>
-                                </Grid>
-                            </Card.Meta>
-                        </Card.Content>
-                        <Card.Content extra>
-                            //refactor buttons
-                            <div>
-                                <Button.Group fluid>
-                                <AppButton content='Like' size='mini'color='green' onButtonClick={props.onUpVote}/>
-                                <Button.Or /> 
-                                <AppButton content='Unlike' size='mini' color='red' onButtonClick={props.onDownVote}/>
-                                </Button.Group>
-                                <div className='post-actions'>
-                                  <AppButton content='Comment' size='mini'/>
-                                    <AppButton content='Delete' size='mini' floated='right'/>  
+import Scoring from './Scoring';
+import {convertDate} from './helper';
+
+class Posts extends Component  {
+    // convertDate(timestamp) {
+    //     const formatted = new Date(timestamp).toDateString()
+    //     console.log(formatted)
+    //     return formatted;
+    // }
+    render(props) {
+        console.log(this.props)
+        return (
+            <div className='homepage-container'>
+            <Card.Group className='homepage-posts'>
+                {
+                    this.props.posts.map(post => (
+                        <Card key={post.id}>
+                            <Card.Content>
+                                <Card.Header>
+                                    {post.title}
+                                </Card.Header>
+                                <Card.Meta>
+                                    {post.author}
+                                </Card.Meta>
+                                <Card.Meta>
+                                    {convertDate(post.timestamp)}
+                                </Card.Meta>
+                                <Card.Description>
+                                    {post.body}
+                                </Card.Description>
+                                <Card.Meta>
+                                    <Grid columns={2}>
+                                        <Grid.Row>
+                                            <Grid.Column>
+                                                Score: {post.voteScore}
+                                            </Grid.Column>
+                                            <Grid.Column>
+                                                Comment: {post.commentCount}
+                                            </Grid.Column>
+                                        </Grid.Row>
+                                    </Grid>
+                                </Card.Meta>
+                            </Card.Content>
+                            <Card.Content extra>
+                                <div>
+                                    <div className='post-actions'>
+                                        <AppButton content='Comment' size='mini' color='violet'/>
+                                        <AppButton content='Delete' size='mini' floated='right' color='red'/>  
+                                    </div>
                                 </div>
-                            </div>
-                        </Card.Content>
-                    </Card>
-                ))
-            }
-        </Card.Group>
-        </div>
-    )
+                            </Card.Content>
+                        </Card>
+                    ))
+                }
+            </Card.Group>
+            </div>
+        )
+    }
 };
 export default Posts;

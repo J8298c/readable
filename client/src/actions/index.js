@@ -171,7 +171,10 @@ export function likingPost(id, option, dispatch) {
                 method: 'POST',
             })
             .then(response => response.json())
-            .then(json => { dispatch(fetchAPost(json))})
+            .then(json => { 
+                    dispatch(fetchAPost(json))
+                    dispatch(fetchAllPosts(json))
+                })
             .catch(error => { dispatch(handleError(error))})
     }
 }
