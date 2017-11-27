@@ -5,6 +5,7 @@ import { fetchingAPost, likingPost, fetchingComments, addingAComment } from '../
 import { Form } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import LongPost from './shared/LongPost';
+import Posts from './shared/Posts'
 import ShortPost from './shared/ShortPost';
 import AppButton from './shared/AppButton';
 import _ from 'lodash';
@@ -60,13 +61,8 @@ class PostHome extends Component {
                 <div className='post-container'>
                     {
                         post ?
-                            <div key={post.id}>
-                                <LongPost postTitle={post.title} postBody={post.body}
-                            postVoteScore={post.voteScore} postTimeStamp={this.convertDate(post.timestamp)}
-                            postAuthor={post.author} handleUpVote={() => { this.onVote(post.id, 'upVote')}}
-                            handleDownVote={()=>{this.onVote(post.id, 'downVote')} }
-                                />
-                            </div>  : 'Fetching Post'
+                            <Posts posts={post} showVote={true} />
+                            : 'Loading'
                     }
                     <AppButton content='edit' color='pink' className='edit-post'/>
                 </div>

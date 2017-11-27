@@ -7,7 +7,12 @@ import {Link} from 'react-router-dom';
 
 class Posts extends Component  {
     render(props) {
-
+        let elPostCollection;
+        if(this.props.posts) {
+            elPostCollection = this.props.posts
+        } else {
+            elPostCollection = this.props.post;
+        }
         console.log(this.props)
         return (
             <div className='homepage-container'>
