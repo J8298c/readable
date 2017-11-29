@@ -64,7 +64,8 @@ class PostHome extends Component {
                 <div className='post-container'>
                     {
                         post ?
-                        <Card key={post.id}>
+                        <div className='elPost-container'>
+                            <Card key={post.id}>
                         <Link to={`/posts/${post.id}`}>
                         <Card.Content>
                             <Card.Header>
@@ -103,6 +104,8 @@ class PostHome extends Component {
                             </div>
                         </Card.Content>
                     </Card>
+                        </div>
+                        
                             : 'Loading'
                     }
                     <AppButton content='edit' color='pink' className='edit-post'/>

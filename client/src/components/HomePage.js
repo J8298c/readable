@@ -29,11 +29,8 @@ class HomePage extends Component {
         const options = [{key: 'score', value: 'score', text: 'Score'}, {key: 'date', value: 'date', text: 'Date'}];
         return (
             <div>
-                <Grid columns={3} divided>
+                <Grid columns={2} divided>
                 <Grid.Row>
-                    <Grid.Column>
-                       <h2>Readable</h2>
-                    </Grid.Column>
                     <Grid.Column>
                             <AppSelect placeholder='Sort' options={options} onSelect={(event) => {this.sort(event.target.innerText)}}/>
                     </Grid.Column>
@@ -45,7 +42,10 @@ class HomePage extends Component {
                 </Grid.Row>
                 </Grid>
                     {
-                        <Posts posts={this.props.posts} />
+                        this.props.posts.map(post => (
+                            <Posts posttitle={post.title} postid={post.id} postauthor={post.author} posttimestamp={this.convertDate(post.timestamp)}
+                            postbody={post.body} postvoteScore={post.voteScore} postcommentCount={post.commentCount} post={post}/>
+                        ))
                     }
             </div>
         )

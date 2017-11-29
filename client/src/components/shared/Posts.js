@@ -7,41 +7,33 @@ import {Link} from 'react-router-dom';
 
 class Posts extends Component  {
     render(props) {
-        let elPostCollection;
-        if(this.props.posts) {
-            elPostCollection = this.props.posts
-        } else {
-            elPostCollection = this.props.post;
-        }
         console.log(this.props)
         return (
             <div className='homepage-container'>
-            <Card.Group className='homepage-posts'>
                 {
-                    this.props.posts.map(post => (  
-                        <Card key={post.id}>
-                            <Link to={`/posts/${post.id}`}>
+                        <Card key={this.props.postid}>
+                            <Link to={`/posts/${this.props.postid}`}>
                             <Card.Content>
                                 <Card.Header>
-                                    {post.title}
+                                    {this.props.posttitle}
                                 </Card.Header>
                                 <Card.Meta>
-                                    {post.author}
+                                    {this.props.postauthor}
                                 </Card.Meta>
                                 <Card.Meta>
-                                    {convertDate(post.timestamp)}
+                                    {convertDate(this.props.posttimestamp)}
                                 </Card.Meta>
                                 <Card.Description>
-                                    {post.body}
+                                    {this.props.postbody}
                                 </Card.Description>
                                 <Card.Meta>
                                     <Grid columns={2}>
                                         <Grid.Row>
                                             <Grid.Column>
-                                                Score: {post.voteScore}
+                                                Score: {this.props.postvoteScore}
                                             </Grid.Column>
                                             <Grid.Column>
-                                                Comment: {post.commentCount}
+                                                Comment: {this.props.postcommentCount}
                                             </Grid.Column>
                                         </Grid.Row>
                                     </Grid>
@@ -50,9 +42,7 @@ class Posts extends Component  {
                             </Link>
                             <Card.Content extra>
                                 <div>
-                                    {
-                                        this.props.showVote ? <Scoring /> : null
-                                    }
+                                <Scoring postid={this.props.postid}/>
                                     <div className='post-actions'>
                                         <AppButton content='Comment' size='mini' color='violet'/>
                                         <AppButton content='Delete' size='mini' floated='right' color='red'/>  
@@ -60,9 +50,7 @@ class Posts extends Component  {
                                 </div>
                             </Card.Content>
                         </Card>
-                    ))
                 }
-            </Card.Group>
             </div>
         )
     }

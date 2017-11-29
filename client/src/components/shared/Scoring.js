@@ -11,12 +11,11 @@ class Scoring extends Component {
         this.props.likingPost(id, option);
     }
     render(props) {
-        const { id } = this.props.post;
         return (
             <Button.Group fluid>
-                <AppButton content='Like' size='mini'color='green' onButtonClick={() => { this.onVote(id, 'upVote')}} />
+                <AppButton content='Like' size='mini'color='green' onButtonClick={() => { this.onVote(this.props.postid, 'upVote')}} />
                 <Button.Or /> 
-                <AppButton content='Unlike' size='mini' color='red' onButtonClick={() => { this.onVote(id, 'downVote')}}/>
+                <AppButton content='Unlike' size='mini' color='red' onButtonClick={() => { this.onVote(this.props.postid, 'downVote')}}/>
             </Button.Group>
         )
     }
