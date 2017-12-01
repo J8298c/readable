@@ -3,8 +3,7 @@ import { Link } from 'react-router-dom';
 import {connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 import { fetchingCategoryPosts} from '../actions/index';
-import Posts from './shared/Posts';
-import { convertDate} from './shared/helper';
+
 
 class CategoryHome extends Component {
     componentDidMount() {
@@ -16,13 +15,7 @@ class CategoryHome extends Component {
         console.log(this.props);
         return (
             <div>
-            {
-               this.props.state.posts.map(post => (
-                <Posts posttitle={post.title} postid={post.id} postauthor={post.author} posttimestamp={convertDate(post.timestamp)}
-                postbody={post.body} postvoteScore={post.voteScore} postcommentCount={post.commentCount} key={post.id}/>
-            ))
-            }
-                
+                categoryhome
             </div>
         )
     }

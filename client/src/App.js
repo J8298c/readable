@@ -13,7 +13,6 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          <NavBar />
           <Route exact path='/' component={HomePage} />
           <Route path='/create' component={CreatePost} />
           <Route path='/:category/posts' component={CategoryHome} />

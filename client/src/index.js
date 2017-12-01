@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import './index.css';
-import 'semantic-ui-css/semantic.min.css';
 import App from './App';
 import appReducers from './reducers/index';
 import registerServiceWorker from './registerServiceWorker';
@@ -16,7 +15,7 @@ const store = createStore(
     composeEnhancers(
       applyMiddleware(thunk)  
     )
-)
+);
 
 
 ReactDOM.render(
