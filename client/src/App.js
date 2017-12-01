@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import NavBar from './components/NavBar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomePage from './components/HomePage';
 import CreatePost from './components/CreatePost';
 import CategoryHome from './components/CategoryHome';
@@ -11,6 +11,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
+        <MuiThemeProvider>
       <BrowserRouter>
         <div>
           <Route exact path='/' component={HomePage} />
@@ -20,6 +21,7 @@ class App extends Component {
           <Route path='/comments/:id' component={Comments} />
         </div>
       </BrowserRouter>
+        </MuiThemeProvider>
     )
   }
 }
