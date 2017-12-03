@@ -9,32 +9,34 @@ class HomePage extends Component {
   }
   render() {
     return (
-      <div>
+      <div className='multi-post-container'>
+      <Card.Group>
         {
           this.props.state.posts ?
           this.props.state.posts.map(post => {
             return (
-              <Link to={`/posts/${post.id}`} key={post.id}>
-              <div>
-                <h2>{post.title}</h2>
-                <p>{post.author}</p>
-                <div>
-                  <p>
-                    {post.body}
-                  </p>
-                </div>
-                <div>
-                  <p>Comments: {post.commentCount}</p>
-                  <p>Post Score: {post.showVote}</p>
-                </div>
-                <p>Created on: {post.timestamp}</p>
-              </div>
-            </Link>
+              <Card key={post.id}>
+                <Card.Content>
+                  <Link to={`/posts/${post.id}`}>
+                  <Card.Header>{post.title}</Card.Header>
+                  </Link>
+                  <Card.Meta>{post.author}</Card.Meta>
+                  <Card.Description>
+                      {post.body}
+                  </Card.Description>
+                  <Card.Meta>
+                    <p>Comments: {post.commentCount}</p>
+                    <p>Post Score: {post.showVote}</p>
+                    <p>Created on: {post.timestamp}</p>
+                  </Card.Meta>
+                </Card.Content>
+              </Card>
             )
           })
           : null
         }
-      </div>
+      </Card.Group>
+    </div>
     )
   }
 }
