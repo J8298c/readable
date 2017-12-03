@@ -1,0 +1,2 @@
+export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
+export const HANDLE_ERRORS = 'HANDLE_ERRORS';
