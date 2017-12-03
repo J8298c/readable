@@ -1,3 +1,4 @@
 export const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS';
 export const HANDLE_ERRORS = 'HANDLE_ERRORS';
 export const FETCH_CATEGORIES = 'FETCH_CATEGORIES';
+export const ADD_A_POST = 'ADD_A_POST';

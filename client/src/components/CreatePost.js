@@ -2,6 +2,10 @@ import React, { Component } from 'react';
 import Create from './shared/Create';
 import AppButton from './shared/AppButton';
 import AppSelect from './shared/AppSelect';
+import { connect } from 'react-redux';
+import { addNewPost } from '../actions/index';
+import uuid from 'uuid';
+
 
 class CreatePost extends Component {
   constructor(props) {
@@ -17,8 +21,10 @@ class CreatePost extends Component {
 
   onSubmit() {
     const { title, author, body, category } = this.state;
-    let post = { title, author, body, category };
-    console.log(post);
+    const id = uuid();
+    const timestamp = Date.now();
+    let post = { title, author, body, category, id, timestamp };
+    this.props.addNewPost(post);
   }
 
   render() {
@@ -42,4 +48,4 @@ class CreatePost extends Component {
     )
   }
 }
-export default CreatePost;
+export default connect(null, { addNewPost })(CreatePost);
