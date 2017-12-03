@@ -1,4 +1,4 @@
-import { FETCH_ALL_POSTS, HANDLE_ERRORS } from '../actions/types';
+import { FETCH_ALL_POSTS, HANDLE_ERRORS, FETCH_CATEGORIES } from '../actions/types';
 
 const AppReducers = (state={}, action) => {
   if(action.type === FETCH_ALL_POSTS) {
@@ -9,6 +9,11 @@ const AppReducers = (state={}, action) => {
   } else if (action.type === HANDLE_ERRORS) {
     const {error} = action;
     console.log(error);
+  } else if(action.type === FETCH_CATEGORIES) {
+    const {categories} = action.categories;
+    console.log(categories)
+    const newState = Object.assign({}, state, { categories })
+    return newState;
   }
   else {
     return state;

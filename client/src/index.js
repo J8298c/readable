@@ -3,13 +3,19 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk';
 import registerServiceWorker from './registerServiceWorker';
 import AppReducers from './reducers/index';
 import 'semantic-ui-css/semantic.min.css';
 
-const store = createStore(AppReducers, {}, applyMiddleware(thunk));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(
+  AppReducers, {},
+  composeEnhancers(
+    applyMiddleware(thunk)
+  )
+);
 
 ReactDOM.render(
 <Provider store={store}>

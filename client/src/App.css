@@ -22,6 +22,33 @@
   font-size: large;
 }
 
+.menu-wrapper {
+  margin-bottom: 10%;
+}
+
+.multi-post-container {
+    width: 85%;
+    margin: 0 auto;
+}
+.create-post-container {
+    width: 85%;
+    margin: 0 auto;
+}
+.create-post-container h1 {
+  text-align: center;
+}
+.create-post-btn {
+  width: 45%;
+  margin: 30px auto;
+}
+.create-post-btn button {
+  margin: 0 auto;
+  display: block;
+}
+.ui.selection.dropdown {
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
