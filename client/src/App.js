@@ -4,6 +4,8 @@ import './App.css';
 import HomePage from './components/HomePage';
 import Navbar from './components/Navbar';
 import CreatePost from './components/CreatePost';
+import CategoryHome from './components/CategoryHome';
+import PostHome from './components/PostHome';
 
 class App extends Component {
   render() {
@@ -12,7 +14,9 @@ class App extends Component {
         <div>
           <Navbar />
           <Route exact path='/' component={HomePage} />
-          <Route path='/createpost' component={CreatePost} />
+          <Route path='/posts/createpost' component={CreatePost} />
+          <Route exact path='/:category' component={CategoryHome} />
+          <Route path='/posts/:id' component={PostHome} />
         </div>
       </BrowserRouter>
     );

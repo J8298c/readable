@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ALL_POSTS, HANDLE_ERRORS, FETCH_CATEGORIES, ADD_A_POST } from './types';
+import { FETCH_ALL_POSTS, HANDLE_ERRORS, FETCH_CATEGORIES, ADD_A_POST, FETCH_CATEGORY_POSTS, FETCH_SINGLE_POST } from './types';
 
 export function fetchAllPosts(posts) {
   return {
@@ -19,6 +19,20 @@ export function fetchCategories(categories) {
   return {
     type: FETCH_CATEGORIES,
     categories
+  }
+}
+
+export function fetchCategoryPosts(posts) {
+  return {
+    type: FETCH_CATEGORY_POSTS,
+    posts
+  }
+}
+
+export function fetchSinglePost(post) {
+  return {
+    type: FETCH_SINGLE_POST,
+    post
   }
 }
 
@@ -58,5 +72,23 @@ export function addNewPost(post, dispatch) {
     .then(response => {
       console.log(response);
     })
+  }
+}
+
+export function fetchingCategoryPosts(category, dispatch) {
+  return dispatch => {
+    axios
+      .get(`http://localhost:3001/${category}/posts`, headers)
+      .then(response => { dispatch(fetchCategoryPosts(response.data))})
+      .catch(error => { dispatch(handleErrors(error))})
+  }
+}
+
+export function fetchingPost(id, dispatch) {
+  return dispatch => {
+    axios
+      .get(`http://localhost:3001/posts/${id}`, headers)
+      .then(response => { dispatch(fetchSinglePost(response.data))})
+      .catch(error => { dispatch(handleErrors(error))})
   }
 }
