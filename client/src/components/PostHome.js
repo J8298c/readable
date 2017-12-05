@@ -5,9 +5,14 @@ import Post from './shared/Post';
 import AppButton from './shared/AppButton';
 
 class PostHome extends Component {
+  state ={
+    showedit: false,
+  }
+  
   componentDidMount(props) {
     this.props.fetchingPost(this.props.match.params.id);
   }
+
   deletePost(id) {
     console.log(id);
     this.props.deletingPost(id);
@@ -17,9 +22,14 @@ class PostHome extends Component {
     console.log(this.props);
     return (
       <div className='single-post-container'>
-      <AppButton content='Delete' color='red' floated='left' 
+      <div className='grouped-btns'>
+      <AppButton content='Delete' color='red' 
         onClick={() => {this.deletePost(this.props.state.post.id)}}
       />
+       <AppButton content='Edit' color='blue' 
+        onClick={() => {this.deletePost(this.props.state.post.id)}}
+      />
+      </div>
         {
           this.props.state.post ?
           <Post postId={this.props.state.post.id} postAuthor={this.props.state.post.author} 
