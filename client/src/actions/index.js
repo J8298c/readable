@@ -92,3 +92,14 @@ export function fetchingPost(id, dispatch) {
       .catch(error => { dispatch(handleErrors(error))})
   }
 }
+
+export function deletingPost(id, dispatch) {
+  return dispatch => {
+    axios
+      .delete(`http://localhost:3001/posts/${id}`, headers)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => { dispatch(handleErrors(error))})
+  }
+}

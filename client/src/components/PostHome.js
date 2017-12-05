@@ -1,37 +1,30 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchingPost } from '../actions/index';
-import { Card } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { fetchingPost, deletingPost } from '../actions/index';
+import Post from './shared/Post';
+import AppButton from './shared/AppButton';
 
 class PostHome extends Component {
   componentDidMount(props) {
-    console.log(this.props)
     this.props.fetchingPost(this.props.match.params.id);
+  }
+  deletePost(id) {
+    console.log(id);
+    this.props.deletingPost(id);
   }
 
   render(props) {
     console.log(this.props);
     return (
       <div className='single-post-container'>
+      <AppButton content='Delete' color='red' floated='left' 
+        onClick={() => {this.deletePost(this.props.state.post.id)}}
+      />
         {
           this.props.state.post ?
-          <Card>
-            <Card.Content>
-              <Link to={`/posts/${this.props.state.post.id}`}>
-              <Card.Header>{this.props.state.post.title}</Card.Header>
-              </Link>
-              <Card.Meta>{this.props.state.post.author}</Card.Meta>
-              <Card.Description>
-                  {this.props.state.post.body}
-              </Card.Description>
-              <Card.Meta>
-                <p>Comments: {this.props.state.post.commentCount}</p>
-                <p>Post Score: {this.props.state.post.showVote}</p>
-                <p>Created on: {this.props.state.post.timestamp}</p>
-              </Card.Meta>
-            </Card.Content>
-          </Card>
+          <Post postId={this.props.state.post.id} postAuthor={this.props.state.post.author} 
+          postBody={this.props.state.post.body} commentCount={this.props.state.post.commentCount} showVote={this.props.state.post.showVote}
+          timestamp={this.props.state.post.timestamp} />
           : null
         }
       </div>
@@ -44,4 +37,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps, { fetchingPost })(PostHome);
+export default connect(mapStateToProps, { fetchingPost, deletingPost })(PostHome);
