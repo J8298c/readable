@@ -3,7 +3,7 @@ import { Card } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 const Post = (props) => (
-    <Card key={props.postId}>
+    <Card key={props.postId} style={props.style}>
     <Card.Content>
       <Link to={`/posts/${props.postId}`}>
       <Card.Header>{props.postTitle}</Card.Header>
@@ -14,7 +14,7 @@ const Post = (props) => (
       </Card.Description>
       <Card.Meta>
         <p>Comments: {props.commentCount}</p>
-        <p>Post Score: {props.showVote}</p>
+        <p>Post Score: {props.voteScore}</p>
         <p>Created on: {props.timestamp}</p>
       </Card.Meta>
     </Card.Content>

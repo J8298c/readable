@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import CreatePost from './components/CreatePost';
 import CategoryHome from './components/CategoryHome';
 import PostHome from './components/PostHome';
+import EditPost from './components/EditPost';
 
 class App extends Component {
   render() {
@@ -14,9 +15,10 @@ class App extends Component {
         <div>
           <Navbar />
           <Route exact path='/' component={HomePage} />
-          <Route path='/posts/createpost' component={CreatePost} />
+          <Route exact path='/posts/createpost' component={CreatePost} />
           <Route exact path='/:category' component={CategoryHome} />
-          <Route path='/posts/:id' component={PostHome} />
+          <Route exact path='/posts/:id' component={PostHome} />
+          <Route path='/posts/:id/edit' component={EditPost} />
         </div>
       </BrowserRouter>
     );
