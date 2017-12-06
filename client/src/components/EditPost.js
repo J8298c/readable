@@ -8,9 +8,9 @@ class EditPost extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            title: '',
-            author: '',
-            body: ''
+            title: null,
+            author: null,
+            body: null
         }
         this.onSubmit = this.onSubmit.bind(this);
         this.checkState = this.checkState.bind(this);
@@ -34,8 +34,12 @@ class EditPost extends Component {
         const { author, body, title } = this.state;
         console.log(id);
         console.log(this.state)
-        this.checkState(author, author);
-        
+        let post = {
+            author: this.state.author ? this.state.author : this.props.post.author,
+            title:  this.state.title ? this.state.title : this.props.post.title,
+            body: this.state.body ? this.state.body : this.props.post.body
+        }
+        console.log(post)
     }
     render(props) {
 
