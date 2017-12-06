@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Create from './shared/Create';
+import { Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { fetchingPost } from '../actions/index';
 import AppButton from './shared/AppButton';
@@ -13,29 +13,61 @@ class EditPost extends Component {
             body: ''
         }
         this.onSubmit = this.onSubmit.bind(this);
+        this.checkState = this.checkState.bind(this);
     }
     componentDidMount(props) {
         this.props.fetchingPost(this.props.match.params.id);
         
     }
+    checkState(field) {
+        if(field === '') {
+            console.log(key)
+            return this.props.post.key;
+        }
+        else {
+            console.log(this.state.field)
+            console.log(field);
+            return field
+        }
+    }
     onSubmit(id) {
+        const { author, body, title } = this.state;
         console.log(id);
+        console.log(this.state)
+        this.checkState(author, author);
+        
     }
     render(props) {
-        
+
         return (
             <div>
-               <Create />
-               <AppButton content='Submit' />
+                {
+                    this.props.post ?
+                    <div>
+                    <Form>
+                        <Form.Field>
+                        <Form.Input label='Title' placeholder={this.props.post.title} onChange={(event) => {this.setState({title: event.target.value})}} />
+                        <Form.Input label='Author' placeholder={this.props.post.author} onChange={(event) => {this.setState({author: event.target.value})}}   />
+                        <Form.TextArea label='Post/Comment' placeholder={this.props.post.body}
+                            onChange={(event) => {this.setState({body: event.target.value})}} 
+                        />
+                        </Form.Field>
+                    </Form>
+                    <AppButton content='Submit' onClick={() => {this.onSubmit(this.props.post.id)}} />
+                    </div>
+                    : null
+                }
+               
             </div>
         )
     }
 }
 
 function mapStateToProps(state) {
-   console.log(state);
+   const { post } = state;
+   console.log(post)
    return { 
-       state
+       post
    }
 }
 
