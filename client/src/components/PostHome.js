@@ -15,12 +15,9 @@ class PostHome extends Component {
   }
 
   deletePost(id) {
-    console.log(id);
     this.props.deletingPost(id);
   }
   onVote(id, option) {
-    console.log(id)
-    console.log(option)
     this.props.postVote(id, option);
   }
 
