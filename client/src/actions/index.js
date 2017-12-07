@@ -1,10 +1,17 @@
 import axios from 'axios';
-import { FETCH_ALL_POSTS, HANDLE_ERRORS, FETCH_CATEGORIES, ADD_A_POST, FETCH_CATEGORY_POSTS, FETCH_SINGLE_POST } from './types';
+import { FETCH_ALL_POSTS, HANDLE_ERRORS, FETCH_CATEGORIES, ADD_A_POST, FETCH_CATEGORY_POSTS, FETCH_SINGLE_POST, FETCH_POST_COMMENTS } from './types';
 
 export function fetchAllPosts(posts) {
   return {
     type: FETCH_ALL_POSTS,
     posts
+  }
+}
+
+export function fetchPostComments(comments) {
+  return {
+    type: FETCH_POST_COMMENTS,
+    comments
   }
 }
 
@@ -135,6 +142,17 @@ export function postVote(id, option, dispatch) {
     })
     .then(response => response.json())
     .then(json => { dispatch(fetchSinglePost(json))})
+    .catch(error => { dispatch(handleErrors(error))})
+  }
+}
+
+export function fetchingPostComments(id, dispatch) {
+  return dispatch => {
+    axios
+    .get(`http://localhost:3001/posts/${id}/comments`, headers)
+    .then(response => {
+      dispatch(fetchPostComments(response.data));
+    })
     .catch(error => { dispatch(handleErrors(error))})
   }
 }

@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchingPost, deletingPost, postVote } from '../actions/index';
+import { fetchingPost, deletingPost, postVote, fetchingPostComments } from '../actions/index';
 import Post from './shared/Post';
 import AppButton from './shared/AppButton';
+import MultiPost from './shared/MultiPost';
 
 class PostHome extends Component {
   state ={
@@ -12,6 +13,7 @@ class PostHome extends Component {
 
   componentDidMount(props) {
     this.props.fetchingPost(this.props.match.params.id);
+    this.props.fetchingPostComments(this.props.match.params.id)
   }
 
   deletePost(id) {
@@ -33,12 +35,15 @@ class PostHome extends Component {
       </div>
         {
           this.props.state.post ?
+          <div>
           <Post postId={this.props.state.post.id} postAuthor={this.props.state.post.author}
           postBody={this.props.state.post.body} commentCount={this.props.state.post.commentCount} showVoter={true}
           timestamp={this.props.state.post.timestamp} voteScore={this.props.state.post.voteScore}
           onUpVote={() => {this.onVote(this.props.state.post.id, 'upVote')}}
           onDownVote={() => {this.onVote(this.props.state.post.id, 'downVote')}}
         />
+        <MultiPost posts={this.props.state.comments} />
+      </div>
           : null
         }
       </div>
@@ -46,9 +51,10 @@ class PostHome extends Component {
   }
 }
 function mapStateToProps(state) {
+  console.log(state);
   return {
     state
   }
 }
 
-export default connect(mapStateToProps, { fetchingPost, deletingPost, postVote })(PostHome);
+export default connect(mapStateToProps, { fetchingPost, deletingPost, postVote, fetchingPostComments })(PostHome);
