@@ -106,7 +106,7 @@ export function deletingPost(id, dispatch) {
 
 export function editPost(id, post, dispatch) {
   return dispatch => {
-    fetch(`http://localhost:3001/posts${id}`, {
+    fetch(`http://localhost:3001/posts/${id}`, {
       headers: {
              'Authorization': 'whatever-you-want',
              'Accept': 'application/json',
@@ -116,8 +116,8 @@ export function editPost(id, post, dispatch) {
          body: JSON.stringify(post)
     })
     .then(response => response.json())
-    .then(json => { console.log(response)});
-    .then(error => { handleErrors(errorx)})
+    .then(json => { console.log(json)})
+    .catch(error => { handleErrors(error)})
   }
 }
 
