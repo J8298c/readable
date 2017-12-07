@@ -156,3 +156,17 @@ export function fetchingPostComments(id, dispatch) {
     .catch(error => { dispatch(handleErrors(error))})
   }
 }
+
+export function addNewComment(comment, dispatch) {
+  return dispatch => {
+    fetch('http://localhost:3001/comments',{
+      headers: {
+             'Authorization': 'whatever-you-want',
+             'Accept': 'application/json',
+             "Content-Type": "application/json",
+         },
+         body: JSON.stringify(comment),
+         method: 'POST',
+    })
+  }
+}
