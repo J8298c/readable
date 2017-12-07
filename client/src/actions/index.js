@@ -103,3 +103,21 @@ export function deletingPost(id, dispatch) {
       .catch(error => { dispatch(handleErrors(error))})
   }
 }
+
+export function postVote(id, option, dispatch) {
+  return dispatch => {
+    let vote = `${option}`
+    fetch(`http://localhost:3001/posts/${id}`, {
+      headers: {
+             'Authorization': 'whatever-you-want',
+             'Accept': 'application/json',
+             "Content-Type": "application/json",
+         },
+         method: 'Post',
+         body: JSON.stringify({option: vote})
+    })
+    .then(response => response.json())
+    .then(json => { dispatch(fetchSinglePost(json))})
+    .catch(error => { dispatch(handleErrors(error))})
+  }
+}

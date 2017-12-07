@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
+import  Voter from './Voter';
 
 const Post = (props) => (
     <Card key={props.postId} style={props.style}>
@@ -19,12 +20,14 @@ const Post = (props) => (
       </Card.Meta>
     </Card.Content>
     {
-        props.showVoter ? 
-        <Card.Content>
+        props.showVoter ?
+        <Card.Content extra>
             <div>
-                This safe
-            </div>    
-        </Card.Content>   
+                <Voter onUpVote={props.onUpVote} onDownVote={props.onDownVote}
+                  positivecontent='Like' negativecontent='Dislike'
+                />
+            </div>
+        </Card.Content>
         :
         null
     }

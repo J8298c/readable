@@ -17,11 +17,10 @@ class EditPost extends Component {
     }
     componentDidMount(props) {
         this.props.fetchingPost(this.props.match.params.id);
-        
+
     }
     checkState(field) {
         if(field === '') {
-            console.log(key)
             return this.props.post.key;
         }
         else {
@@ -53,7 +52,7 @@ class EditPost extends Component {
                         <Form.Input label='Title' placeholder={this.props.post.title} onChange={(event) => {this.setState({title: event.target.value})}} />
                         <Form.Input label='Author' placeholder={this.props.post.author} onChange={(event) => {this.setState({author: event.target.value})}}   />
                         <Form.TextArea label='Post/Comment' placeholder={this.props.post.body}
-                            onChange={(event) => {this.setState({body: event.target.value})}} 
+                            onChange={(event) => {this.setState({body: event.target.value})}}
                         />
                         </Form.Field>
                     </Form>
@@ -61,7 +60,7 @@ class EditPost extends Component {
                     </div>
                     : null
                 }
-               
+
             </div>
         )
     }
@@ -70,7 +69,7 @@ class EditPost extends Component {
 function mapStateToProps(state) {
    const { post } = state;
    console.log(post)
-   return { 
+   return {
        post
    }
 }
