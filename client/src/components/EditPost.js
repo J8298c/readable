@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { fetchingPost } from '../actions/index';
+import { fetchingPost, editPost } from '../actions/index';
 import AppButton from './shared/AppButton';
 
 class EditPost extends Component {
@@ -34,11 +34,11 @@ class EditPost extends Component {
         console.log(id);
         console.log(this.state)
         let post = {
-            author: this.state.author ? this.state.author : this.props.post.author,
             title:  this.state.title ? this.state.title : this.props.post.title,
             body: this.state.body ? this.state.body : this.props.post.body
         }
         console.log(post)
+        this.props.editPost(id, post);
     }
     render(props) {
 
@@ -50,7 +50,6 @@ class EditPost extends Component {
                     <Form>
                         <Form.Field>
                         <Form.Input label='Title' placeholder={this.props.post.title} onChange={(event) => {this.setState({title: event.target.value})}} />
-                        <Form.Input label='Author' placeholder={this.props.post.author} onChange={(event) => {this.setState({author: event.target.value})}}   />
                         <Form.TextArea label='Post/Comment' placeholder={this.props.post.body}
                             onChange={(event) => {this.setState({body: event.target.value})}}
                         />
@@ -74,4 +73,4 @@ function mapStateToProps(state) {
    }
 }
 
-export default connect(mapStateToProps, {fetchingPost})(EditPost);
+export default connect(mapStateToProps, {fetchingPost, editPost})(EditPost);
