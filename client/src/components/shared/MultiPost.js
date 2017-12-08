@@ -6,17 +6,17 @@ import Post from './Post';
 const MultiPost = (props) => {
     console.log(props);
     return(
-        <div> 
+        <div>
            {
                props.posts ?
                props.posts.map(post => (
-                   <Post postId={post.id} postAuthor={post.author} key={post.id}
+                   <Post postId={post.id} postAuthor={post.author} link={post.id} key={post.id}
                     postBody={post.body} commentCount={post.commentCount} showVote={post.showVote}
                     timestamp={post.timestamp} />
                ))
                : null
            }
-        </div>  
+        </div>
     )
 }
 export default MultiPost;

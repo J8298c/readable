@@ -43,6 +43,7 @@ class PostHome extends Component {
           onDownVote={() => {this.onVote(this.props.state.post.id, 'downVote')}}
         />
         <MultiPost posts={this.props.state.comments} />
+        <Link to='/comment/new'><AppButton content='New Comment' /></Link>
       </div>
           : null
         }

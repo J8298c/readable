@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 import  Voter from './Voter';
 
 const Post = (props) => (
-    <Card key={props.postId} style={props.style}>
+    <Card key={props.keys} style={props.style}>
     <Card.Content>
-      <Link to={`/posts/${props.postId}`}>
+      <Link to={`/posts/${props.link}`}>
       <Card.Header>{props.postTitle}</Card.Header>
       </Link>
       <Card.Meta>{props.postAuthor}</Card.Meta>

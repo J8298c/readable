@@ -30,7 +30,7 @@ class CategoryHome extends Component {
                     </Card.Description>
                     <Card.Meta>
                       <p>Comments: {post.commentCount}</p>
-                      <p>Post Score: {post.showVote}</p>
+                      <p>Post Score: {post.voteScore}</p>
                       <p>Created on: {post.timestamp}</p>
                     </Card.Meta>
                   </Card.Content>
