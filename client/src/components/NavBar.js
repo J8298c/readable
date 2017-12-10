@@ -51,7 +51,7 @@ export default class NavBar extends Component {
           as={Link}
           to='/category/udacity'
         >
-          Upcoming Events
+          Udacity
         </Menu.Item>
         <Menu.Item
           name='create'

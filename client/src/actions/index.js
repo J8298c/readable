@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS } from './types';
+import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS } from './types';
 
 export function fetchAllPosts(posts) {
   return {
@@ -29,6 +29,19 @@ export function getComments(comments) {
     comments
   }
 }
+
+export function getCategoryPosts(catposts) {
+  return {
+    type: GET_CATEGORY_POSTS,
+    catposts
+  }
+}
+
+
+
+
+
+
 
 const headers =   {headers: { 'Authorization': 'whatever-you-want' }}
 export function fetchingAllPosts(dispatch) {
@@ -78,5 +91,18 @@ export function fetchingComments(id, dispatch) {
      .then(response => {
        dispatch(getComments(response.data));
      })
+  }
+}
+
+export function fetchingCategoryPosts(category, dispatch) {
+  console.log(category)
+  return dispatch => {
+    axios
+    .get(`http://localhost:3001/${category}/posts`, headers)
+    .then(response => {
+      console.log(response)
+      dispatch(getCategoryPosts(response.data))
+    })
+    .catch(error => {dispatch(handleErrors(error))})
   }
 }
