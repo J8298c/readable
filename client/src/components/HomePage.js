@@ -23,7 +23,7 @@ class HomePage extends Component {
     return (
       <Card.Group>
         {
-          this.props.state ?
+          this.props.state.posts ?
           this.props.state.posts.map(post => (
             <Card key={post.id} style={center}>
             <Card.Content>

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST } from './types';
+import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS } from './types';
 
 export function fetchAllPosts(posts) {
   return {
@@ -18,8 +18,15 @@ export function fetchAPost(post) {
 
 export function handleErrors(error) {
   return {
-    action: ERROR_HANDLER,
+    type: ERROR_HANDLER,
     error
+  }
+}
+
+export function getComments(comments) {
+  return {
+    type: GET_COMMENTS,
+    comments
   }
 }
 
@@ -35,6 +42,7 @@ export function fetchingAllPosts(dispatch) {
 }
 
 export function votingOnPost(id, option, dispatch) {
+  console.log(id);
   return dispatch => {
     let vote = `${option}`
     fetch(`http://localhost:3001/posts/${id}`, {
@@ -46,10 +54,11 @@ export function votingOnPost(id, option, dispatch) {
          method: 'Post',
          body: JSON.stringify({option: vote})
     })
-    .then(response => response.json)
-    .then(json => {
+    .then(response => response.json())
+    .then(json => { 
       console.log(json)
-    })
+      dispatch(fetchAPost(json));
+    });
   }
 }
 
@@ -59,5 +68,15 @@ export function fetchingPost(id, dispatch) {
     .get(`http://localhost:3001/posts/${id}`, headers)
     .then(response => { dispatch(fetchAPost(response.data))})
     // .catch(error => { dispatch(handleErrors(error))})
+  }
+}
+
+export function fetchingComments(id, dispatch) {
+  return dispatch => {
+    axios
+      .get(`http://localhost:3001/posts/${id}/comments`, headers)
+     .then(response => {
+       dispatch(getComments(response.data));
+     })
   }
 }

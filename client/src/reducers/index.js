@@ -1,4 +1,4 @@
-import { FETCH_ALL_POSTS, ERROR_HANDLER, FETCH_A_POST } from '../actions/types';
+import { FETCH_ALL_POSTS, ERROR_HANDLER, FETCH_A_POST, GET_COMMENTS } from '../actions/types';
 
 export default function appReducer(state = {}, action) {
   if(action.type === FETCH_ALL_POSTS) {
@@ -12,6 +12,10 @@ export default function appReducer(state = {}, action) {
   } else if(action.type === FETCH_A_POST) {
     const { post } = action;
     const newState = Object.assign({}, state, { post });
+    return newState;
+  } else if(action.type = GET_COMMENTS) {
+    const { comments } = action;
+    const newState = Object.assign({}, state, { comments });
     return newState;
   }
   else {
