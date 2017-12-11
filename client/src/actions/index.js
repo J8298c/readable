@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS } from './types';
+import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS, STATUS_MESSAGE } from './types';
 
 export function fetchAllPosts(posts) {
   return {
@@ -37,7 +37,12 @@ export function getCategoryPosts(catposts) {
   }
 }
 
-
+export function statusMessage(message) {
+  return {
+    type: STATUS_MESSAGE,
+    message
+  }
+}
 
 
 
@@ -122,5 +127,15 @@ export function addNewPost(post, dispatch) {
     .then(json => { 
       console.log(json)
     });
+  }
+}
+
+export function deletePost(id, dispatch) {
+  return dispatch => {
+    axios
+      .delete(`http://localhost:3001/posts/${id}`, headers)
+      .then(response => {
+        dispatch(statusMessage(response.data))
+      })
   }
 }
