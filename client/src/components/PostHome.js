@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Card, Button, Comment } from 'semantic-ui-react';
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchingPost, votingOnPost, fetchingComments, deletePost } from '../actions/index';
 
@@ -55,8 +56,8 @@ class PostHome extends Component {
                                 onClick={() => {this.onVote(this.props.state.post.id, 'downVote')}} />
                             </Button.Group>
                             <Button.Group floated='right'>
-                            <Button color='yellow' content='Edit' 
-                                 />
+                            <Link to={`/edit/${this.props.state.post.id}`}><Button color='yellow' content='Edit' 
+                                 /></Link>
                                 <Button.Or />
                                 <Button color='orange' content='Delete'
                                     onClick={() => { this.onDelete(this.props.state.post.id)}} 
