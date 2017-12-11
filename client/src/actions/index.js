@@ -106,3 +106,21 @@ export function fetchingCategoryPosts(category, dispatch) {
     .catch(error => {dispatch(handleErrors(error))})
   }
 }
+
+export function addNewPost(post, dispatch) {
+  return dispatch => {
+    fetch(`http://localhost:3001/posts`, {
+      headers: {
+             'Authorization': 'whatever-you-want',
+             'Accept': 'application/json',
+             "Content-Type": "application/json",
+         },
+         method: 'Post',
+         body: JSON.stringify(post)
+    })
+    .then(response => response.json())
+    .then(json => { 
+      console.log(json)
+    });
+  }
+}
