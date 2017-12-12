@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import { Card, Button, Comment } from 'semantic-ui-react';
+import { Card, Button } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchingPost, votingOnPost, fetchingComments, deletePost } from '../actions/index';
+import Comments from './Comments';
 
 const postStyle = {
     width: '75%',
     color: '#85f589',
     backgroundColor: '#ee82c3',
-    margin: '24px auto'
+    margin: '24px auto',
 }
+
+const hrStyle = {
+    width: '80%',
+    marginTop: '10px',
+    marginBottom: '10px'
+}
+
 const postFont = {
     color: '#85f589'
 }
@@ -63,8 +71,13 @@ class PostHome extends Component {
                                     onClick={() => { this.onDelete(this.props.state.post.id)}} 
                                  />
                             </Button.Group>
+                            <p>Replies</p>
+                            <hr style={hrStyle}/>
+                            <Card.Content extra>
+                                <Comments postId={this.props.state.post.id} />
+                            </Card.Content>
                         </Card.Content>
-                    </Card>           
+                    </Card> 
                 : null
             }   
             </div>
