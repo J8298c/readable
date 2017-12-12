@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { fetchingPost} from '../actions/index';
+import { fetchingPost, editPost } from '../actions/index';
+
+const buttonStyle ={
+    margin: '24px auto',
+    display: 'block',
+    backgroundColor: '#85f589',
+    color: '#ee82c3'
+}
 
 class EditPost extends Component {
     state = {
@@ -11,6 +18,11 @@ class EditPost extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
         this.props.fetchingPost(id);
+    }
+
+    onSubmit = (id) => {
+        const data = {title: this.state.title, body: this.state.body};
+        this.props.editPost(id, data)
     }
     render(props) {
         return (
@@ -26,8 +38,8 @@ class EditPost extends Component {
                     <Form.TextArea placeholder={this.props.state.post.body} label='Post' 
                         onChange={(event) => { this.setState({body: event.target.value})}}
                         />
+                        <Form.Field onClick={ this.onSubmit(this.props.state.post.id)} control={Button} style={buttonStyle}>Submit</Form.Field>
                     </Form>
-                    
                     :null
                 }
             </div>
@@ -39,5 +51,5 @@ function mapStateToProps(state) {
         state
     }
 }
-export default connect(mapStateToProps, {fetchingPost})(EditPost);
+export default connect(mapStateToProps, {fetchingPost, editPost})(EditPost);
 

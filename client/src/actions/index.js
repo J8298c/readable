@@ -139,3 +139,18 @@ export function deletePost(id, dispatch) {
       })
   }
 }
+
+export function editPost(id, data, dispatch) {
+  return dispatch => {
+    console.log(data)
+    fetch(`http://localhost:3001/posts/${id}`, {
+      headers: {
+             'Authorization': 'whatever-you-want',
+             'Accept': 'application/json',
+             "Content-Type": "application/json",
+         },
+         method: 'Put',
+         body: JSON.stringify(data)
+    });
+  }
+}
