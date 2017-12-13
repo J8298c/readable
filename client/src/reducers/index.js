@@ -1,4 +1,4 @@
-import { FETCH_ALL_POSTS, ERROR_HANDLER, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS } from '../actions/types';
+import { FETCH_ALL_POSTS, ERROR_HANDLER, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS, GET_A_COMMENT } from '../actions/types';
 
 export default function appReducer(state = {}, action) {
   if(action.type === FETCH_ALL_POSTS) {
@@ -21,6 +21,12 @@ export default function appReducer(state = {}, action) {
     const { catposts } = action;
     console.log(catposts)
     const newState = Object.assign({}, state, { catposts });
+    return newState;
+  } else if(action.type === GET_A_COMMENT) {
+    const { comment } = action;
+    console.log(action);
+    console.log(comment);
+    const newState = Object.assign({}, state, { comment })
     return newState;
   }
   else {

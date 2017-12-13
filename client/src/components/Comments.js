@@ -34,7 +34,7 @@ class Comments extends Component {
                                 <Comment.Metadata>
                                     <p>Likes: {comment.voteScore}</p>
                                     <p>Posted: {comment.timestamp}</p>
-                                    <Link to={`/comments/:id`}>Go To Comment</Link>
+                                    <Link to={`/comments/${comment.id}`}>Go To Comment</Link>
                                 </Comment.Metadata>
                             </Comment.Content>
                         </Comment>

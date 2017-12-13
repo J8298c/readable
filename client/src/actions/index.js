@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS, STATUS_MESSAGE } from './types';
+import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS, STATUS_MESSAGE, GET_A_COMMENT } from './types';
 
 export function fetchAllPosts(posts) {
   return {
@@ -44,6 +44,12 @@ export function statusMessage(message) {
   }
 }
 
+export function getAComment(comment) {
+  return {
+    type: GET_A_COMMENT,
+    comment
+  }
+}
 
 
 
@@ -73,7 +79,7 @@ export function votingOnPost(id, option, dispatch) {
          body: JSON.stringify({option: vote})
     })
     .then(response => response.json())
-    .then(json => { 
+    .then(json => {
       console.log(json)
       dispatch(fetchAPost(json));
     });
@@ -124,7 +130,7 @@ export function addNewPost(post, dispatch) {
          body: JSON.stringify(post)
     })
     .then(response => response.json())
-    .then(json => { 
+    .then(json => {
       console.log(json)
     });
   }
@@ -152,5 +158,17 @@ export function editPost(id, data, dispatch) {
          method: 'Put',
          body: JSON.stringify(data)
     });
+  }
+}
+
+export function fetchAComment(id, dispatch) {
+  return dispatch => {
+    axios
+    .get(`http://localhost:3001/comments/${id}`, headers)
+    .then(response => {
+      console.log(response);
+      dispatch(getAComment(response.data))
+    })
+    .catch(error => { dispatch(handleErrors(error))});
   }
 }
