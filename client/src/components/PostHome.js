@@ -24,23 +24,19 @@ const postFont = {
 class PostHome extends Component {
     componentDidMount(props) {
         const { id } = this.props.match.params;
-        console.log(id);
         this.props.fetchingPost(id);
         this.props.fetchingComments(id);
     }
 
     onVote = (id, option) => {
-        console.log(id, option);
         this.props.votingOnPost(id, option);
     }
 
      onDelete = (id) => {
-        console.log(id);
         this.props.deletePost(id)
     }
 
     render() {
-        console.log(this.props.state.comments);
         return (
             <div>
             {
@@ -52,23 +48,23 @@ class PostHome extends Component {
                             <Card.Meta>{this.props.state.post.author}</Card.Meta>
                             <Card.Description>{this.props.state.post.body}</Card.Description>
                             <Card.Meta>
-                               Score: {this.props.state.post.voteScore} 
+                               Score: {this.props.state.post.voteScore}
                             </Card.Meta>
                         </Card.Content>
                         <Card.Content extra>
                             <Button.Group>
-                                <Button color='green' content='Like' 
+                                <Button color='green' content='Like'
                                 onClick={() => {this.onVote(this.props.state.post.id, 'upVote')}} />
                                 <Button.Or />
-                                <Button color='red' content='UnLike' 
+                                <Button color='red' content='UnLike'
                                 onClick={() => {this.onVote(this.props.state.post.id, 'downVote')}} />
                             </Button.Group>
                             <Button.Group floated='right'>
-                            <Link to={`/edit/${this.props.state.post.id}`}><Button color='yellow' content='Edit' 
+                            <Link to={`/edit/${this.props.state.post.id}`}><Button color='yellow' content='Edit'
                                  /></Link>
                                 <Button.Or />
                                 <Button color='orange' content='Delete'
-                                    onClick={() => { this.onDelete(this.props.state.post.id)}} 
+                                    onClick={() => { this.onDelete(this.props.state.post.id)}}
                                  />
                             </Button.Group>
                             <p>Replies</p>
@@ -77,9 +73,9 @@ class PostHome extends Component {
                                 <Comments postId={this.props.state.post.id} />
                             </Card.Content>
                         </Card.Content>
-                    </Card> 
+                    </Card>
                 : null
-            }   
+            }
             </div>
         )
     }

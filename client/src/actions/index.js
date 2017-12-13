@@ -24,6 +24,7 @@ export function handleErrors(error) {
 }
 
 export function getComments(comments) {
+  console.log(comments, 'comments coming in')
   return {
     type: GET_COMMENTS,
     comments
@@ -45,6 +46,7 @@ export function statusMessage(message) {
 }
 
 export function getAComment(comment) {
+  console.log('heres the comment action firing off', comment)
   return {
     type: GET_A_COMMENT,
     comment
@@ -166,6 +168,7 @@ export function fetchAComment(id, dispatch) {
     axios
     .get(`http://localhost:3001/comments/${id}`, headers)
     .then(response => {
+      console.info(response, 'firing off the thunk')
       console.log(response);
       dispatch(getAComment(response.data))
     })

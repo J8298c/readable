@@ -8,7 +8,6 @@ class CategoryHome extends Component {
         this.props.fetchingCategoryPosts(category);
     }
     render() {
-        console.log(this.props)
         return (
             <div>
                 {

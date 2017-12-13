@@ -19,15 +19,10 @@ export default function appReducer(state = {}, action) {
     return newState;
   } else if ( action.type === GET_CATEGORY_POSTS) {
     const { catposts } = action;
-    console.log(catposts)
     const newState = Object.assign({}, state, { catposts });
     return newState;
   } else if(action.type === GET_A_COMMENT) {
-    const { comment } = action;
-    console.log(action);
-    console.log(comment);
-    const newState = Object.assign({}, state, { comment })
-    return newState;
+    console.log(action.type, 'firing off')
   }
   else {
     return state

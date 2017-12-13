@@ -19,7 +19,6 @@ class HomePage extends Component {
     console.log(option, 'the option');
   }
   render() {
-    console.log(this.props)
     return (
       <Card.Group>
         {
@@ -37,10 +36,10 @@ class HomePage extends Component {
             </Card.Content>
             <Card.Content extra>
               <Button.Group style={center}>
-                <Button color='green' content='Like' 
+                <Button color='green' content='Like'
                   onClick={() => {this.onVote(post.id, 'upVote')}} />
                   <Button.Or />
-                  <Button color='red' content='UnLike' 
+                  <Button color='red' content='UnLike'
                   onClick={() => {this.onVote(post.id, 'downVote')}} />
               </Button.Group>
             </Card.Content>
