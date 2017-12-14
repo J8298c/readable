@@ -1,6 +1,13 @@
 import axios from 'axios';
 import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS, STATUS_MESSAGE, GET_A_COMMENT } from './types';
 
+export function handleErrors(error) {
+  return {
+    type: ERROR_HANDLER,
+    error
+  }
+}
+
 export function fetchAllPosts(posts) {
   return {
     type: FETCH_ALL_POSTS,
@@ -12,22 +19,6 @@ export function fetchAPost(post) {
   return {
     type: FETCH_A_POST,
     post
-  }
-}
-
-
-export function handleErrors(error) {
-  return {
-    type: ERROR_HANDLER,
-    error
-  }
-}
-
-export function getComments(comments) {
-  console.log(comments, 'comments coming in')
-  return {
-    type: GET_COMMENTS,
-    comments
   }
 }
 
@@ -45,13 +36,20 @@ export function statusMessage(message) {
   }
 }
 
+export function fetchAllComments(comments) {
+  return {
+    type: GET_COMMENTS,
+    comments,
+  }
+}
+
 export function getAComment(comment) {
-  console.log('heres the comment action firing off', comment)
   return {
     type: GET_A_COMMENT,
     comment
   }
 }
+
 
 
 
@@ -102,7 +100,7 @@ export function fetchingComments(id, dispatch) {
     axios
       .get(`http://localhost:3001/posts/${id}/comments`, headers)
      .then(response => {
-       dispatch(getComments(response.data));
+       dispatch(fetchAllComments(response.data));
      })
   }
 }

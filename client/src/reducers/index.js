@@ -13,16 +13,20 @@ export default function appReducer(state = {}, action) {
     const { post } = action;
     const newState = Object.assign({}, state, { post });
     return newState;
-  } else if(action.type = GET_COMMENTS) {
-    const { comments } = action;
-    const newState = Object.assign({}, state, { comments });
-    return newState;
   } else if ( action.type === GET_CATEGORY_POSTS) {
     const { catposts } = action;
     const newState = Object.assign({}, state, { catposts });
     return newState;
+  } else if(action.type === GET_COMMENTS) {
+    const { comments } = action;
+    console.log(comments, 'from reducer');
+    const newState = Object.assign({}, state, { comments });
+    return newState;
   } else if(action.type === GET_A_COMMENT) {
-    console.log(action.type, 'firing off')
+    const { comment } = action;
+    console.log(comment, 'in reducer');
+    const newState = Object.assign({}, state, { comment });
+    return newState;
   }
   else {
     return state
