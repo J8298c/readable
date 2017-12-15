@@ -65,24 +65,42 @@ export function fetchingAllPosts(dispatch) {
   }
 }
 
-export function votingOnPost(id, option, dispatch) {
+export function votingOnPost(id, option, type,  dispatch) {
   console.log(id);
   return dispatch => {
     let vote = `${option}`
-    fetch(`http://localhost:3001/posts/${id}`, {
-      headers: {
-             'Authorization': 'whatever-you-want',
-             'Accept': 'application/json',
-             "Content-Type": "application/json",
-         },
-         method: 'Post',
-         body: JSON.stringify({option: vote})
-    })
-    .then(response => response.json())
-    .then(json => {
-      console.log(json)
-      dispatch(fetchAPost(json));
-    });
+    if(type === 'post') {
+      fetch(`http://localhost:3001/posts/${id}`, {
+        headers: {
+               'Authorization': 'whatever-you-want',
+               'Accept': 'application/json',
+               "Content-Type": "application/json",
+           },
+           method: 'Post',
+           body: JSON.stringify({option: vote})
+      })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json)
+        dispatch(fetchAPost(json));
+      });
+    } else {
+      fetch(`http://localhost:3001/comments/${id}`, {
+        headers: {
+               'Authorization': 'whatever-you-want',
+               'Accept': 'application/json',
+               "Content-Type": "application/json",
+           },
+           method: 'Post',
+           body: JSON.stringify({option: vote})
+      })
+      .then(response => response.json())
+      .then(json => {
+        console.log(json)
+        dispatch(getAComment(json));
+      });
+    }
+
   }
 }
 
@@ -172,4 +190,8 @@ export function fetchAComment(id, dispatch) {
     })
     .catch(error => { dispatch(handleErrors(error))});
   }
+}
+
+export function commentVoter(id, option) {
+
 }

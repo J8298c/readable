@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAComment } from '../actions/index';
+import { fetchAComment, votingOnPost } from '../actions/index';
 
 const commentStyle = {
     width: '75%',
@@ -28,9 +28,8 @@ class CommentHome extends Component {
     this.props.fetchAComment(id);
   }
 
-  onVote = (id, option) => {
-    console.log(id)
-    console.log(option)
+  onVote = (id, option, type) => {
+    this.props.votingOnPost(id, option, type);
   }
 
   onDelete = (id) => {
@@ -54,10 +53,10 @@ class CommentHome extends Component {
               <Card.Content extra>
                   <Button.Group>
                       <Button color='green' content='Like'
-                      onClick={() => {this.onVote(this.props.state.comment.id, 'upVote')}} />
+                      onClick={() => {this.onVote(this.props.state.comment.id, 'upVote', 'comment')}} />
                       <Button.Or />
                       <Button color='red' content='UnLike'
-                      onClick={() => {this.onVote(this.props.state.comment.id, 'downVote')}} />
+                      onClick={() => {this.onVote(this.props.state.comment.id, 'downVote', 'comment')}} />
                   </Button.Group>
                   <Button.Group floated='right'>
                   <Link to={`/edit/${this.props.state.comment.id}`}><Button color='yellow' content='Edit'
@@ -81,4 +80,4 @@ function mapStateToProps(state) {
     state
   }
 }
-export default connect(mapStateToProps, { fetchAComment })(CommentHome);
+export default connect(mapStateToProps, { fetchAComment, votingOnPost })(CommentHome);
