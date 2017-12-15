@@ -54,17 +54,17 @@ class PostHome extends Component {
                         <Card.Content extra>
                             <Button.Group>
                                 <Button color='green' content='Like'
-                                onClick={() => {this.onVote(this.props.state.post.id, 'upVote')}} />
+                                onClick={() => {this.onVote(this.props.state.post.id, 'upVote', 'post')}} />
                                 <Button.Or />
                                 <Button color='red' content='UnLike'
-                                onClick={() => {this.onVote(this.props.state.post.id, 'downVote')}} />
+                                onClick={() => {this.onVote(this.props.state.post.id, 'downVote', 'post')}} />
                             </Button.Group>
                             <Button.Group floated='right'>
                             <Link to={`/edit/${this.props.state.post.id}`}><Button color='yellow' content='Edit'
                                  /></Link>
                                 <Button.Or />
                                 <Button color='orange' content='Delete'
-                                    onClick={() => { this.onDelete(this.props.state.post.id)}}
+                                    onClick={() => { this.onDelete(this.props.state.post.id, 'post')}}
                                  />
                             </Button.Group>
                             <p>Replies</p>
