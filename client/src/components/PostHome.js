@@ -28,8 +28,8 @@ class PostHome extends Component {
         this.props.fetchingComments(id);
     }
 
-    onVote = (id, option) => {
-        this.props.votingOnPost(id, option);
+    onVote = (id, option, type) => {
+        this.props.votingOnPost(id, option, type);
     }
 
      onDelete = (id) => {
