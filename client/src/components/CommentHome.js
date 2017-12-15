@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { fetchAComment, votingOnPost } from '../actions/index';
+import { fetchAComment, votingOnPost, deletePost } from '../actions/index';
 
 const commentStyle = {
     width: '75%',
@@ -32,8 +32,8 @@ class CommentHome extends Component {
     this.props.votingOnPost(id, option, type);
   }
 
-  onDelete = (id) => {
-    console.log(id)
+  onDelete = (id, type) => {
+    this.props.deletePost(id, type)
   }
 
   render() {
@@ -63,7 +63,7 @@ class CommentHome extends Component {
                        /></Link>
                       <Button.Or />
                       <Button color='orange' content='Delete'
-                          onClick={() => { this.onDelete(this.props.state.comment.id)}}
+                          onClick={() => { this.onDelete(this.props.state.comment.id, 'comment')}}
                        />
                   </Button.Group>
                 </Card.Content>
@@ -80,4 +80,4 @@ function mapStateToProps(state) {
     state
   }
 }
-export default connect(mapStateToProps, { fetchAComment, votingOnPost })(CommentHome);
+export default connect(mapStateToProps, { fetchAComment, votingOnPost, deletePost })(CommentHome);

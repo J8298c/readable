@@ -154,13 +154,21 @@ export function addNewPost(post, dispatch) {
   }
 }
 
-export function deletePost(id, dispatch) {
+export function deletePost(id, type,  dispatch) {
   return dispatch => {
-    axios
-      .delete(`http://localhost:3001/posts/${id}`, headers)
-      .then(response => {
-        dispatch(statusMessage(response.data))
-      })
+    if(type === 'post') {
+      axios
+        .delete(`http://localhost:3001/posts/${id}`, headers)
+        .then(response => {
+          dispatch(statusMessage(response.data))
+        })
+    } else {
+      axios
+        .delete(`http://localhost:3001/comments/${id}`, headers)
+        .then(response => {
+          dispatch(statusMessage(response.data))
+        })
+    }
   }
 }
 
