@@ -8,7 +8,7 @@ export default class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
-
+    console.log(activeItem);
     return (
       <Menu pointing>
           <Menu.Item

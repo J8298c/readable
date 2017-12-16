@@ -1,26 +1,10 @@
 import React, { Component } from 'react';
-import { Card, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { fetchingPost, votingOnPost, fetchingComments, deletePost } from '../actions/index';
 import Comments from './Comments';
+import Post from './shared/Post';
 
-const postStyle = {
-    width: '75%',
-    color: '#85f589',
-    backgroundColor: '#ee82c3',
-    margin: '24px auto',
-}
 
-const hrStyle = {
-    width: '80%',
-    marginTop: '10px',
-    marginBottom: '10px'
-}
-
-const postFont = {
-    color: '#85f589'
-}
 class PostHome extends Component {
     componentDidMount(props) {
         const { id } = this.props.match.params;
@@ -41,39 +25,15 @@ class PostHome extends Component {
             <div>
             {
                 this.props.state.post ?
-
-                    <Card style={postStyle}>
-                        <Card.Content style={postFont}>
-                            <Card.Header>{this.props.state.post.title}</Card.Header>
-                            <Card.Meta>{this.props.state.post.author}</Card.Meta>
-                            <Card.Description>{this.props.state.post.body}</Card.Description>
-                            <Card.Meta>
-                               Score: {this.props.state.post.voteScore}
-                            </Card.Meta>
-                        </Card.Content>
-                        <Card.Content extra>
-                            <Button.Group>
-                                <Button color='green' content='Like'
-                                onClick={() => {this.onVote(this.props.state.post.id, 'upVote', 'post')}} />
-                                <Button.Or />
-                                <Button color='red' content='UnLike'
-                                onClick={() => {this.onVote(this.props.state.post.id, 'downVote', 'post')}} />
-                            </Button.Group>
-                            <Button.Group floated='right'>
-                            <Link to={`/edit/${this.props.state.post.id}`}><Button color='yellow' content='Edit'
-                                 /></Link>
-                                <Button.Or />
-                                <Button color='orange' content='Delete'
-                                    onClick={() => { this.onDelete(this.props.state.post.id, 'post')}}
-                                 />
-                            </Button.Group>
-                            <p>Replies</p>
-                            <hr style={hrStyle}/>
-                            <Card.Content extra>
-                                <Comments postId={this.props.state.post.id} />
-                            </Card.Content>
-                        </Card.Content>
-                    </Card>
+                <Post posttitle={this.props.state.post.title}
+                  postauthor={this.props.state.post.author}
+                  posttitle={this.props.state.post.title}
+                  postvoteScore={this.props.state.post.voteScore}
+                  upVote={()=> { this.onVote(this.props.state.post.id, 'upVote', 'post')}}
+                  downVote={() => { this.onVote(this.props.state.post.id, 'downVote', 'post')}}
+                  postid={this.props.state.post.id}
+                  onDelete={() => { this.onDelete(this.props.state.post.id)}}
+                />
                 : null
             }
             </div>

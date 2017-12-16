@@ -12,6 +12,7 @@ const center = {
 class CategoryHome extends Component {
     componentDidMount(props) {
         const { category } = this.props.match.params
+        console.log(category);
         this.props.fetchingCategoryPosts(category);
     }
 
@@ -20,6 +21,7 @@ class CategoryHome extends Component {
     }
 
     render() {
+      console.log(this.props.state.catposts);
         return (
             <Card.Group>
                 {
