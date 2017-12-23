@@ -1,8 +1,15 @@
 import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
-export default class NavBar extends Component {
+import { connect } from 'react-redux';
+import { fetchCategories } from '../actions/index';
+ class NavBar extends Component {
   state = {}
+
+  componentDidMount(props) {
+    //etch all categpories
+    this.props.fetchCategories();
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -68,3 +75,11 @@ export default class NavBar extends Component {
     )
   }
 }
+
+function mapStateToProps(state) {
+  console.log(state);
+  return {
+    state
+  }
+}
+export default connect(mapStateToProps, {fetchCategories})(NavBar);

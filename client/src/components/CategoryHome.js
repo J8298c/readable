@@ -13,6 +13,7 @@ class CategoryHome extends Component {
     componentDidMount(props) {
         const { category } = this.props.match.params
         this.props.fetchingCategoryPosts(category);
+        console.log('mounting again')
     }
 
     onVote = (id, option, type) => {

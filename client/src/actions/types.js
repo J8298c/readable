@@ -7,3 +7,4 @@ export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
 export const STATUS_MESSAGE = 'STATUS_MESSAGE';
 export const EDIT_POSTS = 'EDIT_POSTS';
 export const GET_A_COMMENT = 'GET_A_COMMENT';
+export const GET_CATEGORIES = 'GET_CATEGORIES';

@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS, STATUS_MESSAGE, GET_A_COMMENT } from './types';
+import { FETCH_ALL_POSTS, ERROR_HANDLER, VOTE, FETCH_A_POST, GET_COMMENTS, GET_CATEGORY_POSTS, STATUS_MESSAGE, GET_A_COMMENT, GET_CATEGORIES } from './types';
 
 export function handleErrors(error) {
   return {
@@ -50,7 +50,12 @@ export function getAComment(comment) {
   }
 }
 
-
+export function getCategories(categories) {
+  return {
+    type: GET_CATEGORIES,
+    categories
+  }
+}
 
 
 
@@ -202,4 +207,15 @@ export function fetchAComment(id, dispatch) {
 
 export function commentVoter(id, option) {
 
+}
+
+export function fetchCategories(dispatch) {
+  return dispatch => {
+    axios
+    .get('http://localhost:3001/categories', headers) 
+    .then(response => {
+      dispatch(getCategories(response.data))
+    })
+    .catch(error => { dispatch(handleErrors(error))})
+  }
 }
