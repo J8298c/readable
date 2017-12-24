@@ -15,7 +15,7 @@ import { fetchCategories } from '../actions/index';
 
   render() {
     const { activeItem } = this.state
-
+    console.log(this.props);
     return (
       <Menu pointing>
           <Menu.Item
@@ -28,38 +28,23 @@ import { fetchCategories } from '../actions/index';
         >
           Readable Overflow
         </Menu.Item>
-        <Menu.Item
-          name='react'
-          active={activeItem === 'react'}
-          onClick={this.handleItemClick}
-          link={true}
-          as={Link}
-          to='/category/react'
-        >
-          React
-        </Menu.Item>
-
-        <Menu.Item
-          name='redux'
-          active={activeItem === 'redux'}
-          onClick={this.handleItemClick}
-          link={true}
-          as={Link}
-          to='/category/redux'
-        >
-          Redux
-        </Menu.Item>
-
-        <Menu.Item
-          name='udacity'
-          active={activeItem === 'udacity'}
-          onClick={this.handleItemClick}
-          link={true}
-          as={Link}
-          to='/category/udacity'
-        >
-          Udacity
-        </Menu.Item>
+        
+          {
+            this.props.categories ? 
+              this.props.categories.categories.map(category => (
+                <Menu.Item key={category.name}
+                name={category.name}
+                active={activeItem === category.name}
+                onClick={this.handleItemClick}
+                link={true}
+                as={Link}
+                to={`/${category.name}/posts`}
+                >
+                  {category.name}
+                </Menu.Item>
+              ))
+              : null
+          }
         <Menu.Item
           name='create'
           active={activeItem === 'create'}
@@ -77,9 +62,9 @@ import { fetchCategories } from '../actions/index';
 }
 
 function mapStateToProps(state) {
-  console.log(state);
+  const{categories} = state;
   return {
-    state
+    categories
   }
 }
 export default connect(mapStateToProps, {fetchCategories})(NavBar);

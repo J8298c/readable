@@ -24,8 +24,8 @@ class CategoryHome extends Component {
         return (
             <Card.Group>
                 {
-                  this.props.state.catposts ?
-                  this.props.state.catposts.map(post => (
+                  this.props.catposts ?
+                  this.props.catposts.map(post => (
                     <Card key={post.id} style={center}>
                     <Card.Content>
                      <Link to={`/post/${post.id}`}><Card.Header>{post.title}</Card.Header></Link>
@@ -55,9 +55,9 @@ class CategoryHome extends Component {
     }
 }
 function mapStateToProps(state) {
-  console.log(state);
+    const { catposts } = state
     return {
-        state
+        catposts
     }
 }
 export default connect(mapStateToProps, { fetchingCategoryPosts, votingOnPost })(CategoryHome);
