@@ -3,6 +3,7 @@ import { connect  } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Card, Grid, Button } from 'semantic-ui-react';
 import { fetchingAllPosts } from '../actions/index';
+import CardDescription from 'semantic-ui-react/dist/commonjs/views/Card/CardDescription';
 
 //move to single js file
 const center = {
@@ -18,6 +19,15 @@ class HomePage extends Component {
     console.log(id, 'the id')
     console.log(option, 'the option');
   }
+  convertDate(date) {
+    const newDate = new Date(date);
+    let month = newDate.getMonth();
+    let day = newDate.getDay();
+    let year = newDate.getFullYear();
+    let formattedTime = month + '/' + day + '/' + year;
+    return formattedTime;
+}
+
   render() {
     return (
       <Card.Group>
@@ -32,6 +42,7 @@ class HomePage extends Component {
               <Card.Meta>
                 <p>Comments: {post.commentCount}</p>
                 <p>Score: {post.voteScore}</p>
+                <p>Created: {this.convertDate(post.timestamp)}</p>
               </Card.Meta>
             </Card.Content>
             <Card.Content extra>
@@ -42,6 +53,7 @@ class HomePage extends Component {
                   <Button color='red' content='UnLike'
                   onClick={() => {this.onVote(post.id, 'downVote')}} />
               </Button.Group>
+
             </Card.Content>
           </Card>
           ))
