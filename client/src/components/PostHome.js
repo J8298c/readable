@@ -23,7 +23,13 @@ const postFont = {
 }
 class PostHome extends Component {
     componentDidMount(props) {
-        const { id } = this.props.match.params;
+       console.log(this.props);
+       let id;
+       if(this.props.post){
+        id = this.props.post.id;
+       } else {
+        id = this.props.match.params.id
+       }
         this.props.fetchingPost(id);
         this.props.fetchingComments(id);
     }
@@ -44,7 +50,9 @@ class PostHome extends Component {
 
                     <Card style={postStyle}>
                         <Card.Content style={postFont}>
+                            <Link to={`/post/${this.props.state.post.id}`}>
                             <Card.Header>{this.props.state.post.title}</Card.Header>
+                            </Link>
                             <Card.Meta>{this.props.state.post.author}</Card.Meta>
                             <Card.Description>{this.props.state.post.body}</Card.Description>
                             <Card.Meta>
