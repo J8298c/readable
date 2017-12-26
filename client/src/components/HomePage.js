@@ -7,9 +7,16 @@ import CardDescription from 'semantic-ui-react/dist/commonjs/views/Card/CardDesc
 import PostHome from './PostHome';
 
 //move to single js file
-const center = {
-  width: '75%',
-  margin: '24px auto'
+
+const styles = {
+  center: {
+    width: '75%',
+    margin: '24px auto'
+  },
+  divStyle : {
+    width: '100%',
+    margin: '24px auto'
+  }
 }
 
 class HomePage extends Component {
@@ -31,14 +38,16 @@ class HomePage extends Component {
 
   render() {
     return (
-      <Card.Group>
+      <Card.Group style={styles.center}>
+       <div style={styles.divStyle}>
         {
           this.props.state.posts ?
           this.props.state.posts.map(post => (
-            <PostHome post={post} />
+              <PostHome post={post} key={post.id} />
           ))
           : null
         }
+         </div>
       </Card.Group>
     )
   }

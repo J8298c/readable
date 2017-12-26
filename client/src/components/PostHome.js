@@ -6,7 +6,7 @@ import { fetchingPost, votingOnPost, fetchingComments, deletePost } from '../act
 import Comments from './Comments';
 
 const postStyle = {
-    width: '75%',
+    width: '95%',
     color: '#85f589',
     backgroundColor: '#ee82c3',
     margin: '24px auto',

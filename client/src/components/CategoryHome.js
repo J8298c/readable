@@ -1,44 +1,35 @@
 import React, { Component } from 'react';
+import { Card } from 'semantic-ui-react';
 import { connect } from 'react-redux';
-import { fetchingCategoryPosts, votingOnPost } from '../actions/index';
-import { Card, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { fetchingCategoryPosts } from '../actions/index';
 import PostHome from './PostHome';
-
-const center = {
-  width: '75%',
-  margin: '24px auto'
-}
-
 class CategoryHome extends Component {
     componentDidMount(props) {
-        const { category } = this.props.match.params
+        const { category } = this.props.match.params;
         this.props.fetchingCategoryPosts(category);
-        console.log('mounting again')
     }
 
-    onVote = (id, option, type) => {
-      this.props.votingOnPost(id, option, type);
-    }
-
-    render() {
+    render(props) {
+        console.log(this.props.state.catposts)
         return (
-            <Card.Group>
+            <div>
                 {
-                  this.props.catposts ?
-                  this.props.catposts.map(post => (
-                   <PostHome post={post} />
-                  ))
-                  : null
+                    this.props.state.catposts ?
+                    this.props.state.catposts.map(post => (
+                        <PostHome post={post} key={post.id} />
+                    )) :
+                    'Seems empty here Why not create a post'
                 }
-            </Card.Group>
+            </div>
         )
     }
 }
+
 function mapStateToProps(state) {
-    const { catposts } = state
+    console.log(state);
     return {
-        catposts
+        state
     }
 }
-export default connect(mapStateToProps, { fetchingCategoryPosts, votingOnPost })(CategoryHome);
+
+export default connect(mapStateToProps, { fetchingCategoryPosts })(CategoryHome);

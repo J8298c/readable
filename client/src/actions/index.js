@@ -134,7 +134,7 @@ export function fetchingCategoryPosts(category, dispatch) {
     axios
     .get(`http://localhost:3001/${category}/posts`, headers)
     .then(response => {
-      console.log(response)
+      console.log(response.data, 'data from fetch cat post');
       dispatch(getCategoryPosts(response.data))
     })
     .catch(error => {dispatch(handleErrors(error))})
