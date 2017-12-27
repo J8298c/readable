@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button } from 'semantic-ui-react';
+import { Form, Button, Select } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addNewPost } from '../actions/index';
 import uuid from 'uuid';
@@ -29,10 +29,11 @@ class CreatePost extends Component {
     state = {
         title: '',
         author: '',
-        body: ''
+        body: '',
+        category: ''
     }
     onSubmit = () => {
-        const { title, author, body } = this.state;
+        const { title, author, body, category } = this.state;
         const id = uuid();
         const timestamp = Date.now();
         const post = {id, title, author, body, timestamp};
@@ -55,6 +56,12 @@ class CreatePost extends Component {
                     <Form.TextArea placeholder='Enter your post' label='Post' 
                         onChange={(event) => { this.setState({body: event.target.value})}}
                         />
+
+                    <select onChange = {(event) => {this.setState({ category: event.target.value})}}>
+                        <option selected value="react">React</option>
+                        <option value="redux">Redux</option>
+                        <option  value="udacity">udaicty</option>
+                    </select>
                 </Form>
                 <Form.Field onClick={ this.onSubmit} control={Button} style={buttonStyle}>Submit</Form.Field>
             </div>
