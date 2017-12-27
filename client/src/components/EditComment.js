@@ -22,8 +22,8 @@ class EditComment extends Component {
 
     onSubmit = (id) => {
         const data = {title: this.state.title, body: this.state.body};
-
     }
+    
     render(props) {
         return (
             <div>

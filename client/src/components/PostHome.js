@@ -23,7 +23,6 @@ const postFont = {
 }
 class PostHome extends Component {
     componentDidMount(props) {
-       console.log(this.props);
        let id;
        if(this.props.post){
         id = this.props.post.id;
@@ -90,7 +89,6 @@ class PostHome extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state);
     return {
         state
     }

@@ -18,8 +18,15 @@ const logger = store => next => action => {
   console.groupEnd(action.type)
   return result
 }
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(appReducer, {}, applyMiddleware(thunk))
+const store = createStore(
+  appReducer,
+  composeEnhancers(
+    applyMiddleware(thunk)  
+  )
+)
+
 
 ReactDOM.render(
   <Provider store={store}>

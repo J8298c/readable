@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form, Button, Select } from 'semantic-ui-react';
+import { Form, Button } from 'semantic-ui-react';
 import { connect } from 'react-redux';
 import { addNewPost } from '../actions/index';
 import uuid from 'uuid';
@@ -36,7 +36,7 @@ class CreatePost extends Component {
         const { title, author, body, category } = this.state;
         const id = uuid();
         const timestamp = Date.now();
-        const post = {id, title, author, body, timestamp};
+        const post = {id, title, author, body, timestamp, category};
         this.props.addNewPost(post);
     }
 

@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import { connect  } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { Card, Grid, Button } from 'semantic-ui-react';
+import { Card } from 'semantic-ui-react';
 import { fetchingAllPosts } from '../actions/index';
-import CardDescription from 'semantic-ui-react/dist/commonjs/views/Card/CardDescription';
 import PostHome from './PostHome';
+import _ from 'lodash';
 
 //move to single js file
 
@@ -23,10 +22,18 @@ class HomePage extends Component {
   componentDidMount() {
     this.props.fetchingAllPosts();
   }
-  onVote = (id, option) => {
-    console.log(id, 'the id')
-    console.log(option, 'the option');
+
+  sort(value) {
+    let sortedList;
+    if(value === 'Date') {
+        sortedList = _.sortBy(this.props.state.posts, [{'timestamp': Date}], ['desc'])
+        console.log(sortedList);
+        return sortedList;
+    } 
+      sortedList = _.sortBy(this.props.state.posts, [{'voteScore': Number}], ['desc'])
+      return sortedList;
   }
+
   convertDate(date) {
     const newDate = new Date(date);
     let month = newDate.getMonth();
@@ -37,12 +44,13 @@ class HomePage extends Component {
 }
 
   render() {
+    let thePosts = this.sort('score');
     return (
       <Card.Group style={styles.center}>
        <div style={styles.divStyle}>
         {
           this.props.state.posts ?
-          this.props.state.posts.map(post => (
+          thePosts.map(post => (
               <PostHome post={post} key={post.id} />
           ))
           : null

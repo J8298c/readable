@@ -15,7 +15,6 @@ import { fetchCategories } from '../actions/index';
 
   render() {
     const { activeItem } = this.state
-    console.log(this.props);
     return (
       <Menu pointing>
           <Menu.Item

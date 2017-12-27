@@ -11,12 +11,6 @@ const commentStyle = {
     margin: '24px auto',
 }
 
-const hrStyle = {
-    width: '80%',
-    marginTop: '10px',
-    marginBottom: '10px'
-}
-
 const commentFont = {
     color: '#85f589'
 }
