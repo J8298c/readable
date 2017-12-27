@@ -58,7 +58,7 @@ class CreatePost extends Component {
                         />
 
                     <select onChange = {(event) => {this.setState({ category: event.target.value})}}>
-                        <option selected value="react">React</option>
+                        <option defaultValue="react">React</option>
                         <option value="redux">Redux</option>
                         <option  value="udacity">udaicty</option>
                     </select>
