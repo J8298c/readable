@@ -71,7 +71,7 @@ export function fetchingAllPosts(dispatch) {
 }
 
 export function votingOnPost(id, option, type,  dispatch) {
-  console.log(id);
+
   return dispatch => {
     let vote = `${option}`
     if(type === 'post') {
@@ -86,7 +86,6 @@ export function votingOnPost(id, option, type,  dispatch) {
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         dispatch(fetchAPost(json));
       });
     } else {
@@ -101,7 +100,6 @@ export function votingOnPost(id, option, type,  dispatch) {
       })
       .then(response => response.json())
       .then(json => {
-        console.log(json)
         dispatch(getAComment(json));
       });
     }
@@ -129,12 +127,10 @@ export function fetchingComments(id, dispatch) {
 }
 
 export function fetchingCategoryPosts(category, dispatch) {
-  console.log(category)
   return dispatch => {
     axios
     .get(`http://localhost:3001/${category}/posts`, headers)
     .then(response => {
-      console.log(response.data, 'data from fetch cat post');
       dispatch(getCategoryPosts(response.data))
     })
     .catch(error => {dispatch(handleErrors(error))})
@@ -154,7 +150,6 @@ export function addNewPost(post, dispatch) {
     })
     .then(response => response.json())
     .then(json => {
-      console.log(json)
     });
   }
 }
@@ -179,7 +174,6 @@ export function deletePost(id, type,  dispatch) {
 
 export function editPost(id, data, dispatch) {
   return dispatch => {
-    console.log(data)
     fetch(`http://localhost:3001/posts/${id}`, {
       headers: {
              'Authorization': 'whatever-you-want',
@@ -197,8 +191,6 @@ export function fetchAComment(id, dispatch) {
     axios
     .get(`http://localhost:3001/comments/${id}`, headers)
     .then(response => {
-      console.info(response, 'firing off the thunk')
-      console.log(response);
       dispatch(getAComment(response.data))
     })
     .catch(error => { dispatch(handleErrors(error))});

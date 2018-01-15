@@ -31,7 +31,6 @@ class CommentHome extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         {
@@ -69,7 +68,6 @@ class CommentHome extends Component {
   }
 }
 function mapStateToProps(state) {
-  console.log(state);
   return {
     state
   }

@@ -31,7 +31,7 @@ import { fetchCategories } from '../actions/index';
           {
             this.props.categories ? 
               this.props.categories.categories.map(category => (
-                <Menu.Item key={category.name}
+                <Menu.Item 
                 name={category.name}
                 active={activeItem === category.name}
                 onClick={this.handleItemClick}

@@ -27,7 +27,6 @@ class HomePage extends Component {
     let sortedList;
     if(value === 'Date') {
         sortedList = _.sortBy(this.props.state.posts, [{'timestamp': Date}], ['desc'])
-        console.log(sortedList);
         return sortedList;
     } 
       sortedList = _.sortBy(this.props.state.posts, [{'voteScore': Number}], ['desc'])

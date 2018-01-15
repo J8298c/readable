@@ -5,11 +5,11 @@ import PostHome from './PostHome';
 class CategoryHome extends Component {
     componentDidMount(props) {
         const { category } = this.props.match.params;
+    
         this.props.fetchingCategoryPosts(category);
     }
 
     render(props) {
-        console.log(this.props.state.catposts)
         return (
             <div>
                 {
@@ -25,7 +25,6 @@ class CategoryHome extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         state
     }
