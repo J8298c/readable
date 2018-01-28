@@ -8,9 +8,8 @@ class PostListView extends Component {
         this.props.get_all_posts();
     }
     
-    onVote(option, id) {
-        console.log(option, id);
-        this.props.update_score(option, id);
+    onVote(option, id, type) {
+        this.props.update_score(option, id, type);
     }
 
     render() {
@@ -32,8 +31,8 @@ class PostListView extends Component {
                             </div>
                             <div>
                                 <p>{post.voteScore}</p>
-                                <button onClick={() => this.onVote('upVote', post.id)}>Like</button>
-                                <button onClick={() => this.onVote('downVote', post.id)}>Unlike</button>
+                                <button onClick={() => this.onVote('upVote', post.id, 'get all')}>Like</button>
+                                <button onClick={() => this.onVote('downVote', post.id, 'get all')}>Unlike</button>
                             </div>
                         </div>
                     )):

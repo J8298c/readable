@@ -22,7 +22,7 @@ export function get_all_posts(dispatch) {
     }
 }
 
-export function update_score(option, id, dispatch) {
+export function update_score(option, id, type, category, dispatch) {
     return dispatch => {
         fetch(`http://localhost:3001/posts/${id}`, {
             headers: {
@@ -34,7 +34,13 @@ export function update_score(option, id, dispatch) {
                body: JSON.stringify({option: option})
           })
           .then(response => response.json())
-          .then(response => dispatch(get_all_posts()))
+          .then(response =>{ 
+              if(type === 'get all') {
+                dispatch(get_all_posts())
+              } else if(type === 'get cats') {
+                  dispatch(get_category_posts(category))
+              }
+            })
           .catch(error => console.log(error))
     }
 }
