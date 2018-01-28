@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { get_all_posts } from '../actions/post_actions';
+import { get_all_posts, update_score } from '../actions/post_actions';
 
 class PostListView extends Component {
     componentDidMount() {
         this.props.get_all_posts();
     }
     
+    onVote(option, id) {
+        console.log(option, id);
+        this.props.update_score(option, id);
+    }
+
     render() {
         return (
             <div>
@@ -17,11 +22,15 @@ class PostListView extends Component {
                             <h4>{post.title}</h4>
                             <div>
                                 <p>{post.body}</p>
-                                <p>{post.timestamp}</p>
                             </div>
                             <div>
                                 <p>{post.commentCount}</p>
+                                <p>{post.timestamp}</p>
+                            </div>
+                            <div>
                                 <p>{post.voteScore}</p>
+                                <button onClick={() => this.onVote('upVote', post.id)}>Like</button>
+                                <button onClick={() => this.onVote('downVote', post.id)}>Unlike</button>
                             </div>
                         </div>
                     )):
@@ -41,4 +50,4 @@ function mapStateToProps({posts}) {
     }
 }
 
-export default connect(mapStateToProps, { get_all_posts })(PostListView);
+export default connect(mapStateToProps, { get_all_posts, update_score })(PostListView);

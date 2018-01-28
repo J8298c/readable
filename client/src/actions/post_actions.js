@@ -19,3 +19,20 @@ export function get_all_posts(dispatch) {
         .catch(error => console.log(error))
     }
 }
+
+export function update_score(option, id, dispatch) {
+    return dispatch => {
+        fetch(`http://localhost:3001/posts/${id}`, {
+            headers: {
+                   'Authorization': 'whatever-you-want',
+                   'Accept': 'application/json',
+                   "Content-Type": "application/json",
+               },
+               method: 'Post',
+               body: JSON.stringify({option: option})
+          })
+          .then(response => response.json())
+          .then(response => dispatch(get_all_posts()))
+          .catch(error => console.log(error))
+    }
+}
