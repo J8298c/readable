@@ -7,13 +7,12 @@ const config = require('./config')
 const categories = require('./categories')
 const posts = require('./posts')
 const comments = require('./comments')
-const logger = require('morgan');
 
 const app = express()
 
 app.use(express.static('public'))
 app.use(cors())
-app.use(logger('dev'))
+
 
 app.get('/', (req, res) => {
   const help = `
@@ -95,6 +94,8 @@ app.get('/', (req, res) => {
     POST /comments/:id
       USAGE:
         Used for voting on a comment.
+      PARAMS:
+        option - String: Either "upVote" or "downVote"
 
     PUT /comments/:id
       USAGE:
