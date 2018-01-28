@@ -1,6 +1,7 @@
-import React, { Component } from 'react';
+import React,{ Component } from 'react';
 import { connect } from 'react-redux';
 import { get_all_posts, update_score } from '../actions/post_actions';
+import { Link } from 'react-router-dom';
 
 class PostListView extends Component {
     componentDidMount() {
@@ -19,7 +20,9 @@ class PostListView extends Component {
                     this.props.posts ?
                     this.props.posts.map(post => (
                         <div key={post.id}>
+                            <Link to={`/${post.category}`}>
                             <h4>{post.title}</h4>
+                            </Link>
                             <div>
                                 <p>{post.body}</p>
                             </div>

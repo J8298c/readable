@@ -1,5 +1,7 @@
 const headers = {headers: { 'Authorization': 'whatever-you-want' }}
 export const SET_POSTS = 'SET_POSTS';
+export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
+
 
 export function setPosts(posts) {
     return {
@@ -34,5 +36,21 @@ export function update_score(option, id, dispatch) {
           .then(response => response.json())
           .then(response => dispatch(get_all_posts()))
           .catch(error => console.log(error))
+    }
+}
+
+export function getCategoryPost(posts) {
+    return {
+        type: GET_CATEGORY_POSTS,
+        posts
+    }
+}
+
+export function get_category_posts(category, dispatch) {
+    return dispatch => {
+        fetch(`http://localhost:3001/${category}/posts`, headers)
+        .then(response => response.json())
+        .then(posts => dispatch(getCategoryPost(posts)))
+        .catch(error => console.log(error))
     }
 }
