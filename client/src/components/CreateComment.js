@@ -24,7 +24,7 @@ const buttonStyle ={
 
 class CreatePost extends Component {
     componentDidMount() {
-        //do something
+        //do something\
     }
     state = {
         title: '',
@@ -34,10 +34,12 @@ class CreatePost extends Component {
     }
     onSubmit = () => {
         const {  author, body } = this.state;
+        const { parentId } = this.props.match.params;
         const id = uuid();
         const timestamp = Date.now();
-        const post = {id,  author, body, timestamp };
+        const post = {id,  author, body, timestamp, parentId };
         this.props.addNewPost(post, 'comment');
+        console.log(post);
     }
 
     render() {

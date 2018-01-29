@@ -146,7 +146,7 @@ export function addNewPost(post, type, dispatch) {
   if(type === 'post') {
     url = 'http://localhost:3001/posts';
   } else {
-    url = 'http://localhost:3001//comments'
+    url = 'http://localhost:3001/comments'
   }
   return dispatch => {
     fetch(url, {
