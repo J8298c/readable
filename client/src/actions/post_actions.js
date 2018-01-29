@@ -1,7 +1,7 @@
 const headers = {headers: { 'Authorization': 'whatever-you-want' }}
 export const SET_POSTS = 'SET_POSTS';
 export const GET_CATEGORY_POSTS = 'GET_CATEGORY_POSTS';
-
+export const GET_CATEGORIES = 'GET_CATEGORIES';
 
 export function setPosts(posts) {
     return {
@@ -57,6 +57,22 @@ export function get_category_posts(category, dispatch) {
         fetch(`http://localhost:3001/${category}/posts`, headers)
         .then(response => response.json())
         .then(posts => dispatch(getCategoryPost(posts)))
+        .catch(error => console.log(error))
+    }
+}
+
+export function getCategories(categories) {
+    return {
+        type: GET_CATEGORIES,
+        categories
+    }
+}
+
+export function get_all_categories(dispatch) {
+    return dispatch => {
+        fetch('http://localhost:3001/categories', headers)
+        .then(response => response.json())
+        .then(categories => dispatch(getCategories(categories)))
         .catch(error => console.log(error))
     }
 }

@@ -1,16 +1,23 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import PostListView from './PostListView';
 import CategoryPostView from './CategoryPostView';
+import NavBar from './NavBar';
 
-const RouterComponent = () => (
-   <BrowserRouter>
-   <div>
-        <Route exact path='/' component={PostListView} />
-        <Route path='/:category' component={CategoryPostView} /> 
-   </div>
-    
-   </BrowserRouter>
-);
+class RouterComponent extends Component {
+    render() {
+        return(
+          <BrowserRouter>
+                <div>
+                    <NavBar />
+                    <Route exact path='/' component={PostListView} />
+                    <Route path='/:category' component={CategoryPostView} /> 
+                </div>
+            </BrowserRouter>  
+        )
+    }
+}
+  
+
 
 export default RouterComponent;
