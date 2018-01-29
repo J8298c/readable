@@ -2,21 +2,19 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
-import { get_all_categories } from '../actions/post_actions';
-
+import { fetchCategories } from '../actions/index';
  class NavBar extends Component {
   state = {}
 
   componentDidMount(props) {
     //etch all categpories
-    this.props.get_all_categories();
+    this.props.fetchCategories();
   }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
   render() {
     const { activeItem } = this.state
-    console.log(this.props);
     return (
       <Menu pointing>
           <Menu.Item
@@ -62,10 +60,10 @@ import { get_all_categories } from '../actions/post_actions';
   }
 }
 
-function mapStateToProps({categories}) {
-    console.log(categories)
+function mapStateToProps(state) {
+  const{categories} = state;
   return {
     categories
   }
 }
-export default connect(mapStateToProps, {get_all_categories})(NavBar);
+export default connect(mapStateToProps, {fetchCategories})(NavBar);

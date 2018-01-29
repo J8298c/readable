@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { BrowserRouter, Route } from 'react-router-dom';
+import HomePage from './components/HomePage';
+import PostHome from './components/PostHome';
+import NavBar from './components/NavBar';
 import './App.css';
-import { createStore, applyMiddleware} from 'redux';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import RouterComponent from './components/RouterComponent';
-import postReducer from './reducers/post_reducers';
-
-const store = createStore(postReducer, {}, applyMiddleware(thunk));
+import CreatePost from './components/CreatePost';
+import CategoryHome from './components/CategoryHome';
+import EditPost from './components/EditPost'
+import CommentHome from './components/CommentHome';
+import EditComment from './components/EditComment';
 
 class App extends Component {
   render() {
     return (
-      <Provider store={store}>
-        <RouterComponent />
-      </Provider>
+      <BrowserRouter>
+      <div>
+        <NavBar />
+        <Route exact path='/' component={HomePage} />
+        <Route path='/post/:id' component={PostHome} />
+        <Route path='/:category/posts' component={CategoryHome} />
+        <Route path='/posts/new' component={CreatePost} />
+        <Route exact path='/edit/:id' component={EditPost} />
+        <Route path='/comments/:id' component={CommentHome} />
+        <Route path='/edit/comment/:id' component={EditComment} />
+      </div>
+      </BrowserRouter>
     );
   }
 }
