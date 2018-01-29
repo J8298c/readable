@@ -33,11 +33,11 @@ class CreatePost extends Component {
         category: ''
     }
     onSubmit = () => {
-        const { title, author, body, category } = this.state;
+        const {  author, body } = this.state;
         const id = uuid();
         const timestamp = Date.now();
-        const post = {id, title, author, body, timestamp, category};
-        this.props.addNewPost(post, 'post');
+        const post = {id,  author, body, timestamp };
+        this.props.addNewPost(post, 'comment');
     }
 
     render() {
@@ -46,22 +46,12 @@ class CreatePost extends Component {
                 <h1 style={fontStyle}>Create a New Post</h1>
                 <Form style={formStyle}>
                     <Form.Input 
-                        placeholder='Enter a Title' label='Post Title' 
-                            onChange={(event) => { this.setState({ title: event.target.value})}}
-                            />
-                    <Form.Input 
                         placeholder='Enter a authors name' label='Post Author' 
                             onChange={(event) => { this.setState({ author: event.target.value})}}
                             />
                     <Form.TextArea placeholder='Enter your post' label='Post' 
                         onChange={(event) => { this.setState({body: event.target.value})}}
                         />
-
-                    <select onChange = {(event) => {this.setState({ category: event.target.value})}}>
-                        <option defaultValue="react">React</option>
-                        <option value="redux">Redux</option>
-                        <option  value="udacity">udaicty</option>
-                    </select>
                 </Form>
                 <Form.Field onClick={ this.onSubmit} control={Button} style={buttonStyle}>Submit</Form.Field>
             </div>

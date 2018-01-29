@@ -141,9 +141,15 @@ export function fetchingCategoryPosts(category, dispatch) {
   }
 }
 
-export function addNewPost(post, dispatch) {
+export function addNewPost(post, type, dispatch) {
+  let url;
+  if(type === 'post') {
+    url = 'http://localhost:3001/posts';
+  } else {
+    url = 'http://localhost:3001//comments'
+  }
   return dispatch => {
-    fetch(`http://localhost:3001/posts`, {
+    fetch(url, {
       headers: {
              'Authorization': 'whatever-you-want',
              'Accept': 'application/json',
@@ -205,7 +211,7 @@ export function fetchAComment(id, dispatch) {
   }
 }
 
-export function commentVoter(id, option) {
+export function addAComment(comment, dispatch) {
 
 }
 

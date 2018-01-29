@@ -9,6 +9,7 @@ import CategoryHome from './components/CategoryHome';
 import EditPost from './components/EditPost'
 import CommentHome from './components/CommentHome';
 import EditComment from './components/EditComment';
+import CreateComment from './components/CreateComment';
 
 class App extends Component {
   render() {
@@ -22,6 +23,7 @@ class App extends Component {
         <Route path='/posts/new' component={CreatePost} />
         <Route exact path='/edit/:id' component={EditPost} />
         <Route path='/comments/:id' component={CommentHome} />
+        <Route path='/:parentId/new_comment' component={CreateComment} />
         <Route path='/edit/comment/:id' component={EditComment} />
       </div>
       </BrowserRouter>
