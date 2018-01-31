@@ -18,6 +18,12 @@ class EditPost extends Component {
     componentDidMount() {
         const { id } = this.props.match.params;
         this.props.fetchingPost(id);
+        if(this.props.state.post) {
+            this.setState({
+                title: this.props.state.post.title,
+                body: this.props.state.post.body
+            })
+        }
     }
 
     onSubmit = (id) => {
@@ -25,6 +31,7 @@ class EditPost extends Component {
         this.props.editPost(id, data)
     }
     render(props) {
+        
         return (
             <div>
                 {
@@ -33,10 +40,12 @@ class EditPost extends Component {
                         <Form.Input 
                         placeholder={this.props.state.post.title} label='Post Title' 
                             onChange={(event) => { this.setState({ title: event.target.value})}}
+                            value={this.state.title}
                             />
 
                     <Form.TextArea placeholder={this.props.state.post.body} label='Post' 
                         onChange={(event) => { this.setState({body: event.target.value})}}
+                        value={this.state.body}
                         />
                         <Form.Field onClick={ this.onSubmit(this.props.state.post.id)} control={Button} style={buttonStyle}>Submit</Form.Field>
                     </Form>
