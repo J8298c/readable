@@ -171,7 +171,7 @@ export function deletePost(id, type,  dispatch) {
       axios
         .delete(`http://localhost:3001/posts/${id}`, headers)
         .then(response => {
-          dispatch(statusMessage(response.data))
+            dispatch(fetchingAllPosts())
         })
     } else {
       axios

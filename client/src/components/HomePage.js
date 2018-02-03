@@ -50,9 +50,11 @@ class HomePage extends Component {
        <div style={styles.divStyle}>
         {
           this.props.state.posts ?
-          thePosts.map(post => (
-              <PostHome post={post} key={post.id} />
-          ))
+          thePosts.map(post => {
+              if(!post.deleted){
+                return <PostHome post={post} key={post.id} />
+              }
+          })
           : null
         }
          </div>

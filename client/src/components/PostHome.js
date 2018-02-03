@@ -38,7 +38,7 @@ class PostHome extends Component {
     }
 
      onDelete = (id) => {
-        this.props.deletePost(id)
+        this.props.deletePost(id, 'post')
     }
 
     render() {
@@ -73,6 +73,10 @@ class PostHome extends Component {
                                 <Button color='orange' content='Delete'
                                     onClick={() => { this.onDelete(this.props.state.post.id, 'post')}}
                                  />
+                                 <Button.Or />
+                                 <Link to={`/${this.props.state.post.id}/new_comment`}>
+                                 <Button color='blue' content='Comment' />
+                                 </Link>
                             </Button.Group>
                             <p>Replies</p>
                             <hr style={hrStyle}/>
