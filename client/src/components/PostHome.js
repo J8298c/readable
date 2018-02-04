@@ -56,6 +56,7 @@ class PostHome extends Component {
                             <Card.Description>{this.props.state.post.body}</Card.Description>
                             <Card.Meta>
                                Score: {this.props.state.post.voteScore}
+                               <p>Comments: { this.props.state.post.commentCount}</p>
                             </Card.Meta>
                         </Card.Content>
                         <Card.Content extra>
