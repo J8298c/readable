@@ -1,11 +1,14 @@
-Readable Posts Viewer
+Udacity React Nanodegree Project 2
+Readable: A Content And Comment App
 
-Table of Contents
-  <ol>
-    <li>Installation</li>
-    <li>Up and Running</li>
-    <li>App Navigation</li>
-    <li>Creating a new post/comment</li>
-    <li>Voting on a post/comment</li>
-  </ol>
-  <hr />
+Usage
+cd client
+npm install or yarn install
+npm start or yarn start
+
+cd api-server
+npm install or yarn install
+npm start or yarn start
+
+
+This project was bootstrapped with Create React App
