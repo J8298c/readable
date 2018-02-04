@@ -39,7 +39,6 @@ class CreatePost extends Component {
         const timestamp = Date.now();
         const post = {id,  author, body, timestamp, parentId };
         this.props.addNewPost(post, 'comment');
-        console.log(post);
     }
 
     render() {

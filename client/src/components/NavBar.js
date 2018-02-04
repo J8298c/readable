@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Menu } from 'semantic-ui-react'
 import {Link} from 'react-router-dom'
 import { connect } from 'react-redux';
-import { fetchCategories } from '../actions/index';
+import { fetchCategories, fetchingCategoryPosts } from '../actions/index';
  class NavBar extends Component {
   state = {}
 
@@ -11,7 +11,10 @@ import { fetchCategories } from '../actions/index';
     this.props.fetchCategories();
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => {
+    this.setState({ activeItem: name })
+    this.props.fetchingCategoryPosts(name)
+  }
 
   render() {
     const { activeItem } = this.state
@@ -66,4 +69,4 @@ function mapStateToProps(state) {
     categories
   }
 }
-export default connect(mapStateToProps, {fetchCategories})(NavBar);
+export default connect(mapStateToProps, {fetchCategories, fetchingCategoryPosts})(NavBar);
